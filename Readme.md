@@ -11,7 +11,7 @@ Firstly, it does not work on Windows (Classpath separator is incorrect). It uses
 
 We provide two projects 
 
-- -cucumber-plugin
+- cucumber-plugin
 - cucumber-runner
 
 The first provides a Cucumber plugin. This allow you to write ```sbt cucumber``` and invoke the Cucumber tests in a standalone JVM.
@@ -67,13 +67,12 @@ If you follow this example  you can use the plugin for your test project. To do 
 	
 	CucumberPlugin.glue := "com/waioeka/sbt/"
 ```
-`
 Remember to set the ```CucumberPlugin.glue``` parameter to the sub directory in ```test```
 that contains your Scala step definitions.
 
 For example, in your ```resources``` directory, put your feature file. For example:
 
-	
+```	
 	Feature: Multiplication
 	  In order to avoid making mistakes
 	  As a dummy
@@ -84,7 +83,7 @@ For example, in your ```resources``` directory, put your feature file. For examp
 	And a variable y with value 3
 	When I multiply x * y
 	Then I get 6
-	
+```	
 
 Note, if you need to generate the stubs, just run ```sbt cucumber``` and you will get an
 error complaining about missing stubs, you can copy and paste the stub functions into your
@@ -92,6 +91,7 @@ step implementation.
 
 You can now put in your stub implementation. For example:
 
+```
 	package com.nephila.sbt
 	
 	import cucumber.api.scala.{ScalaDsl, EN}
@@ -122,15 +122,16 @@ You can now put in your stub implementation. For example:
 	   z should be (arg0)
 	 }
 	}
-
+```
 
 Finally you can run the tests in standalone mode as follows :
-
+```
 	sbt compile
 	sbt cucumber
-
+```
 You should see some output as follows:
 
+```
 	paeroa:cucumber-test lewismj$ sbt cucumber
 	[info] Loading project definition from /Users/lewismj/nephila/upa-plugins/cucumber-test/project
 	[info] Set current project to cucumber-test (in build file:/Users/lewismj/nephila/upa-plugins/cucumber-test/)
@@ -150,8 +151,7 @@ You should see some output as follows:
 	[info] 0m0.106s
 	[info] 
 	[success] Total time: 1 s, completed 28-Dec-2015 22:16:19
-
-
+```
 The output will be:
 1. cucumber-html, standard Cucumber html output.
 2. cucumber.json, standard Cucumber json output.
@@ -163,7 +163,7 @@ The output will be:
 
 See below, you can now run ```sbt test``` in addition to ```sbt cucumber```. 
 
-	`
+```
 	mlewis@DEV-MLEWIS01 MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
 	$ sbt cucumber
 	[info] Loading project definition from E:\Dev\Plugins\upa-plugins\cucumber-runner-test\project
@@ -216,9 +216,8 @@ See below, you can now run ```sbt test``` in addition to ```sbt cucumber```.
 	
 	mlewis@DEV-MLEWIS01 MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
 ```
-`In order to run ```sbt test``` you must add the following hook to your ```build.sbt``` file.
+In order to run ```sbt test``` you must add the following hook to your ```build.sbt``` file.
 
 ```
 `testFrameworks += new TestFramework("com.waioeka.sbt.runner")
 ```
-`
