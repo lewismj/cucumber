@@ -49,7 +49,7 @@ sbt cucumber
 
 If you follow this example  you can use the plugin for your test project. To do this, update your ```build.sbt``` as follows:
 
-	`
+```	
 	name := "cucumber-test"
 	
 	organization := "com.waioeka.sbt"
@@ -67,6 +67,7 @@ If you follow this example  you can use the plugin for your test project. To do 
 	
 	CucumberPlugin.glue := "com/waioeka/sbt/"
 ```
+
 Remember to set the ```CucumberPlugin.glue``` parameter to the sub directory in ```test```
 that contains your Scala step definitions.
 
