@@ -47,7 +47,7 @@ After you have built and published the plugin. You can view an example use case 
 sbt compile
 sbt cucumber
 
-If you follow this example  you can use the plugin for your test project. To do this, update your ```build.sbt``` as follows:
+If you follow this example you can use the plugin for your test project. To do this, update your ```build.sbt``` as follows:
 
 ```	
 	name := "cucumber-test"
@@ -125,13 +125,10 @@ You can now put in your stub implementation. For example:
 	}
 ```
 
-Finally you can run the tests in standalone mode as follows :
-```
-	sbt compile
-	sbt cucumber
-```
-You should see some output as follows:
-
+Finally you can run the tests in standalone mode:
+```sbt compile```
+```sbt cucumber```
+You should see some output, as below :
 ```
 	paeroa:cucumber-test lewismj$ sbt cucumber
 	[info] Loading project definition from /Users/lewismj/nephila/upa-plugins/cucumber-test/project
@@ -160,7 +157,7 @@ The output will be:
 
 ### cucumber-runner-example
 
- If you want to run cucumber tests as part of an ``sbt test``` (unit test) run then, in addition to the plugin, first compile and publish the **cucumber-runner** project. The next step is to simply update your ```build.sbt``` file to reference the new test framework (Essentially a slightly different hook into running Cucumber).
+ If you want to run cucumber tests as part of an ```sbt test``` (unit test) run then, in addition to the plugin, first compile and publish the **cucumber-runner** project. The next step is to simply update your ```build.sbt``` file to reference the new test framework (Essentially a slightly different hook into running Cucumber).
 
  The ***cucumber-runner-example*** illustrates how to do this, and integrate BDD testing into unit test framework.
 
