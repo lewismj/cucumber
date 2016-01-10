@@ -4,12 +4,12 @@
 
 Many Scala projects will use the FlatSpec for their BDD like testing. Some teams prefer the separation of Feature files from the code. 
 
-The support for Cucumber with Scala is quite mixed. There is an existing plugin [](https://github.com/skipoleschris/xsbt-cucumber-plugin "xsbt-cucumber-plugin")but this plugin has a few issues. 
+The support for Cucumber with Scala is quite mixed. There is an existing plugin [xsbt-cucumber-plugin](https://github.com/skipoleschris/xsbt-cucumber-plugin) but this plugin has a few issues. 
 
 Firstly, it does not work on Windows (Classpath separator is incorrect). It uses the old SBT plugin interface and hasn’t been updated for some time. The author hasn’t responded to pull requests.
 
 
-We provide two projects 
+There are two core projects, each has an example proejct illustrating the usage. 
 
 - cucumber-plugin
 - cucumber-runner
@@ -158,9 +158,11 @@ The output will be:
 2. cucumber.json, standard Cucumber json output.
 3. cucumber-junit-report.xml, a Junit style rest report.
 
-### cucumber-test-runner
+### cucumber-runner-example
 
- An example program showing how to integrate Feature tests into an ```sbt test``` In addition to the cucumber plugin, **also build and publish the cucumber-runner**.
+ If you want to run cucumber tests as part of an ``sbt test``` (unit test) run then, in addition to the plugin, first compile and publish the **cucumber-runner** project. The next step is to simply update your ```build.sbt``` file to reference the new test framework (Essentially a slightly different hook into running Cucumber).
+
+ The ***cucumber-runner-example*** illustrates how to do this, and integrate BDD testing into unit test framework.
 
 See below, you can now run ```sbt test``` in addition to ```sbt cucumber```. 
 
@@ -220,5 +222,5 @@ See below, you can now run ```sbt test``` in addition to ```sbt cucumber```.
 In order to run ```sbt test``` you must add the following hook to your ```build.sbt``` file.
 
 ```
-`testFrameworks += new TestFramework("com.waioeka.sbt.runner")
+testFrameworks += new TestFramework("com.waioeka.sbt.runner")
 ```
