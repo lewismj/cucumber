@@ -93,7 +93,7 @@ step implementation.
 You can now put in your stub implementation. For example:
 
 ```
-	package com.nephila.sbt
+	package com.waioeka.sbt
 	
 	import cucumber.api.scala.{ScalaDsl, EN}
 	import org.scalatest.Matchers
@@ -124,15 +124,15 @@ You can now put in your stub implementation. For example:
 	 }
 	}
 ```
+You can now run the tests in standalone mode:
+```sbt compile
+sbt cucumber```
 
-Finally you can run the tests in standalone mode:
-```sbt compile```
-```sbt cucumber```
 You should see some output, as below :
 ```
 	paeroa:cucumber-test lewismj$ sbt cucumber
-	[info] Loading project definition from /Users/lewismj/nephila/upa-plugins/cucumber-test/project
-	[info] Set current project to cucumber-test (in build file:/Users/lewismj/nephila/upa-plugins/cucumber-test/)
+	[info] Loading project definition from /Users/lewismj/waioeka/upa-plugins/cucumber-test/project
+	[info] Set current project to cucumber-test (in build file:/Users/lewismj/waioeka/upa-plugins/cucumber-test/)
 	[info] Feature: Multiplication
 	[info]   In order to avoid making mistakes
 	[info]   As a dummy
@@ -151,9 +151,10 @@ You should see some output, as below :
 	[success] Total time: 1 s, completed 28-Dec-2015 22:16:19
 ```
 The output will be:
-1. cucumber-html, standard Cucumber html output.
-2. cucumber.json, standard Cucumber json output.
-3. cucumber-junit-report.xml, a Junit style rest report.
+
+- cucumber-html, standard Cucumber html output.
+- cucumber.json, standard Cucumber json output.
+- cucumber-junit-report.xml, a Junit style rest report.
 
 ### cucumber-runner-example
 
