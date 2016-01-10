@@ -125,32 +125,35 @@ You can now put in your stub implementation. For example:
 	}
 ```
 You can now run the tests in standalone mode:
-```sbt compile
-sbt cucumber```
+```
+sbt compile
+sbt cucumber
+```
+You should see some output as follows:
 
-You should see some output, as below :
 ```
-	paeroa:cucumber-test lewismj$ sbt cucumber
-	[info] Loading project definition from /Users/lewismj/waioeka/upa-plugins/cucumber-test/project
-	[info] Set current project to cucumber-test (in build file:/Users/lewismj/waioeka/upa-plugins/cucumber-test/)
-	[info] Feature: Multiplication
-	[info]   In order to avoid making mistakes
-	[info]   As a dummy
-	[info]   I want to multiply numbers
-	[info] 
-	[info]   Scenario: Multiply two variables  # Multiplication.feature:6
-	[info]     Given a variable x with value 2 # MultiplicationSteps.scala:17
-	[info]     And a variable y with value 3   # MultiplicationSteps.scala:21
-	[info]     When I multiply x * y           # MultiplicationSteps.scala:25
-	[info]     Then I get 6                    # MultiplicationSteps.scala:29
-	[info] 
-	[info] 1 Scenarios (1 passed)
-	[info] 4 Steps (4 passed)
-	[info] 0m0.106s
-	[info] 
-	[success] Total time: 1 s, completed 28-Dec-2015 22:16:19
+paeroa:cucumber-test lewismj$ sbt cucumber
+[info] Loading project definition from /Users/lewismj/waioeka/upa-plugins/cucumber-test/project
+[info] Set current project to cucumber-test (in build file:/Users/lewismj/waioeka/upa-plugins/cucumber-test/)
+[info] Feature: Multiplication
+[info]   In order to avoid making mistakes
+[info]   As a dummy
+[info]   I want to multiply numbers
+[info]
+[info]   Scenario: Multiply two variables  # Multiplication.feature:6
+[info]     Given a variable x with value 2 # MultiplicationSteps.scala:17
+[info]     And a variable y with value 3   # MultiplicationSteps.scala:21
+[info]     When I multiply x * y           # MultiplicationSteps.scala:25
+[info]     Then I get 6                    # MultiplicationSteps.scala:29
+[info]
+[info] 1 Scenarios (1 passed)
+[info] 4 Steps (4 passed)
+[info] 0m0.106s
+[info]
+[success] Total time: 1 s, completed 28-Dec-2015 22:16:19
 ```
-The output will be:
+
+The result formats will be written:
 
 - cucumber-html, standard Cucumber html output.
 - cucumber.json, standard Cucumber json output.
