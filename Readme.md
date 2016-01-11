@@ -168,7 +168,7 @@ The result formats will be written:
 See below, you can now run ```sbt test``` in addition to ```sbt cucumber```. 
 
 ```
-	mlewis@DEV-MLEWIS01 MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
+	mlewis@LEWISMJ-WINDEV MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
 	$ sbt cucumber
 	[info] Loading project definition from E:\Dev\Plugins\upa-plugins\cucumber-runner-test\project
 	[info] Set current project to cucumber-test2 (in build file:/E:/Dev/Plugins/upa-plugins/cucumber-runner-test/)
@@ -190,7 +190,7 @@ See below, you can now run ```sbt test``` in addition to ```sbt cucumber```.
 	[info]
 	[success] Total time: 5 s, completed 29-Dec-2015 15:28:51
 	
-	mlewis@DEV-MLEWIS01 MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
+	mlewis@LEWISMJ-WINDEV MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
 	$ sbt test
 	[info] Loading project definition from E:\Dev\Plugins\upa-plugins\cucumber-runner-test\project
 	[info] Set current project to cucumber-test2 (in build file:/E:/Dev/Plugins/upa-plugins/cucumber-runner-test/)
@@ -218,7 +218,7 @@ See below, you can now run ```sbt test``` in addition to ```sbt cucumber```.
 	[info] Passed: Total 1, Failed 0, Errors 0, Passed 1
 	[success] Total time: 1 s, completed 29-Dec-2015 15:29:11
 	
-	mlewis@DEV-MLEWIS01 MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
+	mlewis@LEWISMJ-WINDEV MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
 ```
 In order to run ```sbt test``` you must add the following hook to your ```build.sbt``` file.
 
