@@ -1,4 +1,4 @@
-# BDD Testing with Cucumber and Scala
+# SBT Plugin For BDD Testing with Cucumber and Scala
 
 ## Introduction
 
