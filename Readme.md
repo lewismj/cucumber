@@ -52,13 +52,13 @@ If you follow this example you can use the plugin for your test project. To do t
 ```	
 	name := "cucumber-test"
 	
-	organization := "com.waioeka.sbt"
+	organization := "com.waioeka"
 	
-	version := "1.0-SNAPSHOT"
+	version := "0.0.1"
 	
 	libraryDependencies ++= Seq (
 	"info.cukes" % "cucumber-core" % "1.2.4" % "test",
-	"info.cukes" % "cucumber-scala_2.10" % "1.2.4" % "test",
+	"info.cukes" %% "cucumber-scala" % "1.2.4" % "test",
 	"info.cukes" % "cucumber-jvm" % "1.2.4" % "test",
 	"info.cukes" % "cucumber-junit" % "1.2.4" % "test",
 	"org.scalatest" %% "scalatest" % "2.2.4" % "test")
