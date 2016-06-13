@@ -1,6 +1,6 @@
 name := "cucumber-runner"
 
-organization := "com.waioeka"
+organization := "com.waioeka.sbt"
 
 version := "0.0.1"
 
