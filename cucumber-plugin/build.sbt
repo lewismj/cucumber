@@ -1,6 +1,6 @@
 name := "cucumber-plugin"
 
-organization := "com.waioeka"
+organization := "com.waioeka.sbt"
 
 sbtPlugin := true
 

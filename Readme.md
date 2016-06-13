@@ -52,7 +52,7 @@ If you follow this example you can use the plugin for your test project. To do t
 ```	
 	name := "cucumber-test"
 	
-	organization := "com.waioeka"
+	organization := "com.waioeka.sbt"
 	
 	version := "0.0.1"
 	
