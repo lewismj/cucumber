@@ -1,5 +1,11 @@
 # An SBT Plugin For BDD Testing (Cucumber And Scala)
 
+
+## Update
+
+The plugin & runner (described below) should now be available from the central repository: http://search.maven.org/#search%7Cga%7C1%7Cwaioeka
+ 
+
 ## Introduction
 
 Many Scala projects will use the FlatSpec for their BDD like testing. Some teams prefer the separation of Feature files from the code. 
