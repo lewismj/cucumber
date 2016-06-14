@@ -3,7 +3,7 @@
 
 ## Update
 
-The plugin & runner (described below) should now be available from the central repository: http://search.maven.org/#search%7Cga%7C1%7Cwaioeka
+The plugin & runner (described below) should now be available from the [central repository] (http://search.maven.org/#search%7Cga%7C1%7Cwaioeka)
  
 
 ## Introduction
