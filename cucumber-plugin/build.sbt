@@ -12,3 +12,13 @@ libraryDependencies ++= Seq (
 	"info.cukes" % "cucumber-jvm" % "1.2.4",
 	"info.cukes" % "cucumber-junit" % "1.2.4",
 	"org.apache.commons" % "commons-lang3" % "3.4")
+
+publishMavenStyle := true
+
+publishTo := {
+  val nexus = "https://oss.sonatype.org/"
+  if (isSnapshot.value)
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+}
