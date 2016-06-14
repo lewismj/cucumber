@@ -38,7 +38,17 @@ Michael Lewis,  lewismj at waioeka.com
 
 ### cucumber-plugin
 
-The SBT plugin for running Feature file tests. You will first need to build and publish this plugin. This would usually be to your local Nexus repo.
+Note: You only need to do the following if you want to build the plugin from source yourself. The plugin is
+now available from the Central Repository. 
+i.e. In your end application just have
+
+```
+addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.0.1")
+```
+
+in your plugins.sbt file.
+
+If building from source locally, from your local Nexus repo, run the following.
 
 	sbt compile
 	sbt publishLocal
