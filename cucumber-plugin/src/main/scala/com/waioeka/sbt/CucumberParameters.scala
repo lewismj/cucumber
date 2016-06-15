@@ -36,6 +36,7 @@ package com.waioeka.sbt
   * @param monochrome     whether or not to use monochrome output.
   * @param plugin         what plugin(s) to use.
   * @param glue           where glue code is loaded from.
+  * @param additionalArgs additional arguments to pass through to Cucumber.
   */
 case class CucumberParameters(
                             dryRun      : Boolean,
