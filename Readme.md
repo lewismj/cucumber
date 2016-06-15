@@ -245,7 +245,7 @@ testFrameworks += new TestFramework("com.waioeka.sbt.runner")
 
 ### Cucumber arguments
 
-You can now (v0.0.3) supply cucumber arguments. For example, ``` sbt "cucumber --tags ~@my-tag ``` will
+You can now (v0.0.3) supply cucumber arguments. For example, ``` sbt "cucumber --tags ~@my-tag" ``` will
 now correctly filter tagged feature files.
 
 ```
