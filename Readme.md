@@ -43,7 +43,7 @@ now available from the Central Repository.
 i.e. In your end application just have
 
 ```
-addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.0.1")
+addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.0.3")
 ```
 
 in your plugins.sbt file.
@@ -70,7 +70,7 @@ If you follow this example you can use the plugin for your test project. To do t
 	
 	organization := "com.waioeka.sbt"
 	
-	version := "0.0.1"
+	version := "0.0.3"
 	
 	libraryDependencies ++= Seq (
 	"info.cukes" % "cucumber-core" % "1.2.4" % "test",
