@@ -1,3 +1,4 @@
+@my-test
 Feature: Multiplication
   In order to avoid making mistakes
   As a dummy

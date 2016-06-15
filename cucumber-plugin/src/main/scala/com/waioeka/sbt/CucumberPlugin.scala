@@ -27,6 +27,7 @@ package com.waioeka.sbt
 
 import sbt._
 import Keys._
+import sbt.complete.DefaultParsers._
 
 import scala.util.Try
 
@@ -38,7 +39,7 @@ import scala.util.Try
 object CucumberPlugin extends AutoPlugin {
 
   /** TaskKey for the cucumber plugin.                            */
-  lazy val cucumber = taskKey[Unit]("[Cucumber] Runs Scala Cucumber.")
+  lazy val cucumber = InputKey[Unit]("cucumber", "[Cucumber] Runs Scala Cucumber.")
 
   /** The main class of the Cucumber test runner.                 */
   val mainClass = SettingKey[String]("cucumber-main-class")
@@ -82,6 +83,8 @@ object CucumberPlugin extends AutoPlugin {
 
     cucumber := {
 
+      val args: Seq[String] = spaceDelimited("<arg>").parsed
+
       val outputStrategy = LoggedOutput(streams.value.log)
 
       val p1 = ((fullClasspath in Test)
@@ -97,7 +100,8 @@ object CucumberPlugin extends AutoPlugin {
                                   features.value,
                                   monochrome.value,
                                   plugin.value,
-                                  glue.value)
+                                  glue.value,
+                                  args.toList)
 
       val j = JvmParameters(mainClass.value,p1) //::: p2)
 

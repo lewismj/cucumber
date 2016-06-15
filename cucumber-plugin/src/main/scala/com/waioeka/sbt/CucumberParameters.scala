@@ -36,13 +36,15 @@ package com.waioeka.sbt
   * @param monochrome     whether or not to use monochrome output.
   * @param plugin         what plugin(s) to use.
   * @param glue           where glue code is loaded from.
+  * @param additionalArgs additional arguments to pass through to Cucumber.
   */
 case class CucumberParameters(
                             dryRun      : Boolean,
                             features    : List[String],
                             monochrome  : Boolean,
                             plugin      : List[String],
-                            glue        : String) {
+                            glue        : String,
+                            additionalArgs: List[String]) {
 
   /**
     * Create a list of one element
@@ -70,12 +72,13 @@ case class CucumberParameters(
     /* TODO Make the output directories of the default plugins configurable. */
     boolToParameter(dryRun,"dry-run") :::
       boolToParameter(monochrome,"monochrome") :::
-        List("--glue",s"$glue") :::
-          List("--plugin","pretty") :::
-            List("--plugin","html:cucumber-html") :::
-              List("--plugin","json:cucumber.json") :::
-                List("--plugin","junit:cucumber-junit-report.xml") :::
-                List(s"$featureOpts")
+      List("--glue",s"$glue") :::
+      List("--plugin","pretty") :::
+      List("--plugin","html:cucumber-html") :::
+      List("--plugin","json:cucumber.json") :::
+      List("--plugin","junit:cucumber-junit-report.xml") :::
+      additionalArgs :::
+      List(s"$featureOpts")
   }
 
 }
