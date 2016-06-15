@@ -90,6 +90,7 @@ that contains your Scala step definitions.
 For example, in your ```resources``` directory, put your feature file. For example:
 
 ```	
+	@my-tag
 	Feature: Multiplication
 	  In order to avoid making mistakes
 	  As a dummy
