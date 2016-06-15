@@ -2,7 +2,7 @@ name := "cucumber-runner"
 
 organization := "com.waioeka.sbt"
 
-version := "0.0.2"
+version := "0.0.3"
 
 libraryDependencies ++= Seq (
         "info.cukes" % "cucumber-core" % "1.2.4",

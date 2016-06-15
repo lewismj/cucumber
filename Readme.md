@@ -241,3 +241,25 @@ In order to run ```sbt test``` you must add the following hook to your ```build.
 ```
 testFrameworks += new TestFramework("com.waioeka.sbt.runner")
 ```
+
+### Cucumber arguments
+
+You can now (v0.0.3) supply cucumber arguments. For example, ``` sbt "cucumber --tags ~@my-tag ``` will
+now correctly filter tagged feature files.
+
+```
+[success] Total time: 1 s, completed 15-Jun-2016 09:23:22
+paeroa:cucumber-plugin-example lewismj$ sbt "cucumber --tags ~@my-tag"
+[info] Loading global plugins from /Users/lewismj/.sbt/0.13/plugins
+[info] Loading project definition from /Users/lewismj/github/cucumber/cucumber-plugin-example/project
+[info] Set current project to cucumber-test (in build file:/Users/lewismj/github/cucumber/cucumber-plugin-example/)
+** hello **
+[info] None of the features at [classpath:] matched the filters: [~@my-tag]
+[info] 
+[info] 0 Scenarios
+[info] 0 Steps
+[info] 0m0.000s
+[info] 
+** goodbye **
+[success] Total time: 1 s, completed 15-Jun-2016 09:23:41
+```
