@@ -1,0 +1,15 @@
+language: scala
+
+scala:
+  - 2.11.7
+
+script:
+  - ./travisTestRunner.sh
+
+notifications:
+  email:
+    recipients:
+      - andy@sudostream.io
+
+jdk:
+  - oraclejdk8
