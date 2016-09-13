@@ -25,6 +25,8 @@
 
 package com.waioeka.sbt
 
+import java.io.File
+
 
 /**
   * Cucumber Options
@@ -34,7 +36,7 @@ package com.waioeka.sbt
   * @param dryRun         true, if run should be a dry run.
   * @param features       the path(s) to the features.
   * @param monochrome     whether or not to use monochrome output.
-  * @param plugin         what plugin(s) to use.
+  * @param plugins        what plugin(s) to use.
   * @param glue           where glue code is loaded from.
   * @param additionalArgs additional arguments to pass through to Cucumber.
   */
@@ -42,7 +44,7 @@ case class CucumberParameters(
                             dryRun      : Boolean,
                             features    : List[String],
                             monochrome  : Boolean,
-                            plugin      : List[String],
+                            plugins     : List[Plugin],
                             glue        : String,
                             additionalArgs: List[String]) {
 
@@ -73,12 +75,31 @@ case class CucumberParameters(
     boolToParameter(dryRun,"dry-run") :::
       boolToParameter(monochrome,"monochrome") :::
       List("--glue",s"$glue") :::
-      List("--plugin","pretty") :::
-      List("--plugin","html:cucumber-html") :::
-      List("--plugin","json:cucumber.json") :::
-      List("--plugin","junit:cucumber-junit-report.xml") :::
+      plugins.map(_.toCucumberPlugin).flatMap(plugin => Seq("--plugin", plugin)) :::
       additionalArgs :::
       List(s"$featureOpts")
   }
+
+}
+
+sealed trait Plugin {
+  def toCucumberPlugin : String
+}
+
+sealed abstract class FilePlugin(name: String, file: File) extends Plugin {
+  override def toCucumberPlugin: String = s"$name:${file.getAbsolutePath}"
+}
+
+object Plugin {
+
+  case object PrettyPlugin extends Plugin {
+    override def toCucumberPlugin: String = "pretty"
+  }
+
+  case class HtmlPlugin(file: File) extends FilePlugin("html", file)
+
+  case class JsonPlugin(file: File) extends FilePlugin("json", file)
+
+  case class JunitPlugin(file: File) extends FilePlugin("junit", file)
 
 }
