@@ -56,6 +56,8 @@ object CucumberPlugin extends AutoPlugin {
   /** What plugin(s) to use.                                      */
   val plugin = SettingKey[List[Plugin]]("cucumber-plugins")
 
+  val cucumberTestReports = settingKey[File]("The location for test reports")
+
   /**
     * Where glue code (step definitions, hooks and plugins)
     * are loaded from.
@@ -114,12 +116,15 @@ object CucumberPlugin extends AutoPlugin {
     dryRun := false,
     features := List("classpath:"),
     monochrome := false,
+    cucumberTestReports := new File(new File(target.value, "test-reports"), "cucumber"),
     plugin := {
       import Plugin._
+      val cucumberDir = cucumberTestReports.value
+      IO.createDirectory(cucumberDir)
       List(PrettyPlugin,
-        HtmlPlugin(new File("cucumber-html")),
-        JsonPlugin(new File("cucumber.json")),
-        JunitPlugin(new File("cucumber-junit-report.xml"))
+        HtmlPlugin(cucumberDir),
+        JsonPlugin(new File(cucumberDir, "cucumber.json")),
+        JunitPlugin(new File(cucumberDir, "junit-report.xml"))
       )
     },
     beforeAll := noOp,
