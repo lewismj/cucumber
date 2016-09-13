@@ -54,7 +54,7 @@ object CucumberPlugin extends AutoPlugin {
   val monochrome = SettingKey[Boolean]("cucumber-monochrome")
 
   /** What plugin(s) to use.                                      */
-  val plugin = SettingKey[List[String]]("cucumber-plugins")
+  val plugin = SettingKey[List[Plugin]]("cucumber-plugins")
 
   /**
     * Where glue code (step definitions, hooks and plugins)
@@ -114,10 +114,18 @@ object CucumberPlugin extends AutoPlugin {
     dryRun := false,
     features := List("classpath:"),
     monochrome := false,
-    plugin := List.empty[String],
+    plugin := {
+      import Plugin._
+      List(PrettyPlugin,
+        HtmlPlugin(new File("cucumber-html")),
+        JsonPlugin(new File("cucumber.json")),
+        JunitPlugin(new File("cucumber-junit-report.xml"))
+      )
+    },
     beforeAll := noOp,
     afterAll := noOp
   )
+
 
   /**
     * Run Cucumber with the given parameters.
