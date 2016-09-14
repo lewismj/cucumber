@@ -60,7 +60,7 @@ class Cucumber(
               ) {
 
   /** Standalone JVM that will run Cucumber. */
-  val jvm : Jvm = Jvm.apply(jvmParameters.classPath)
+  val jvm : Jvm = Jvm(jvmParameters.classPath, jvmParameters.systemProperties)
 
   /**
     * Run Cucumber, within the JVM.

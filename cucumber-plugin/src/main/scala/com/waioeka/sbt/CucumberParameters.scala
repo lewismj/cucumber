@@ -71,7 +71,6 @@ case class CucumberParameters(
   def toList : List[String] = {
     val featureOpts = features mkString " "
 
-    /* TODO Make the output directories of the default plugins configurable. */
     boolToParameter(dryRun,"dry-run") :::
       boolToParameter(monochrome,"monochrome") :::
       List("--glue",s"$glue") :::
