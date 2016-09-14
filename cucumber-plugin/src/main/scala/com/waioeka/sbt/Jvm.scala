@@ -32,32 +32,16 @@ import sbt._
 
 /**
   * JvmRunner
-  *   Companion object, used to construct instances of JvmRunner.
-  */
-object Jvm {
-  /**
-    * Creates a new JvmRunner object.
-    *
-    * @param classPath  the classpath that the JVM should use.
-    * @return a new JvmRunner object.
-    */
-  def apply(classPath: List[File]): Jvm = {
-    new Jvm(classPath)
-  }
-}
-
-/**
-  * JvmRunner
   *   Provide functions for launching JVM.
   */
-class Jvm(classPath: List[File]) {
+case class Jvm(classPath: List[File], systemProperties : Map[String, String]) {
 
   /** Classpath separator, must be ';' for Windows, otherwise : */
   private val sep = if (SystemUtils.IS_OS_WINDOWS) ";" else ":"
 
   /** The Jvm parameters. */
   private val jvmArgs : Seq[String]
-          = Seq("-classpath", classPath map(_.toPath) mkString sep)
+          = Seq("-classpath", classPath map(_.toPath) mkString sep) ++ systemProperties.toList.map{case (key, value) => s"-D$key=$value"}
 
   /**
     * Invoke the main class.
@@ -73,7 +57,7 @@ class Jvm(classPath: List[File]) {
 
     val logger : Logger = outputStrategy.asInstanceOf[LoggedOutput].logger
 
-    val args  = jvmArgs ++ (mainClass :: parameters)
+    val args  = jvmArgs ++  (mainClass :: parameters)
     val debug = args mkString " "
     logger.debug(s"[Jvm.run] Args $debug")
 

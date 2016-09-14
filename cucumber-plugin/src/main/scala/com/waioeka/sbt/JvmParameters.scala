@@ -31,4 +31,4 @@ import java.io.File
   * JvmParameters
   *   This class defines the JVM parameters that this plugin may set.
   */
-case class JvmParameters(mainClass : String, classPath: List[File])
+case class JvmParameters(mainClass : String, classPath: List[File], systemProperties : Map[String, String])
