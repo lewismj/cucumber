@@ -5,6 +5,7 @@
 
 The plugin & runner (described below) should now be available from the [central repository] (http://search.maven.org/#search%7Cga%7C1%7Cwaioeka)
  
+The latest version of the cucumber plugin is 0.0.5, the runner is 0.0.3
 
 ## Introduction
 
