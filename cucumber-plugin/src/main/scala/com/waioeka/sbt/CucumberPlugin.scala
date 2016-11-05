@@ -115,8 +115,11 @@ object CucumberPlugin extends AutoPlugin {
  //::: p2)
 
       beforeAll.value()
-      runCucumber(j,p)(outputStrategy)
+      val result = runCucumber(j,p)(outputStrategy)
       afterAll.value()
+      if (result != 0) {
+          throw new IllegalStateException("cucumber did no succeed and returned errorCode=" + result)
+      }
     },
 
     mainClass := "cucumber.api.cli.Main",
