@@ -118,7 +118,7 @@ object CucumberPlugin extends AutoPlugin {
       val result = runCucumber(j,p)(outputStrategy)
       afterAll.value()
       if (result != 0) {
-          throw new IllegalStateException("cucumber did no succeed and returned errorCode=" + result)
+          throw new IllegalStateException("Cucumber did not succeed and returned error =" + result)
       }
     },
 
