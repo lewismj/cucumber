@@ -56,6 +56,6 @@ class MultiplicationSteps extends ScalaDsl with EN with Matchers {
   }
 
  Then("""^I get (\d+)$""") { (arg0: Int) =>
-   z should be (10)
+   z should be (arg0)
  }
 }
