@@ -1,0 +1,94 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "line": 7,
+        "name": "Multiply two variables",
+        "description": "",
+        "id": "multiplication;multiply-two-variables",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 87632972,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "a variable x with value 2",
+            "match": {
+              "arguments": [
+                {
+                  "val": "2",
+                  "offset": 24
+                }
+              ],
+              "location": "MultiplicationSteps.scala:43"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 70080,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "a variable y with value 3",
+            "match": {
+              "arguments": [
+                {
+                  "val": "3",
+                  "offset": 24
+                }
+              ],
+              "location": "MultiplicationSteps.scala:47"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 52691,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "I multiply x * y",
+            "match": {
+              "location": "MultiplicationSteps.scala:51"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 112557,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "I get 6",
+            "match": {
+              "arguments": [
+                {
+                  "val": "6",
+                  "offset": 6
+                }
+              ],
+              "location": "MultiplicationSteps.scala:55"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "Multiplication",
+    "description": "In order to avoid making mistakes\r\nAs a dummy\r\nI want to multiply numbers",
+    "id": "multiplication",
+    "keyword": "Feature",
+    "uri": "Multiplication.feature",
+    "tags": [
+      {
+        "line": 1,
+        "name": "@my-test"
+      }
+    ]
+  }
+]
