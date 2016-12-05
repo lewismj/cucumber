@@ -94,11 +94,6 @@ object CucumberPlugin extends AutoPlugin {
       val p1 = ((fullClasspath in Test)
                 map { cp => cp.toList.map(_.data)}).value
 
-      /* TODO - Add support for it:test */
-
-      //val p2 = ((fullClasspath in IntegrationTest)
-      //           map { cp => cp.toList.map(_.data)}).value
-
       val p = CucumberParameters(
                                   dryRun.value,
                                   features.value,
@@ -112,7 +107,7 @@ object CucumberPlugin extends AutoPlugin {
         classPath = p1,
         systemProperties = systemProperties.value
       )
- //::: p2)
+
 
       beforeAll.value()
       val result = runCucumber(j,p)(outputStrategy)

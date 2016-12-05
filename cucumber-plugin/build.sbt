@@ -4,7 +4,7 @@ organization := "com.waioeka.sbt"
 
 sbtPlugin := true
 
-version := "0.0.6"
+version := "0.0.7"
 
 libraryDependencies ++= Seq (
 	"info.cukes" % "cucumber-core" % "1.2.4",

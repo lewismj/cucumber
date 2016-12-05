@@ -57,7 +57,6 @@ class CucumberFeatureRunner(classLoader: ClassLoader, loggers: Array[Logger])
 
     Try {
 
-      /* TODO Take configurable arguments configurable. */
       val arguments =
         List("--glue","") :::
           List("--plugin", "pretty") :::

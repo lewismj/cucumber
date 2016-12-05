@@ -37,7 +37,7 @@ case class SuccessEvent(testName: String) extends Event {
 case class FailureEvent(testName: String) extends Event {
   val description = s"[CucumberPlugin] Test $testName failed " +
                     "or undefined steps."
-  val result = Result.Success
+  val result = Result.Failure
   val error: Throwable = null
 }
 

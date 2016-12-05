@@ -39,9 +39,11 @@ case class Jvm(classPath: List[File], systemProperties : Map[String, String]) {
   /** Classpath separator, must be ';' for Windows, otherwise : */
   private val sep = if (SystemUtils.IS_OS_WINDOWS) ";" else ":"
 
+
   /** The Jvm parameters. */
   private val jvmArgs : Seq[String]
-          = Seq("-classpath", classPath map(_.toPath) mkString sep) ++ systemProperties.toList.map{case (key, value) => s"-D$key=$value"}
+          = Seq("-classpath", classPath map(_.toPath) mkString sep) ++
+                systemProperties.toList.map{case (key, value) => s"-D$key=$value"}
 
   /**
     * Invoke the main class.
@@ -60,7 +62,7 @@ case class Jvm(classPath: List[File], systemProperties : Map[String, String]) {
     val args  = jvmArgs ++  (mainClass :: parameters)
     val debug = args mkString " "
     logger.debug(s"[Jvm.run] Args $debug")
-
+    println(s"ARGS=====$debug")
     Fork.java(ForkOptions(None,Some(outputStrategy)),args)
   }
 
