@@ -10,7 +10,7 @@ libraryDependencies ++= Seq (
         "info.cukes" % "cucumber-jvm" % "1.2.4" % "test",
         "info.cukes" % "cucumber-junit" % "1.2.4" % "test",
         "com.waioeka.sbt" %% "cucumber-runner" % "0.0.5",
-        "org.scalatest" % "scalatest_2.10" % "2.2.4" % "test")
+        "org.scalatest" % "scalatest_2.10" % "3.0.0" % "test")
 
 enablePlugins(CucumberPlugin)
 
