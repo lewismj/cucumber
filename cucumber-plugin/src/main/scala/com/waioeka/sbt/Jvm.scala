@@ -26,6 +26,8 @@
 package com.waioeka.sbt
 
 import java.io.File
+import java.lang.management.ManagementFactory
+
 import org.apache.commons.lang3.SystemUtils
 import sbt._
 
@@ -40,10 +42,15 @@ case class Jvm(classPath: List[File], systemProperties : Map[String, String]) {
   private val sep = if (SystemUtils.IS_OS_WINDOWS) ";" else ":"
 
 
+  /** Get the JVM options passed into SBT. */
+  val runtimeMXBean = ManagementFactory.getRuntimeMXBean
+  import scala.collection.JavaConversions._
+  val args = runtimeMXBean.getInputArguments.toList
+
+
   /** The Jvm parameters. */
   private val jvmArgs : Seq[String]
-          = Seq("-classpath", classPath map(_.toPath) mkString sep) ++
-                systemProperties.toList.map{case (key, value) => s"-D$key=$value"}
+          = Seq("-classpath", classPath map(_.toPath) mkString sep) ++ args
 
   /**
     * Invoke the main class.
@@ -62,7 +69,6 @@ case class Jvm(classPath: List[File], systemProperties : Map[String, String]) {
     val args  = jvmArgs ++  (mainClass :: parameters)
     val debug = args mkString " "
     logger.debug(s"[Jvm.run] Args $debug")
-    println(s"ARGS=====$debug")
     Fork.java(ForkOptions(None,Some(outputStrategy)),args)
   }
 

@@ -1,1 +1,1 @@
-addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.0.7")
+addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.0.8")
