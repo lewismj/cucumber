@@ -38,10 +38,6 @@ class MultiplicationSteps extends ScalaDsl with EN with Matchers {
   var y : Int = 0
   var z : Int = 0
 
-  Before() { scenario =>
-    println("OPTS:::::")
-    println(System.getProperty("someArg"))
-  }
 
   Given("""^a variable x with value (\d+)$""") { (arg0: Int) =>
     x = arg0
