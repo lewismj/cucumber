@@ -69,14 +69,12 @@ case class CucumberParameters(
     * @return a list of string parameters.
     */
   def toList : List[String] = {
-    val featureOpts = features mkString " "
-
     boolToParameter(dryRun,"dry-run") :::
       boolToParameter(monochrome,"monochrome") :::
       List("--glue",s"$glue") :::
       plugins.map(_.toCucumberPlugin).flatMap(plugin => Seq("--plugin", plugin)) :::
       additionalArgs :::
-      List(s"$featureOpts")
+      features
   }
 
 }
