@@ -5,7 +5,7 @@
 
 The plugin & runner (described below) should now be available from the [central repository] (http://search.maven.org/#search%7Cga%7C1%7Cwaioeka)
  
-The latest version of the cucumber plugin is 0.0.8, the runner is 0.0.5
+The latest version of the cucumber plugin is 0.0.9, the runner is 0.0.5
 
 ## Introduction
 
@@ -44,7 +44,7 @@ now available from the Central Repository.
 i.e. In your end application just have
 
 ```
-addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.0.8")
+addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.0.9")
 ```
 
 in your plugins.sbt file.
@@ -71,7 +71,7 @@ If you follow this example you can use the plugin for your test project. To do t
 	
 	organization := "com.waioeka.sbt"
 	
-	version := "0.0.8"
+	version := "0.0.9"
 	
 	libraryDependencies ++= Seq (
 	"info.cukes" % "cucumber-core" % "1.2.4" % "test",
