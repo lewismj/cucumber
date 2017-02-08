@@ -50,7 +50,9 @@ case class Jvm(classPath: List[File], systemProperties : Map[String, String]) {
 
   /** The Jvm parameters. */
   private val jvmArgs : Seq[String]
-          = Seq("-classpath", classPath map(_.toPath) mkString sep) ++ args
+          = Seq("-classpath", classPath map(_.toPath) mkString sep) ++
+            systemProperties.toList.map{case (key, value) => s"-D$key=$value"} ++
+            args
 
   /**
     * Invoke the main class.
