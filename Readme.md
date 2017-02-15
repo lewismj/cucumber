@@ -244,9 +244,12 @@ In order to run ```sbt test``` you must add the following hook to your ```build.
 testFrameworks += new TestFramework("com.waioeka.sbt.runner")
 ```
 
+Note, if you have your feature files in a non-standard location (not test/resources) for ```sbt test``` then add that location
+to your test classpath, e.g. ```unmanagedClasspath in Test += baseDirectory.value / "src/test/features"```.
+
 ### Cucumber arguments
 
-You can now (v0.0.5) supply cucumber arguments. For example, ``` sbt "cucumber --tags ~@my-tag" ``` will
+You can now (v0.0.5+) supply cucumber arguments. For example, ``` sbt "cucumber --tags ~@my-tag" ``` will
 now correctly filter tagged feature files.
 
 ```
