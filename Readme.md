@@ -38,7 +38,7 @@ Michael Lewis,  lewismj at waioeka.com
 
 ### cucumber-plugin
 
-Note: You only need to do the first step below, if you want to build the plugin from source yourself. The plugin is
+You only need to do the first step below, if you want to build the plugin from source yourself. The plugin is
 now available from the Central Repository. 
 i.e. In your end application just have
 
@@ -87,7 +87,7 @@ If you follow this example you can use the plugin for your test project. To do t
 Remember to set the ```CucumberPlugin.glue``` parameter to the sub directory in ```test```
 that contains your Scala step definitions.
 
-For example, in your ```resources``` directory, put your feature file:
+In your ```resources``` directory, put your feature file:
 
 ```	
 	@my-tag
@@ -103,7 +103,7 @@ For example, in your ```resources``` directory, put your feature file:
 	Then I get 6
 ```	
 
-Note, if you need to generate the stubs, just run ```sbt cucumber``` and you will get an
+If you need to generate the stubs, just run ```sbt cucumber``` and you will get an
 error complaining about missing stubs, you can copy and paste the stub functions into your
 step implementation.
 
@@ -141,7 +141,7 @@ You can now put in your stub implementation:
 	 }
 	}
 ```
-You can now run the tests in standalone mode:
+To run the tests in standalone mode:
 ```
 sbt compile
 sbt cucumber
@@ -243,7 +243,7 @@ In order to run ```sbt test``` you must add the following hook to your ```build.
 testFrameworks += new TestFramework("com.waioeka.sbt.runner")
 ```
 
-Note, if you have your feature files in a non-standard location (not test/resources) for ```sbt test``` then add that location
+If you have your feature files in a non-standard location (not test/resources) for ```sbt test``` then add that location
 to your test classpath, e.g. ```unmanagedClasspath in Test += baseDirectory.value / "src/test/features"```.
 
 ### Cucumber arguments
