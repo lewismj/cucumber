@@ -44,7 +44,7 @@ now available from the Central Repository.
 i.e. In your end application just have
 
 ```
-addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.1.0")
+addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.1.1")
 ```
 
 in your plugins.sbt file.
