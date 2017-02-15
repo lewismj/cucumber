@@ -1,9 +1,9 @@
 # An SBT Plugin For BDD Testing (Cucumber And Scala)
 
 
-## Update
+## Current Version 
 
-The plugin & runner (described below) should now be available from the [central repository] (http://search.maven.org/#search%7Cga%7C1%7Cwaioeka)
+The plugin & runner (described below) are available from the [central repository] (http://search.maven.org/#search%7Cga%7C1%7Cwaioeka)
  
 The latest version of the cucumber plugin is 0.1.1, the runner is 0.0.5
 
@@ -16,7 +16,7 @@ The support for Cucumber with Scala is quite mixed. There is an existing plugin 
 Firstly, it does not work on Windows (Classpath separator is incorrect). It uses the old SBT plugin interface and hasn’t been updated for some time. The author hasn’t responded to pull requests.
 
 
-There are two core projects, each has an example proejct illustrating the usage. 
+There are two core projects, each has an example project illustrating the usage. 
 
 - cucumber-plugin
 - cucumber-runner
@@ -27,9 +27,8 @@ The second allows you to run ```sbt test``` and have the supplied test framework
 
 Both are effectively wrappers for Cucumber with different launch mechanisms.
 
-The code is very early in development, just a few hours were spent putting together the core functionality we required. 
-
-I would greatly welcome anyone that wants to help create a more fully featured (and bug free) version.
+I would greatly welcome anyone that wants to help create a more fully featured (and bug free) version. The code
+was put together quite quickly in order to bootstrap migration of a project to Scala. 
 
 ## Contact
 
@@ -39,7 +38,7 @@ Michael Lewis,  lewismj at waioeka.com
 
 ### cucumber-plugin
 
-Note: You only need to do the following if you want to build the plugin from source yourself. The plugin is
+Note: You only need to do the first step below, if you want to build the plugin from source yourself. The plugin is
 now available from the Central Repository. 
 i.e. In your end application just have
 
@@ -88,7 +87,7 @@ If you follow this example you can use the plugin for your test project. To do t
 Remember to set the ```CucumberPlugin.glue``` parameter to the sub directory in ```test```
 that contains your Scala step definitions.
 
-For example, in your ```resources``` directory, put your feature file. For example:
+For example, in your ```resources``` directory, put your feature file:
 
 ```	
 	@my-tag
@@ -108,7 +107,7 @@ Note, if you need to generate the stubs, just run ```sbt cucumber``` and you wil
 error complaining about missing stubs, you can copy and paste the stub functions into your
 step implementation.
 
-You can now put in your stub implementation. For example:
+You can now put in your stub implementation:
 
 ```
 	package com.waioeka.sbt
@@ -179,7 +178,7 @@ The result formats will be written:
 
 ### cucumber-runner-example
 
- If you want to run cucumber tests as part of an ```sbt test``` (unit test) run then, in addition to the plugin, first compile and publish the **cucumber-runner** project. The next step is to simply update your ```build.sbt``` file to reference the new test framework (Essentially a slightly different hook into running Cucumber).
+ If you want to run cucumber tests as part of an ```sbt test``` (unit test) run, then, in addition to the plugin, first compile and publish the **cucumber-runner** project. The next step is to simply update your ```build.sbt``` file to reference the new test framework (Essentially a slightly different hook into running Cucumber).
 
  The ***cucumber-runner-example*** illustrates how to do this, and integrate BDD testing into unit test framework.
 
