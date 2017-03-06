@@ -9,6 +9,7 @@
 ## Dependency Information
 
 Plugin: ```libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.1"```
+
 Runner: ```libraryDependencies += "com.waioeka.sbt" % "cucumber-runner_2.12" % "0.0.5"```
 
 ## Introduction
