@@ -1,11 +1,15 @@
 # An SBT Plugin For BDD Testing (Cucumber And Scala)
 
+<p align="left">
+<img src="https://travis-ci.org/lewismj/cucumber.svg?branch=master"/>
+<img src="https://maven-badges.herokuapp.com/maven-central/com.waioeka.sbt/cucumber-plugin/badge.svg"/>
+<img src="https://maven-badges.herokuapp.com/maven-central/com.waioeka.sbt/cucumber-runner_2.12/badge.svg"/>
+</p>
 
-## Current Version 
+## Dependency Information
 
-The plugin & runner (described below) are available from the [central repository] (http://search.maven.org/#search%7Cga%7C1%7Cwaioeka)
- 
-The latest version of the cucumber plugin is 0.1.1, the runner is 0.0.5
+Plugin: ```libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.1"```
+Runner: ```libraryDependencies += "com.waioeka.sbt" % "cucumber-runner_2.12" % "0.0.5"```
 
 ## Introduction
 
