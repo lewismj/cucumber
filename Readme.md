@@ -14,7 +14,7 @@ Runner: `libraryDependencies += "com.waioeka.sbt" % "cucumber-runner_2.12" % "0.
 
 ## Introduction
 
-Many Scala projects will use the FlatSpec for their BDD like testing. Some teams prefer the separation of Feature files from the code. 
+Many Scala projects will use FlatSpec for their BDD like testing. Some teams prefer the separation of Feature files from the code. 
 
 The support for Cucumber with Scala is quite mixed. There is an existing plugin [xsbt-cucumber-plugin][1] but this plugin has a few issues. 
 
@@ -37,7 +37,7 @@ was put together quite quickly in order to bootstrap migration of a project to S
 
 ## Contact
 
-Michael Lewis,  lewismj at waioeka.com
+Michael Lewis,  lewismj@waioeka.com
 
 ## Details
 
