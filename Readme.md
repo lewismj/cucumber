@@ -122,10 +122,7 @@ You can now put in your stub implementation:
     import cucumber.api.scala.{ScalaDsl, EN}
     import org.scalatest.Matchers
  
-    /**
-    MultiplicationSteps
-      *
-      */
+    /** MultiplicationSteps */
     class MultiplicationSteps extends ScalaDsl with EN with Matchers {
       var x : Int = 0
       var y : Int = 0
