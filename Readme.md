@@ -128,21 +128,13 @@ You can now put in your stub implementation:
       var y : Int = 0
       var z : Int = 0
  
-      Given("""^a variable x with value (\d+)$""") { (arg0: Int) =>
-    x = arg0
-      }
+      Given("""^a variable x with value (\d+)$""") { (arg0: Int) => x = arg0 }
  
-      Given("""^a variable y with value (\d+)$""") { (arg0: Int) =>
-    y = arg0
-      }
+      Given("""^a variable y with value (\d+)$""") { (arg0: Int) => y = arg0 }
  
-      When("""^I multiply x \* y$""") { () =>
-    z = x * y
-      }
+      When("""^I multiply x \* y$""") { () => z = x * y }
  
-     Then("""^I get (\d+)$""") { (arg0: Int) =>
-       z should be (arg0)
-     }
+      Then("""^I get (\d+)$""") { (arg0: Int) => z should be (arg0) }
     }
 ```
 To run the tests in standalone mode:
