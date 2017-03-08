@@ -9,9 +9,11 @@
 ## Dependency Information
 
 _Plugin_
+
 `    libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.1"`
 
 _Runner_
+
 `    libraryDependencies += "com.waioeka.sbt" % "cucumber-runner_2.12" % "0.0.5"`
 
 ## Introduction
@@ -96,7 +98,7 @@ that contains your Scala step definitions.
 
 In your `resources` directory, put your feature file:
 
-``` 
+```cucumber 
     @my-tag
     Feature: Multiplication
       In order to avoid making mistakes
@@ -116,7 +118,7 @@ step implementation.
 
 You can now put in your stub implementation:
 
-```
+```scala
     package com.waioeka.sbt
  
     import cucumber.api.scala.{ScalaDsl, EN}
