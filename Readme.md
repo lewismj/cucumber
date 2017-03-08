@@ -1,4 +1,4 @@
-# An SBT Plugin For BDD Testing 
+# An SBT Plugin For BDD Testing
 
 <p align="left">
 <img src="https://travis-ci.org/lewismj/cucumber.svg?branch=master"/>
@@ -8,9 +8,11 @@
 
 ## Dependency Information
 
-Plugin: `libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.1"`
+_Plugin_
+`    libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.1"`
 
-Runner: `libraryDependencies += "com.waioeka.sbt" % "cucumber-runner_2.12" % "0.0.5"`
+_Runner_
+`    libraryDependencies += "com.waioeka.sbt" % "cucumber-runner_2.12" % "0.0.5"`
 
 ## Introduction
 
