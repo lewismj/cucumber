@@ -45,36 +45,25 @@ was put together quite quickly in order to bootstrap migration of a project to S
 
 Michael Lewis, lewismj@waioeka.com
 
-## Details
 
-### cucumber-plugin
+## Cucumber Plugin 
 
-You only need to do the first step below, if you want to build the plugin from source yourself. The plugin is
-now available from the Central Repository. 
-i.e. In your end application just have
+The Cucumber plugin provides a new sbt command, allowing you to run just your Cucumber tests using `sbt cucumber`.
+You need to add the following to your `plugins.sbt` file.
 
-```
+```scala
 addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.1.1")
 ```
 
-in your plugins.sbt file.
+### Cucumber Plugin Example
 
-If building from source locally, from your local Nexus repo, run the following.
+The project 'cucumber-plugin-example' highlights how to use the plugin. You will need to ensure that your `build.sbt` file defines both the dependencies and the 'glue' setting (i.e. where to find the step definitions).
 
-`    sbt compile publishLocal`
 
-You are now ready to use the plugin to run feature file tests.
-Start by looking at the test project cucumber-plugin-example.
+e.g.
 
-### cucumber-plugin-example
+```scala
 
-After you have built and published the plugin. You can view an example use case by building and running the plugin example.
-
-`    sbt compile cucumber`
-
-If you follow this example you can use the plugin for your test project. To do this, update your `build.sbt` as follows:
-
-``` 
     name := "cucumber-test"
  
     organization := "com.waioeka.sbt"
@@ -93,10 +82,10 @@ If you follow this example you can use the plugin for your test project. To do t
     CucumberPlugin.glue := "com/waioeka/sbt/"
 ```
 
-Remember to set the `CucumberPlugin.glue` parameter to the sub directory in `test`
-that contains your Scala step definitions.
+Remember to set the `CucumberPlugin.glue` parameter to the sub directory in *test* that contains your Scala step definitions.
+In your *resources* directory, put in your feature files. 
 
-In your `resources` directory, put your feature file:
+e.g.
 
 ```cucumber 
     @my-tag
@@ -105,7 +94,7 @@ In your `resources` directory, put your feature file:
       As a dummy
       I want to multiply numbers
  
-      Scenario: Multiply two variables
+    Scenario: Multiply two variables
     Given a variable x with value 2
     And a variable y with value 3
     When I multiply x * y
@@ -113,7 +102,7 @@ In your `resources` directory, put your feature file:
 ``` 
 
 If you need to generate the stubs, just run `sbt cucumber` and you will get an
-error complaining about missing stubs, you can copy and paste the stub functions into your
+error complaining about missing stubs. You can copy and paste the stub functions into your
 step implementation.
 
 You can now put in your stub implementation:
@@ -174,13 +163,26 @@ The result formats will be written:
 - cucumber.json, standard Cucumber json output.
 - cucumber-junit-report.xml, a Junit style rest report.
 
-### cucumber-runner-example
+## Cucumber Runner
 
- If you want to run cucumber tests as part of an `sbt test` (unit test) run, then, in addition to the plugin, first compile and publish the **cucumber-runner** project. The next step is to simply update your `build.sbt` file to reference the new test framework (Essentially a slightly different hook into running Cucumber).
+The _runner_ is a library that you can add as a dependency, if you want the Cucumber tests to run as part of a normal unit test run. That is, when you run `sbt test`. Your `build.sbt` file must reference the test framework as follows:
 
- The ***cucumber-runner-example*** illustrates how to do this, and integrate BDD testing into unit test framework.
+```scala
+testFrameworks += new TestFramework("com.waioeka.sbt.runner")
+```
 
-See below, you can now run `sbt test` in addition to `sbt cucumber`. 
+Note, the runner will expect feature files in the `test/resources` directory. If you feature files are stored elsewhere, add that location to the 'unmanagedClasspath', e.g.
+
+
+```scala
+unmanagedClasspath in Test += baseDirectory.value / "src/test/features"
+```
+
+### Cucumber Runner Example
+
+The project ***cucumber-runner-example*** illustrates how to do this, to integrate BDD testing into your unit test framework.
+
+As shown below, using the runner and plugin, you can now run `sbt test` in addition to `sbt cucumber`. 
 
 ```
     mlewis@LEWISMJ-WINDEV MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
@@ -235,16 +237,8 @@ See below, you can now run `sbt test` in addition to `sbt cucumber`.
  
     mlewis@LEWISMJ-WINDEV MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
 ```
-In order to run `sbt test` you must add the following hook to your `build.sbt` file.
 
-```
-testFrameworks += new TestFramework("com.waioeka.sbt.runner")
-```
-
-If you have your feature files in a non-standard location (not test/resources) for `sbt test` then add that location
-to your test classpath, e.g. `unmanagedClasspath in Test += baseDirectory.value / "src/test/features"`.
-
-### Cucumber arguments
+## Cucumber Arguments
 
 Cucumber arguments may be supplied. For example, `sbt "cucumber --tags ~@my-tag"` will filter tagged feature files.
 
