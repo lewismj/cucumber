@@ -9,10 +9,14 @@
 ## Dependency Information
 
 _Plugin_
-`    libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.1"`
+````scala
+libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.1"
+```
 
 _Runner_
-`    libraryDependencies += "com.waioeka.sbt" % "cucumber-runner_2.12" % "0.0.5"`
+```scala
+libraryDependencies += "com.waioeka.sbt" % "cucumber-runner_2.12" % "0.0.5"
+```
 
 ## Introduction
 
@@ -57,8 +61,7 @@ in your plugins.sbt file.
 
 If building from source locally, from your local Nexus repo, run the following.
 
-	sbt compile
-	sbt publishLocal
+`    sbt compile publishLocal`
 
 You are now ready to use the plugin to run feature file tests.
 Start by looking at the test project cucumber-plugin-example.
@@ -67,8 +70,7 @@ Start by looking at the test project cucumber-plugin-example.
 
 After you have built and published the plugin. You can view an example use case by building and running the plugin example.
 
-sbt compile
-sbt cucumber
+`    sbt compile cucumber`
 
 If you follow this example you can use the plugin for your test project. To do this, update your `build.sbt` as follows:
 
