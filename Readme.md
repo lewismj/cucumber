@@ -9,11 +9,9 @@
 ## Dependency Information
 
 _Plugin_
-
 `    libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.1"`
 
 _Runner_
-
 `    libraryDependencies += "com.waioeka.sbt" % "cucumber-runner_2.12" % "0.0.5"`
 
 ## Introduction
@@ -41,7 +39,7 @@ was put together quite quickly in order to bootstrap migration of a project to S
 
 ## Contact
 
-Michael Lewis,  lewismj@waioeka.com
+Michael Lewis, lewismj@waioeka.com
 
 ## Details
 
@@ -257,8 +255,7 @@ to your test classpath, e.g. `unmanagedClasspath in Test += baseDirectory.value 
 
 ### Cucumber arguments
 
-You can now (v0.0.5+) supply cucumber arguments. For example, `sbt "cucumber --tags ~@my-tag"` will
-now correctly filter tagged feature files.
+Cucumber arguments may be supplied. For example, `sbt "cucumber --tags ~@my-tag"` will filter tagged feature files.
 
 ```
 [success] Total time: 1 s, completed 15-Jun-2016 09:23:22
