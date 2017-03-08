@@ -141,7 +141,7 @@ paeroa:cucumber-test lewismj$ sbt cucumber
 [success] Total time: 1 s, completed 28-Dec-2015 22:16:19
 ```
 
-The result formats will be written:
+The results will be output in the following formats:
 
 - cucumber-html, standard Cucumber html output.
 - cucumber.json, standard Cucumber json output.
