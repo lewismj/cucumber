@@ -26,7 +26,7 @@ There are two core projects, each has an example project illustrating the usage.
 - cucumber-plugin
 - cucumber-runner
 
-The first provides a Cucumber plugin. This allow you to write `sbt cucumber` and invoke the Cucumber tests in a standalone JVM.
+The first provides an sbt plugin. This allow you to write `sbt cucumber` and invoke the Cucumber tests in a standalone JVM.
 The second allows you to run `sbt test` and have the supplied test framework run the Cucumber tests.  Both are effectively wrappers for Cucumber with different launch mechanisms.
 
 ## Contact
@@ -155,7 +155,7 @@ The _runner_ is a library that you can add as a dependency, if you want the Cucu
 testFrameworks += new TestFramework("com.waioeka.sbt.runner")
 ```
 
-Note, the runner will expect feature files in the `test/resources` directory. If you feature files are stored elsewhere, add that location to the 'unmanagedClasspath', e.g.
+Note, the runner will expect feature files in the `test/resources` directory. If your feature files are stored elsewhere, add that location to the 'unmanagedClasspath', e.g.
 
 
 ```scala
