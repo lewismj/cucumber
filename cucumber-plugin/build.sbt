@@ -4,14 +4,14 @@ organization := "com.waioeka.sbt"
 
 sbtPlugin := true
 
-version := "0.1.1"
+version := "0.1.2"
 
 libraryDependencies ++= Seq (
-	"info.cukes" % "cucumber-core" % "1.2.4",
-	"info.cukes" %% "cucumber-scala" % "1.2.4",
-	"info.cukes" % "cucumber-jvm" % "1.2.4" artifacts Artifact("cucumber-jvm", `type`="pom", extension="pom"),
-	"info.cukes" % "cucumber-junit" % "1.2.4",
-	"org.apache.commons" % "commons-lang3" % "3.4")
+	"info.cukes" % "cucumber-core" % "1.2.5",
+	"info.cukes" %% "cucumber-scala" % "1.2.5",
+	"info.cukes" % "cucumber-jvm" % "1.2.5" artifacts Artifact("cucumber-jvm", `type`="pom", extension="pom"),
+	"info.cukes" % "cucumber-junit" % "1.2.5",
+	"org.apache.commons" % "commons-lang3" % "3.5")
 
 
 pomIncludeRepository := { _ => false }

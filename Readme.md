@@ -10,40 +10,28 @@
 
 _Plugin_
 ````scala
-libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.1"
+libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.2"
 ```
 
 _Runner_
 ```scala
-libraryDependencies += "com.waioeka.sbt" % "cucumber-runner_2.12" % "0.0.5"
+libraryDependencies += "com.waioeka.sbt" % "cucumber-runner_2.12" % "0.0.6"
 ```
 
 ## Introduction
 
 Many Scala projects will use FlatSpec for their BDD like testing. Some teams prefer the separation of Feature files from the code. 
-
-The support for Cucumber with Scala is quite mixed. There is an existing plugin [xsbt-cucumber-plugin][1] but this plugin has a few issues. 
-
-Firstly, it does not work on Windows (Classpath separator is incorrect). It uses the old SBT plugin interface and hasn’t been updated for some time. The author hasn’t responded to pull requests.
-
-
 There are two core projects, each has an example project illustrating the usage. 
 
 - cucumber-plugin
 - cucumber-runner
 
 The first provides a Cucumber plugin. This allow you to write `sbt cucumber` and invoke the Cucumber tests in a standalone JVM.
-
-The second allows you to run `sbt test` and have the supplied test framework run the Cucumber tests. 
-
-Both are effectively wrappers for Cucumber with different launch mechanisms.
-
-I would greatly welcome anyone that wants to help create a more fully featured (and bug free) version. The code
-was put together quite quickly in order to bootstrap migration of a project to Scala. 
+The second allows you to run `sbt test` and have the supplied test framework run the Cucumber tests.  Both are effectively wrappers for Cucumber with different launch mechanisms.
 
 ## Contact
 
-Michael Lewis, lewismj@waioeka.com
+Michael Lewis: lewismj@waioeka.com
 
 
 ## Cucumber Plugin 
