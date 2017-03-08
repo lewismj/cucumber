@@ -1,4 +1,4 @@
-# An SBT Plugin For BDD Testing (Cucumber And Scala)
+# An SBT Plugin For BDD Testing 
 
 <p align="left">
 <img src="https://travis-ci.org/lewismj/cucumber.svg?branch=master"/>
@@ -8,15 +8,15 @@
 
 ## Dependency Information
 
-Plugin: ```libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.1"```
+Plugin: `libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.1"`
 
-Runner: ```libraryDependencies += "com.waioeka.sbt" % "cucumber-runner_2.12" % "0.0.5"```
+Runner: `libraryDependencies += "com.waioeka.sbt" % "cucumber-runner_2.12" % "0.0.5"`
 
 ## Introduction
 
 Many Scala projects will use the FlatSpec for their BDD like testing. Some teams prefer the separation of Feature files from the code. 
 
-The support for Cucumber with Scala is quite mixed. There is an existing plugin [xsbt-cucumber-plugin](https://github.com/skipoleschris/xsbt-cucumber-plugin) but this plugin has a few issues. 
+The support for Cucumber with Scala is quite mixed. There is an existing plugin [xsbt-cucumber-plugin][1] but this plugin has a few issues. 
 
 Firstly, it does not work on Windows (Classpath separator is incorrect). It uses the old SBT plugin interface and hasn’t been updated for some time. The author hasn’t responded to pull requests.
 
@@ -26,9 +26,9 @@ There are two core projects, each has an example project illustrating the usage.
 - cucumber-plugin
 - cucumber-runner
 
-The first provides a Cucumber plugin. This allow you to write ```sbt cucumber``` and invoke the Cucumber tests in a standalone JVM.
+The first provides a Cucumber plugin. This allow you to write `sbt cucumber` and invoke the Cucumber tests in a standalone JVM.
 
-The second allows you to run ```sbt test``` and have the supplied test framework run the Cucumber tests. 
+The second allows you to run `sbt test` and have the supplied test framework run the Cucumber tests. 
 
 Both are effectively wrappers for Cucumber with different launch mechanisms.
 
@@ -68,83 +68,83 @@ After you have built and published the plugin. You can view an example use case 
 sbt compile
 sbt cucumber
 
-If you follow this example you can use the plugin for your test project. To do this, update your ```build.sbt``` as follows:
+If you follow this example you can use the plugin for your test project. To do this, update your `build.sbt` as follows:
 
-```	
-	name := "cucumber-test"
-	
-	organization := "com.waioeka.sbt"
-	
-	version := "0.1.0"
-	
-	libraryDependencies ++= Seq (
-	"info.cukes" % "cucumber-core" % "1.2.4" % "test",
-	"info.cukes" %% "cucumber-scala" % "1.2.4" % "test",
-	"info.cukes" % "cucumber-jvm" % "1.2.4" % "test",
-	"info.cukes" % "cucumber-junit" % "1.2.4" % "test",
-	"org.scalatest" %% "scalatest" % "2.2.4" % "test")
-	
-	enablePlugins(CucumberPlugin)
-	
-	CucumberPlugin.glue := "com/waioeka/sbt/"
+``` 
+    name := "cucumber-test"
+ 
+    organization := "com.waioeka.sbt"
+ 
+    version := "0.1.0"
+ 
+    libraryDependencies ++= Seq (
+    "info.cukes" % "cucumber-core" % "1.2.4" % "test",
+    "info.cukes" %% "cucumber-scala" % "1.2.4" % "test",
+    "info.cukes" % "cucumber-jvm" % "1.2.4" % "test",
+    "info.cukes" % "cucumber-junit" % "1.2.4" % "test",
+    "org.scalatest" %% "scalatest" % "2.2.4" % "test")
+ 
+    enablePlugins(CucumberPlugin)
+ 
+    CucumberPlugin.glue := "com/waioeka/sbt/"
 ```
 
-Remember to set the ```CucumberPlugin.glue``` parameter to the sub directory in ```test```
+Remember to set the `CucumberPlugin.glue` parameter to the sub directory in `test`
 that contains your Scala step definitions.
 
-In your ```resources``` directory, put your feature file:
+In your `resources` directory, put your feature file:
 
-```	
-	@my-tag
-	Feature: Multiplication
-	  In order to avoid making mistakes
-	  As a dummy
-	  I want to multiply numbers
-	
-	  Scenario: Multiply two variables
-	Given a variable x with value 2
-	And a variable y with value 3
-	When I multiply x * y
-	Then I get 6
-```	
+``` 
+    @my-tag
+    Feature: Multiplication
+      In order to avoid making mistakes
+      As a dummy
+      I want to multiply numbers
+ 
+      Scenario: Multiply two variables
+    Given a variable x with value 2
+    And a variable y with value 3
+    When I multiply x * y
+    Then I get 6
+``` 
 
-If you need to generate the stubs, just run ```sbt cucumber``` and you will get an
+If you need to generate the stubs, just run `sbt cucumber` and you will get an
 error complaining about missing stubs, you can copy and paste the stub functions into your
 step implementation.
 
 You can now put in your stub implementation:
 
 ```
-	package com.waioeka.sbt
-	
-	import cucumber.api.scala.{ScalaDsl, EN}
-	import org.scalatest.Matchers
-	
-	/**
-	MultiplicationSteps
-	  *
-	  */
-	class MultiplicationSteps extends ScalaDsl with EN with Matchers {
-	  var x : Int = 0
-	  var y : Int = 0
-	  var z : Int = 0
-	
-	  Given("""^a variable x with value (\d+)$""") { (arg0: Int) =>
-	x = arg0
-	  }
-	
-	  Given("""^a variable y with value (\d+)$""") { (arg0: Int) =>
-	y = arg0
-	  }
-	
-	  When("""^I multiply x \* y$""") { () =>
-	z = x * y
-	  }
-	
-	 Then("""^I get (\d+)$""") { (arg0: Int) =>
-	   z should be (arg0)
-	 }
-	}
+    package com.waioeka.sbt
+ 
+    import cucumber.api.scala.{ScalaDsl, EN}
+    import org.scalatest.Matchers
+ 
+    /**
+    MultiplicationSteps
+      *
+      */
+    class MultiplicationSteps extends ScalaDsl with EN with Matchers {
+      var x : Int = 0
+      var y : Int = 0
+      var z : Int = 0
+ 
+      Given("""^a variable x with value (\d+)$""") { (arg0: Int) =>
+    x = arg0
+      }
+ 
+      Given("""^a variable y with value (\d+)$""") { (arg0: Int) =>
+    y = arg0
+      }
+ 
+      When("""^I multiply x \* y$""") { () =>
+    z = x * y
+      }
+ 
+     Then("""^I get (\d+)$""") { (arg0: Int) =>
+       z should be (arg0)
+     }
+    }
 ```
 To run the tests in standalone mode:
 ```
@@ -183,77 +183,77 @@ The result formats will be written:
 
 ### cucumber-runner-example
 
- If you want to run cucumber tests as part of an ```sbt test``` (unit test) run, then, in addition to the plugin, first compile and publish the **cucumber-runner** project. The next step is to simply update your ```build.sbt``` file to reference the new test framework (Essentially a slightly different hook into running Cucumber).
+ If you want to run cucumber tests as part of an `sbt test` (unit test) run, then, in addition to the plugin, first compile and publish the **cucumber-runner** project. The next step is to simply update your `build.sbt` file to reference the new test framework (Essentially a slightly different hook into running Cucumber).
 
  The ***cucumber-runner-example*** illustrates how to do this, and integrate BDD testing into unit test framework.
 
-See below, you can now run ```sbt test``` in addition to ```sbt cucumber```. 
+See below, you can now run `sbt test` in addition to `sbt cucumber`. 
 
 ```
-	mlewis@LEWISMJ-WINDEV MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
-	$ sbt cucumber
-	[info] Loading project definition from E:\Dev\Plugins\upa-plugins\cucumber-runner-test\project
-	[info] Set current project to cucumber-test2 (in build file:/E:/Dev/Plugins/upa-plugins/cucumber-runner-test/)
-	[info] Compiling 1 Scala source to E:\Dev\Plugins\upa-plugins\cucumber-runner-test\target\scala-2.10\test-classes...
-	[info] Feature: Multiplication
-	[info]   In order to avoid making mistakes
-	[info]   As a dummy
-	[info]   I want to multiply numbers
-	[info]
-	[info]   Scenario: Multiply two variables  # Multiplication.feature:6
-	[info]     Given a variable x with value 2 # MultiplicationSteps.scala:19
-	[info]     And a variable y with value 3   # MultiplicationSteps.scala:23
-	[info]     When I multiply x * y           # MultiplicationSteps.scala:27
-	[info]     Then I get 6                    # MultiplicationSteps.scala:31
-	[info]
-	[info] 1 Scenarios (1 passed)
-	[info] 4 Steps (4 passed)
-	[info] 0m0.152s
-	[info]
-	[success] Total time: 5 s, completed 29-Dec-2015 15:28:51
-	
-	mlewis@LEWISMJ-WINDEV MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
-	$ sbt test
-	[info] Loading project definition from E:\Dev\Plugins\upa-plugins\cucumber-runner-test\project
-	[info] Set current project to cucumber-test2 (in build file:/E:/Dev/Plugins/upa-plugins/cucumber-runner-test/)
-	Feature: Multiplication
-	  In order to avoid making mistakes
-	  As a dummy
-	  I want to multiply numbers
-	
-	  Scenario: Multiply two variables  # Multiplication.feature:6
-	Given a variable x with value 2 # MultiplicationSteps.scala:19
-	And a variable y with value 3   # MultiplicationSteps.scala:23
-	When I multiply x * y           # MultiplicationSteps.scala:27
-	Then I get 6                    # MultiplicationSteps.scala:31
-	
-	1 Scenarios (1 passed)
-	4 Steps (4 passed)
-	0m0.170s
-	
-	[info] ScalaTest
-	[info] Run completed in 672 milliseconds.
-	[info] Total number of tests run: 0
-	[info] Suites: completed 0, aborted 0
-	[info] Tests: succeeded 0, failed 0, canceled 0, ignored 0, pending 0
-	[info] No tests were executed.
-	[info] Passed: Total 1, Failed 0, Errors 0, Passed 1
-	[success] Total time: 1 s, completed 29-Dec-2015 15:29:11
-	
-	mlewis@LEWISMJ-WINDEV MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
+    mlewis@LEWISMJ-WINDEV MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
+    $ sbt cucumber
+    [info] Loading project definition from E:\Dev\Plugins\upa-plugins\cucumber-runner-test\project
+    [info] Set current project to cucumber-test2 (in build file:/E:/Dev/Plugins/upa-plugins/cucumber-runner-test/)
+    [info] Compiling 1 Scala source to E:\Dev\Plugins\upa-plugins\cucumber-runner-test\target\scala-2.10\test-classes...
+    [info] Feature: Multiplication
+    [info]   In order to avoid making mistakes
+    [info]   As a dummy
+    [info]   I want to multiply numbers
+    [info]
+    [info]   Scenario: Multiply two variables  # Multiplication.feature:6
+    [info]     Given a variable x with value 2 # MultiplicationSteps.scala:19
+    [info]     And a variable y with value 3   # MultiplicationSteps.scala:23
+    [info]     When I multiply x * y           # MultiplicationSteps.scala:27
+    [info]     Then I get 6                    # MultiplicationSteps.scala:31
+    [info]
+    [info] 1 Scenarios (1 passed)
+    [info] 4 Steps (4 passed)
+    [info] 0m0.152s
+    [info]
+    [success] Total time: 5 s, completed 29-Dec-2015 15:28:51
+ 
+    mlewis@LEWISMJ-WINDEV MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
+    $ sbt test
+    [info] Loading project definition from E:\Dev\Plugins\upa-plugins\cucumber-runner-test\project
+    [info] Set current project to cucumber-test2 (in build file:/E:/Dev/Plugins/upa-plugins/cucumber-runner-test/)
+    Feature: Multiplication
+      In order to avoid making mistakes
+      As a dummy
+      I want to multiply numbers
+ 
+      Scenario: Multiply two variables  # Multiplication.feature:6
+    Given a variable x with value 2 # MultiplicationSteps.scala:19
+    And a variable y with value 3   # MultiplicationSteps.scala:23
+    When I multiply x * y           # MultiplicationSteps.scala:27
+    Then I get 6                    # MultiplicationSteps.scala:31
+ 
+    1 Scenarios (1 passed)
+    4 Steps (4 passed)
+    0m0.170s
+ 
+    [info] ScalaTest
+    [info] Run completed in 672 milliseconds.
+    [info] Total number of tests run: 0
+    [info] Suites: completed 0, aborted 0
+    [info] Tests: succeeded 0, failed 0, canceled 0, ignored 0, pending 0
+    [info] No tests were executed.
+    [info] Passed: Total 1, Failed 0, Errors 0, Passed 1
+    [success] Total time: 1 s, completed 29-Dec-2015 15:29:11
+ 
+    mlewis@LEWISMJ-WINDEV MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
 ```
-In order to run ```sbt test``` you must add the following hook to your ```build.sbt``` file.
+In order to run `sbt test` you must add the following hook to your `build.sbt` file.
 
 ```
 testFrameworks += new TestFramework("com.waioeka.sbt.runner")
 ```
 
-If you have your feature files in a non-standard location (not test/resources) for ```sbt test``` then add that location
-to your test classpath, e.g. ```unmanagedClasspath in Test += baseDirectory.value / "src/test/features"```.
+If you have your feature files in a non-standard location (not test/resources) for `sbt test` then add that location
+to your test classpath, e.g. `unmanagedClasspath in Test += baseDirectory.value / "src/test/features"`.
 
 ### Cucumber arguments
 
-You can now (v0.0.5+) supply cucumber arguments. For example, ``` sbt "cucumber --tags ~@my-tag" ``` will
+You can now (v0.0.5+) supply cucumber arguments. For example, `sbt "cucumber --tags ~@my-tag"` will
 now correctly filter tagged feature files.
 
 ```
@@ -272,3 +272,5 @@ paeroa:cucumber-plugin-example lewismj$ sbt "cucumber --tags ~@my-tag"
 ** goodbye **
 [success] Total time: 1 s, completed 15-Jun-2016 09:23:41
 ```
+
+[1]:	https://github.com/skipoleschris/xsbt-cucumber-plugin
