@@ -48,8 +48,6 @@ addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.1.1")
 The project 'cucumber-plugin-example' highlights how to use the plugin. You will need to ensure that your `build.sbt` file defines both the dependencies and the 'glue' setting (i.e. where to find the step definitions).
 
 
-e.g.
-
 ```scala
 
     name := "cucumber-test"
@@ -72,8 +70,6 @@ e.g.
 
 Remember to set the `CucumberPlugin.glue` parameter to the sub directory in *test* that contains your Scala step definitions.
 In your *resources* directory, put in your feature files. 
-
-e.g.
 
 ```cucumber 
     @my-tag
