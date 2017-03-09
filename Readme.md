@@ -45,7 +45,7 @@ addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.1.1")
 
 ### Cucumber Plugin Example
 
-The project 'cucumber-plugin-example' highlights how to use the plugin. You will need to ensure that your `build.sbt` file defines both the dependencies and the 'glue' setting (i.e. where to find the step definitions).
+The project _cucumber-plugin-example_ highlights how to use the plugin. You will need to ensure that your `build.sbt` file defines both the dependencies and the 'glue' setting (i.e. where to find the step definitions).
 
 
 ```scala
@@ -164,7 +164,7 @@ unmanagedClasspath in Test += baseDirectory.value / "src/test/features"
 
 ### Cucumber Runner Example
 
-The project ***cucumber-runner-example*** illustrates how to do this, to integrate BDD testing into your unit test framework.
+The project _cucumber-runner-example_ illustrates how to do this, to integrate BDD testing into your unit test framework.
 
 As shown below, using the runner and plugin, you can now run `sbt test` in addition to `sbt cucumber`. 
 
