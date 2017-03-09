@@ -3,7 +3,6 @@
 <p align="left">
 <img src="https://travis-ci.org/lewismj/cucumber.svg?branch=master"/>
 <img src="https://maven-badges.herokuapp.com/maven-central/com.waioeka.sbt/cucumber-plugin/badge.svg"/>
-<img src="https://maven-badges.herokuapp.com/maven-central/com.waioeka.sbt/cucumber-runner_2.12/badge.svg"/>
 </p>
 
 ## Dependency Information
@@ -15,7 +14,7 @@ libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.2"
 
 _Runner_
 ```scala
-libraryDependencies += "com.waioeka.sbt" % "cucumber-runner_2.12" % "0.0.6"
+libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.0.5"
 ```
 
 ## Introduction
