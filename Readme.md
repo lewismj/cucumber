@@ -8,7 +8,7 @@
 ## Dependency Information
 
 _Plugin_
-````scala
+```scala
 libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.2"
 ```
 
