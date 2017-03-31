@@ -9,7 +9,7 @@
 
 SBT plugins for Cucumber.
 
-A _plugin_ that provides a new command `sbt cucumber` that allows you to run cucumber tests independently of `sbt test`. 
+A _plugin_ that provides a new command `sbt cucumber` that allows you to run cucumber tests independent of unit tests. 
 
 The _runner_ will run Cucumber tests as part of a unit test run (i.e. `sbt test`). The plugin isn't required to use it.
 
