@@ -2,7 +2,7 @@ name := "cucumber-test2"
 
 organization := "com.waioeka.sbt"
 
-scalaVersion := 2.11.8
+scalaVersion := "2.11.8"
 
 version := "0.0.6"
 
@@ -16,6 +16,7 @@ libraryDependencies ++= Seq (
 
 enablePlugins(CucumberPlugin)
 
+CucumberPlugin.monochrome := false
 CucumberPlugin.glue := "com/waioeka/sbt/"
 
 testFrameworks += new TestFramework("com.waioeka.sbt.runner")
