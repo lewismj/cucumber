@@ -25,9 +25,10 @@
 
 package com.waioeka.sbt.runner
 
+
 import cucumber.runtime.{Runtime, RuntimeOptions}
-import cucumber.runtime.io.{ResourceLoaderClassFinder, MultiLoader}
-import org.scalatools.testing.{Fingerprint, EventHandler, Runner2, Logger}
+import cucumber.runtime.io.{MultiLoader, ResourceLoaderClassFinder}
+import org.scalatools.testing.{EventHandler, Fingerprint, Logger, Runner2}
 
 import scala.util.Try
 
@@ -54,9 +55,9 @@ class CucumberFeatureRunner(classLoader: ClassLoader, loggers: Array[Logger]) ex
             eventHandler  : EventHandler,
             args          : Array[String]) = Try {
 
-      val arguments =
-        List("--glue","") ::: List("--plugin", "pretty") ::: List("--plugin", "html:html") :::
-              List("--plugin", "json:json") ::: List("classpath:") ::: args.toList
+    val arguments =
+      List("--glue","") ::: List("--plugin", "pretty") ::: List("--plugin", "html:html") :::
+              List("--plugin", "json:json") ::: List("classpath:")  ::: args.toList
 
       execute(arguments, classLoader) match {
         case 0 =>

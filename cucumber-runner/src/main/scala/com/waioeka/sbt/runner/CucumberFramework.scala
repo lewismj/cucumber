@@ -25,7 +25,7 @@
 
 package com.waioeka.sbt.runner
 
-import org.scalatools.testing.{Runner2, Logger, Fingerprint, Framework}
+import org.scalatools.testing.{ Logger, Fingerprint, Framework}
 
 /**
   * CucumberFramework
@@ -35,7 +35,7 @@ import org.scalatools.testing.{Runner2, Logger, Fingerprint, Framework}
   */
 class CucumberFramework  extends Framework {
   /** The name of the test framework. */
-  val name = "cucumber"
+  val name = "Cucumber"
 
   /** The array of Cucumber fingerprint(s). */
   val tests = Array[Fingerprint](CucumberFingerprint)
@@ -47,13 +47,8 @@ class CucumberFramework  extends Framework {
     * @param loggers          the logger.
     * @return
     */
-  def testRunner(
-                  testClassLoader: ClassLoader,
-                  loggers: Array[Logger])
-  : Runner2 = {
-
-    loggers foreach (_.debug("[CucumberFramework.testRunner] Creating Cucumber" +
-                              " test runner."))
+  def testRunner(testClassLoader: ClassLoader, loggers: Array[Logger]) = {
+    loggers foreach (_.debug("[CucumberFramework.testRunner] Creating Cucumber test runner."))
     new CucumberFeatureRunner(testClassLoader, loggers)
   }
 

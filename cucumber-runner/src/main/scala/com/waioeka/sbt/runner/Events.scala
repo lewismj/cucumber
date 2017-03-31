@@ -31,14 +31,14 @@ import org.scalatools.testing.{Result, Event}
 case class SuccessEvent(testName: String) extends Event {
   val description = s"[CucumberPlugin] Test $testName passed."
   val result = Result.Success
-  val error: Throwable = null
+  val error = null
 }
 
 case class FailureEvent(testName: String) extends Event {
   val description = s"[CucumberPlugin] Test $testName failed " +
                     "or undefined steps."
   val result = Result.Failure
-  val error: Throwable = null
+  val error = null
 }
 
 

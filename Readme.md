@@ -29,7 +29,7 @@ libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.3"
 
 _Runner_
 ```scala
-libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.0.5"
+libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.0.6"
 ```
 
 ## Introduction
@@ -240,6 +240,9 @@ As shown below, using the runner and plugin, you can now run `sbt test` in addit
 ```
 
 ## Cucumber Arguments
+
+
+### Plugin
 
 Cucumber arguments may be supplied. For example, `sbt "cucumber --tags ~@my-tag"` will filter tagged feature files.
 
