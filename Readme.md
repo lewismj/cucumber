@@ -5,6 +5,12 @@
 <img src="https://maven-badges.herokuapp.com/maven-central/com.waioeka.sbt/cucumber-plugin/badge.svg"/>
 </p>
 
+## Summary
+
+SBT plugin(s) for Cucumber.
+ 
+Waffle board [here](https://waffle.io/lewismj/cucumber)
+
 ## Dependency Information
 
 _Plugin_
