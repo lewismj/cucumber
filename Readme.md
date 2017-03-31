@@ -7,11 +7,11 @@
 
 ## Summary
 
-SBT plugins for Cucumber.
+Two SBT plugins are provided for running Cucumber tests.
 
-A _plugin_ that provides a new command `sbt cucumber` that allows you to run cucumber tests independent of unit tests. 
+A _plugin_ that provides a new command `sbt cucumber`. It allows you to run Cucumber tests independently of unit tests. 
 
-The _runner_ will run Cucumber tests as part of a unit test run (i.e. `sbt test`). The plugin isn't required to use it.
+The other (_runner_) will run Cucumber tests as part of a unit test run (i.e. `sbt test`). The plugin isn't required to use it.
 
 Waffle board [here](https://waffle.io/lewismj/cucumber)
 
