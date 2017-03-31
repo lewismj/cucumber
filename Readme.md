@@ -259,5 +259,3 @@ paeroa:cucumber-plugin-example lewismj$ sbt "cucumber --tags ~@my-tag"
 ** goodbye **
 [success] Total time: 1 s, completed 15-Jun-2016 09:23:41
 ```
-
-[1]:	https://github.com/skipoleschris/xsbt-cucumber-plugin
