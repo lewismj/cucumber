@@ -1,5 +1,7 @@
 name := "cucumber-runner"
 
+scalaVersion := "2.11.8"
+
 organization := "com.waioeka.sbt"
 
 version := "0.0.6"
