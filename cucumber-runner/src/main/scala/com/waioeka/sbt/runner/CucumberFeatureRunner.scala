@@ -35,11 +35,10 @@ import scala.util.Try
   * CucumberFeatureRunner
   *   This class implements the Runner2 interface for running Cucumber tests.
   */
-class CucumberFeatureRunner(classLoader: ClassLoader, loggers: Array[Logger])
-  extends Runner2 {
+class CucumberFeatureRunner(classLoader: ClassLoader, loggers: Array[Logger]) extends Runner2 {
 
-  def logDebug(s: String) : Unit = loggers foreach(_ debug s)
-  def logError(s: String) : Unit = loggers foreach(_ debug s)
+  def debug(s: String)  = loggers foreach(_ debug s)
+  def error(s: String)  = loggers foreach(_ debug s)
 
   /**
     * Run a Cucumber test.
@@ -53,24 +52,19 @@ class CucumberFeatureRunner(classLoader: ClassLoader, loggers: Array[Logger])
             testName      : String,
             fingerprint   : Fingerprint,
             eventHandler  : EventHandler,
-            args          : Array[String]) : Unit = {
-
-    Try {
+            args          : Array[String]) = Try {
 
       val arguments =
-        List("--glue","") :::
-          List("--plugin", "pretty") :::
-            List("--plugin", "html:html") :::
-              List("--plugin", "json:json") :::
-                List("classpath:")
+        List("--glue","") ::: List("--plugin", "pretty") ::: List("--plugin", "html:html") :::
+              List("--plugin", "json:json") ::: List("classpath:") ::: args.toList
 
       execute(arguments, classLoader) match {
         case 0 =>
-          logDebug(s"[CucumberFeatureRunner.run] Cucumber test $testName " +
+          debug(s"[CucumberFeatureRunner.run] Cucumber test $testName " +
             " completed successfully.")
           eventHandler.handle(SuccessEvent(testName))
         case _ =>
-          logDebug(s"[CucumberFeatureRunner.run] Cucumber test $testName " +
+          debug(s"[CucumberFeatureRunner.run] Cucumber test $testName " +
             " failed.")
           eventHandler.handle(FailureEvent(testName))
       }
@@ -78,32 +72,20 @@ class CucumberFeatureRunner(classLoader: ClassLoader, loggers: Array[Logger])
       case t: Throwable =>
           eventHandler.handle(ErrorEvent(testName,t))
     }.get
-  }
 
   /**
     * Create the Cucumber Runtime and execute the test.
 
-    * @param arguments	 the test and Cucumber arguments.
-    * @param classLoader the class loader for the Runtime.
+    * @param args	 the test and Cucumber arguments.
+    * @param cl the class loader for the Runtime.
     * @return the exit status of the Cucumber Runtime.
     */
-  def execute(
-           arguments: List[String],
-           classLoader: ClassLoader
-         )
-  : Int = {
-
+  def execute(args: List[String], cl: ClassLoader) = {
     import scala.collection.JavaConverters._
-    val arrayList : java.util.ArrayList[String] =
-      new java.util.ArrayList[String](arguments.asJava)
-    val runtimeOptions = new RuntimeOptions(arrayList)
-    val resourceLoader = new MultiLoader(classLoader)
-    val classFinder = new ResourceLoaderClassFinder(resourceLoader,classLoader)
-    val runtime = new Runtime(
-                              resourceLoader,
-                              classFinder,
-                              classLoader,
-                              runtimeOptions)
+    val opts = new RuntimeOptions(args.asJava)
+    val rl = new MultiLoader(cl)
+    val cf = new ResourceLoaderClassFinder(rl,cl)
+    val runtime = new Runtime(rl, cf, cl, opts)
     runtime.run()
     runtime.printSummary()
     runtime.exitStatus()

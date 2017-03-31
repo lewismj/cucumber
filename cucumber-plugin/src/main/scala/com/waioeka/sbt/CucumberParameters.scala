@@ -55,10 +55,7 @@ case class CucumberParameters(
     * @param parameterName    the name of the parameter.
     * @return a list containing the parameter if true, false otherwise.
     */
-  def boolToParameter(
-                       parameter: Boolean,
-                       parameterName: String)
-  = parameter match {
+  def boolToParameter(parameter: Boolean, parameterName: String) = parameter match {
     case true => List(s"--$parameterName")
     case _ => List()
   }

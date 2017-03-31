@@ -7,7 +7,10 @@
 
 ## Summary
 
-SBT plugin(s) for Cucumber.
+SBT plugins for Cucumber.
+
+- sbt cucumber
+- sbt test
  
 Waffle board [here](https://waffle.io/lewismj/cucumber)
 
@@ -15,7 +18,7 @@ Waffle board [here](https://waffle.io/lewismj/cucumber)
 
 _Plugin_
 ```scala
-libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.2"
+libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.3"
 ```
 
 _Runner_

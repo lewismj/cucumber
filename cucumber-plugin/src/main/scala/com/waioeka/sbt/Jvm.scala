@@ -62,14 +62,13 @@ case class Jvm(classPath: List[File], systemProperties : Map[String, String]) {
     * @param outputStrategy   the SBT output strategy.
     * @return  the return code of the Jvm.
     */
-  def run(  mainClass : String,
-            parameters : List[String])(
-            outputStrategy: OutputStrategy) : Int = {
+  def run(mainClass : String, parameters : List[String], outputStrategy: OutputStrategy)  = {
 
-    val logger : Logger = outputStrategy.asInstanceOf[LoggedOutput].logger
+    val logger = outputStrategy.asInstanceOf[LoggedOutput].logger
 
     val args  = jvmArgs ++  (mainClass :: parameters)
     val debug = args mkString " "
+
     logger.debug(s"[Jvm.run] Args $debug")
     Fork.java(ForkOptions(None,Some(outputStrategy)),args)
   }

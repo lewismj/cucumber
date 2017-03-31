@@ -2,8 +2,6 @@ name := "cucumber-runner"
 
 organization := "com.waioeka.sbt"
 
-scalaVersion := "2.12.0"
-
 version := "0.0.6"
 
 libraryDependencies ++= Seq (

@@ -2,7 +2,7 @@ name := "cucumber-test"
 
 organization := "com.waioeka.sbt"
 
-version := "0.0.2"
+version := "0.0.3"
 
 scalaVersion := "2.11.8"
 
@@ -16,6 +16,7 @@ libraryDependencies ++= Seq (
 
 enablePlugins(CucumberPlugin)
 
+CucumberPlugin.monochrome := false
 CucumberPlugin.glue := "com/waioeka/sbt/"
 
 def beforeAll() : Unit = { println("** hello **") }

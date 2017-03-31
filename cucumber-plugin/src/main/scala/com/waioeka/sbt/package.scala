@@ -26,8 +26,7 @@
 package com.waioeka
 
 /**
-  * sbt
-  *   Package documentation.
+  * sbt-cucumber
   */
 package object sbt {
   /**

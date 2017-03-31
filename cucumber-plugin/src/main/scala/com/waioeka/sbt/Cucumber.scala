@@ -30,42 +30,16 @@ import sbt.OutputStrategy
 
 /**
   * Cucumber
-  *   Companion object for the Cucumber class. Provides apply method.
-  */
-object Cucumber {
-  /**
-    * Creates a new Cucumber object.
-    *
-    * @param jvmParameters        the JVM parameters.
-    * @param cucumberParameters   the Cucumber parameters.
-    * @return
-    */
-  def apply(
-             jvmParameters: JvmParameters,
-             cucumberParameters: CucumberParameters) : Cucumber = {
-    new Cucumber(jvmParameters)(cucumberParameters)
-  }
-}
-
-/**
-  * Cucumber
   *   This class is responsible for running Cucumber.
   *
-  * @param jvmParameters  the JVM parameters
-  * @param options        the Cucumber parameters.
+  * @param jvmParam  the JVM parameters
+  * @param cucumberParam        the Cucumber parameters.
   */
-class Cucumber(
-              jvmParameters: JvmParameters)(
-              options: CucumberParameters
-              ) {
+case class Cucumber(jvmParam: JvmParameters, cucumberParam: CucumberParameters) {
 
-  /** Standalone JVM that will run Cucumber. */
-  val jvm : Jvm = Jvm(jvmParameters.classPath, jvmParameters.systemProperties)
-
-  /**
-    * Run Cucumber, within the JVM.
-    */
-  def run(output: OutputStrategy) : Int = 
-  	jvm.run(jvmParameters.mainClass,options.toList)(output)
+  /** Run Cucumber, within the JVM. */
+  def run(output: OutputStrategy) =
+    Jvm(jvmParam.classPath, jvmParam.systemProperties)
+      .run(jvmParam.mainClass,cucumberParam.toList,output)
 
 }

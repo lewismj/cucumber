@@ -102,16 +102,12 @@ object CucumberPlugin extends AutoPlugin {
                                   glue.value,
                                   args.toList)
 
-      val j = JvmParameters(
-        mainClass = mainClass.value,
-        classPath = p1,
-        systemProperties = systemProperties.value
-      )
+      val j = JvmParameters(mainClass.value,p1,systemProperties.value)
 
 
-      beforeAll.value()
-      val result = runCucumber(j,p)(outputStrategy)
-      afterAll.value()
+      beforeAll.value
+      val result = runCucumber(j,p,outputStrategy)
+      afterAll.value
       if (result != 0) {
           throw new IllegalStateException("Cucumber did not succeed and returned error =" + result)
       }
@@ -120,7 +116,6 @@ object CucumberPlugin extends AutoPlugin {
     mainClass := "cucumber.api.cli.Main",
     dryRun := false,
     features := List("classpath:"),
-    monochrome := false,
     cucumberTestReports := new File(new File(target.value, "test-reports"), "cucumber"),
     systemProperties := Map(),
     plugin := {
@@ -144,18 +139,12 @@ object CucumberPlugin extends AutoPlugin {
     * @param jParams the Jvm parameters.
     * @param cParams the Cucumber parameters
     */
-  def runCucumber(  jParams : JvmParameters,
-                    cParams: CucumberParameters)(
-                    outputStrategy: OutputStrategy
-                  ) : Int = {
-    val cucumber = Cucumber(jParams,cParams)
-    Try {
-       cucumber.run(outputStrategy)
+  def runCucumber(jParams : JvmParameters, cParams: CucumberParameters, outputStrategy: OutputStrategy) = Try {
+      Cucumber(jParams,cParams).run(outputStrategy)
     }.recover {
       case t: Throwable =>
         println(s"[CucumberPlugin] Caught exception: ${t.getMessage}")
         -1
     }.get
-  }
 
 }
