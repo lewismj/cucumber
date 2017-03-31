@@ -15,9 +15,10 @@ libraryDependencies ++= Seq (
         "org.scalatest" %% "scalatest" % "3.0.1" % "test",
         "org.scalacheck" %% "scalacheck" % "1.13.4" % "test")
 
-enablePlugins(CucumberPlugin)
-
-CucumberPlugin.monochrome := false
-CucumberPlugin.glue := "com/waioeka/sbt/"
 
 testFrameworks += new TestFramework("com.waioeka.sbt.runner")
+
+# Only include these if you need to run `sbt cucumber`
+enablePlugins(CucumberPlugin)
+CucumberPlugin.monochrome := true
+CucumberPlugin.glue := "com/waioeka/sbt/"

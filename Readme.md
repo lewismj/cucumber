@@ -7,7 +7,8 @@
 
 ## Summary
 
-SBT plugins for Cucumber.
+SBT plugins for Cucumber:
+ A _plugin_ that provides a new command `sbt cucumber` that allows you to run cucumber tests independently of `sbt test`. The _runner_ is independent, it will run Cucumber tests as part of a unit test run (i.e. `sbt test`), the plugin isn't required to use it.
 
 Waffle board [here](https://waffle.io/lewismj/cucumber)
 
@@ -171,7 +172,8 @@ unmanagedClasspath in Test += baseDirectory.value / "src/test/features"
 
 The project _cucumber-runner-example_ illustrates how to do this, to integrate BDD testing into your unit test framework.
 
-As shown below, using the runner and plugin, you can now run `sbt test` in addition to `sbt cucumber`. 
+As shown below, using the runner and plugin, you can now run `sbt test` in addition to `sbt cucumber`. *nb* You only need to include the plugin if you want to run `sbt cucumber` command. It isn't necessary for the _runner_.
+
 
 ```
     mlewis@LEWISMJ-WINDEV MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
