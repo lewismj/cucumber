@@ -175,7 +175,8 @@ unmanagedClasspath in Test += baseDirectory.value / "src/test/features"
 
 The project _cucumber-runner-example_ illustrates how to do this, to integrate BDD testing into your unit test framework.
 
-As shown below, using the runner and plugin, you can now run `sbt test` in addition to `sbt cucumber`. *nb* You only need to include the plugin if you want to run `sbt cucumber` command. It isn't necessary for the _runner_.
+As shown below, using the runner and plugin, you can now run `sbt test` in addition to `sbt cucumber`. 
+**nb** You only need to include the plugin if you want to run `sbt cucumber` command. It isn't necessary for the _runner_.
 
 
 ```
