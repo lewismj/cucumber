@@ -23,7 +23,7 @@ Waffle board [here](https://waffle.io/lewismj/cucumber)
 
 _Plugin_
 ```scala
-libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.3"
+libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.4"
 ```
 
 _Runner_
