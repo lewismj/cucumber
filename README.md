@@ -24,7 +24,7 @@ Waffle board [here][1]
 **0.0.8+** Cucumber Test Framework (_runner_)
 
 
-1. (**nb** change from previous verions)  Use **CucumberSpec** as the base class for your Cucumber test suite now. See the cucumber runner example.
+1. **(n.b. change from previous verions)**  Use **CucumberSpec** as the base class for your Cucumber test suite now. See the cucumber runner example.
 
 2. You can specify the Cucumber arguments via your `build.sbt` file, as follows:
 
