@@ -43,7 +43,7 @@ testOptions in Test += Tests.Argument(framework,"--plugin","json:/tmp/json")
 In your class definition, use:
 
 ```scala
-class CucumberTestSuite extends CucumberSpec
+class MyCucumberTestSuite extends CucumberSpec
 ```
 
 ## Dependency Information
