@@ -8,10 +8,10 @@ scalaVersion := "2.11.8"
 
 
 libraryDependencies ++= Seq (
-        "info.cukes" % "cucumber-core" % "1.2.4" % "test",
-        "info.cukes" %% "cucumber-scala" % "1.2.4" % "test",
-        "info.cukes" % "cucumber-jvm" % "1.2.4" % "test",
-        "info.cukes" % "cucumber-junit" % "1.2.4" % "test",
+        "info.cukes" % "cucumber-core" % "1.2.5" % "test",
+        "info.cukes" %% "cucumber-scala" % "1.2.5" % "test",
+        "info.cukes" % "cucumber-jvm" % "1.2.5" % "test",
+        "info.cukes" % "cucumber-junit" % "1.2.5" % "test",
         "org.scalatest" %% "scalatest" % "2.2.4" % "test")
 
 enablePlugins(CucumberPlugin)
