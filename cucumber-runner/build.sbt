@@ -5,7 +5,7 @@ scalaVersion := "2.11.8"
 
 organization := "com.waioeka.sbt"
 
-version := "0.0.7"
+version := "0.0.8"
 
 libraryDependencies ++= Seq (
         "info.cukes" % "cucumber-core" % "1.2.5",

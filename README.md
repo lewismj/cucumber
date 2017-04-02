@@ -165,7 +165,7 @@ The results will be output in the following formats:
 The _runner_ is a library that you can add as a dependency, if you want the Cucumber tests to run as part of a normal unit test run. That is, when you run `sbt test`. Your `build.sbt` file must reference the test framework as follows:
 
 ```scala
-testFrameworks += new TestFramework("com.waioeka.sbt.runner")
+testFrameworks += new TestFramework("com.waioeka.sbt.runner.CucumberFramework")
 ```
 
 Note, the runner will expect feature files in the `test/resources` directory. If your feature files are stored elsewhere, add that location to the 'unmanagedClasspath', e.g.

@@ -50,6 +50,7 @@ case class CucumberRunner(args: Array[String],
 
 
     def info(s: String) = loggers foreach (_ info s)
+    info(s"${args.size},${remoteArgs.size}")
 
     def handle(op: OptionalThrowable, st: Status) = {
       eventHandler.handle(new Event {
@@ -101,7 +102,6 @@ case class CucumberRunner(args: Array[String],
     val cf = new ResourceLoaderClassFinder(rl,cl)
     val runtime = new Runtime(rl, cf, cl, opts)
     runtime.run()
-    runtime.printSummary()
     runtime.exitStatus()
   }
 
