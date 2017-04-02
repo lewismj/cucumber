@@ -15,7 +15,7 @@ This project contains a Cucumber test framework (runner) for sbt. There is also 
 
 Unless you have a specific requirement to run Cucumber tests outside of unit test framework, use the _CucumberRunner_.
 
-**You don't need to use the _plugin_ if you just want to run Cucumber tests with `sbt test`, use the _runner_ test framework.**
+**You don't need to use the _plugin_ if you just want to run Cucumber tests with `sbt test`, use the _runner_ test framework only.**
 
 ## Issues
 
