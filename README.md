@@ -25,6 +25,8 @@ Waffle board [here][1]
 
 **0.0.8+** Cucumber Test Framework (_runner_)
 
+Use **CucumberSpec** as the base class for your Cucumber test suite.
+
 In this version of the runner you can specify the Cucumber arguments via your `build.sbt` file, as follows:
 
 ```scala
@@ -36,6 +38,12 @@ testOptions in Test += Tests.Argument(framework,"--glue","")
 testOptions in Test += Tests.Argument(framework,"--plugin","pretty")
 testOptions in Test += Tests.Argument(framework,"--plugin","html:/tmp/html")
 testOptions in Test += Tests.Argument(framework,"--plugin","json:/tmp/json")
+```
+
+In your class definition, use:
+
+```scala
+class CucumberTestSuite extends CucumberSpec
 ```
 
 ## Dependency Information
