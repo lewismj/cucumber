@@ -50,7 +50,6 @@ case class CucumberRunner(args: Array[String],
 
 
     def info(s: String) = loggers foreach (_ info s)
-    info(s"${args.size},${remoteArgs.size}")
 
     def handle(op: OptionalThrowable, st: Status) = {
       eventHandler.handle(new Event {
@@ -68,9 +67,10 @@ case class CucumberRunner(args: Array[String],
     }
 
     /* default cucumber arguments. */
-    val cArgs = List("--glue","") ::: List("--plugin", "pretty") :::
-                List("--plugin", "html:html") :::
-                List("--plugin", "json:json") ::: List("classpath:")
+    val argList = args.toList ::: List("classpath:")
+    val cArgs = if (argList.contains("--glue")) argList
+    else argList ::: List("--glue","")
+
 
       /* at present, run everything serially. */
       val result = invokeCucumber(cArgs,testClassLoader).recover {

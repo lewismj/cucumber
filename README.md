@@ -1,4 +1,4 @@
-# An SBT Plugin For BDD Testing
+# Cucumber Test Framework & Plugin for SBT
 
 <p align="left">
 <img src="https://travis-ci.org/lewismj/cucumber.svg?branch=master"/>
@@ -8,16 +8,35 @@
 
 ## Summary
 
-Two SBT plugins are provided for running Cucumber tests.
+This project contains a Cucumber test framework (runner) for sbt together. There is a plugin that provides a new sbt command.
 
-A _plugin_ that provides a new command `sbt cucumber`. It allows you to run Cucumber tests independently of unit tests. 
+1. _CucumberRunner_ A new *test framework* for sbt. It runs Cucumber tests as part of a unit test run (i.e. `sbt test`). 
+2. _CucumberPlugin_ A _plugin_  provides a new command `sbt cucumber`. It allows you to run Cucumber tests independently of unit tests. 
 
-The other (_runner_) will run Cucumber tests as part of a unit test run (i.e. `sbt test`).
+Unless you have a specific requirement to run Cucumber tests outside of unit test framework, use the _CucumberRunner_.
 
+nb **You don't need to use the _plugin_ if you just want to run Cucumber tests with `sbt test`, just use the _runner_ test framework.**
 
 ## Issues
 
-Waffle board [here](https://waffle.io/lewismj/cucumber)
+Waffle board [here][1]
+
+## Notes
+
+*0.0.6+* Test Framework (_runner_)
+
+In this version of the runner you can specify the Cucumber arguments via your `build.sbt` file, as follows:
+
+```scala
+val framework = new TestFramework("com.waioeka.sbt.runner.CucumberFramework")
+testFrameworks += framework
+
+testOptions in Test += Tests.Argument(framework,"--monochrome")
+testOptions in Test += Tests.Argument(framework,"--glue","")
+testOptions in Test += Tests.Argument(framework,"--plugin","pretty")
+testOptions in Test += Tests.Argument(framework,"--plugin","html:/tmp/html")
+testOptions in Test += Tests.Argument(framework,"--plugin","json:/tmp/json")
+```
 
 ## Dependency Information
 
@@ -28,26 +47,86 @@ libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.4"
 
 _Runner_
 ```scala
-libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.0.7"
+libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.0.8"
 ```
 
-## Introduction
+## Background
 
 Many Scala projects will use FlatSpec for their BDD like testing. Some teams prefer the separation of Feature files from the code. 
 There are two core projects, each has an example project illustrating the usage. 
-
-- cucumber-plugin
-- cucumber-runner
-
-The first provides an sbt plugin. This allow you to write `sbt cucumber` and invoke the Cucumber tests in a standalone JVM.
-The second allows you to run `sbt test` and have the supplied test framework run the Cucumber tests. 
 
 ## Contact
 
 Michael Lewis: lewismj@waioeka.com
 
+## Cucumber Runner
 
-## Cucumber Plugin 
+The _runner_ is a library that you can add as a dependency, if you want the Cucumber tests to run as part of a normal unit test run. That is, when you run `sbt test`. Your `build.sbt` file must reference the test framework as follows:
+
+```scala
+val framework = new TestFramework("com.waioeka.sbt.runner.CucumberFramework")
+testFrameworks += framework
+
+// Configure the arguments.
+testOptions in Test += Tests.Argument(framework,"--glue","")
+testOptions in Test += Tests.Argument(framework,"--plugin","pretty")
+testOptions in Test += Tests.Argument(framework,"--plugin","html:/tmp/html")
+testOptions in Test += Tests.Argument(framework,"--plugin","json:/tmp/json")
+```
+
+Note, the runner will expect feature files in the `test/resources` directory. If your feature files are stored elsewhere, add that location to the 'unmanagedClasspath', e.g.
+
+```scala
+unmanagedClasspath in Test += baseDirectory.value / "src/test/features"
+```
+
+### Cucumber Runner Example
+
+The project _cucumber-runner-example_ illustrates how to setup and use the _runner_. To integrate BDD testing into your unit test framework.
+As shown below, using the runner and plugin, you can now run `sbt test`.
+
+
+```
+> test
+[info] ExampleSpec:
+[info] - An empty Set should have size 0
+@my-test
+Feature: Multiplication
+  In order to avoid making mistakes
+  As a dummy
+  I want to multiply numbers
+
+  Scenario: Multiply two variables  # Multiplication.feature:7
+    Given a variable x with value 2 # MultiplicationSteps.scala:44
+    And a variable y with value 3   # MultiplicationSteps.scala:48
+    When I multiply x * y           # MultiplicationSteps.scala:52
+    Then I get 6                    # MultiplicationSteps.scala:56
+
+1 Scenarios (1 passed)
+4 Steps (4 passed)
+0m0.081s
+
+
+1 Scenarios (1 passed)
+4 Steps (4 passed)
+0m0.081s
+
+[info] CucumberTestSuite .. passed
+[info] ScalaTest
+[info] Run completed in 422 milliseconds.
+[info] Total number of tests run: 1
+[info] Suites: completed 1, aborted 0
+[info] Tests: succeeded 1, failed 0, canceled 0, ignored 0, pending 0
+[info] All tests passed.
+[info] CucumberTest
+[info] Tests: succeeded 1, failed 0
+[info] Passed: Total 2, Failed 0, Errors 0, Passed 2
+[success] Total time: 1 s, completed 02-Apr-2017 23:16:53
+>
+```
+
+
+## Cucumber Plugin
 
 The Cucumber plugin provides a new sbt command, allowing you to run just your Cucumber tests using `sbt cucumber`.
 You need to add the following to your `plugins.sbt` file.
@@ -160,87 +239,7 @@ The results will be output in the following formats:
 - cucumber.json, standard Cucumber json output.
 - cucumber-junit-report.xml, a Junit style rest report.
 
-## Cucumber Runner
-
-The _runner_ is a library that you can add as a dependency, if you want the Cucumber tests to run as part of a normal unit test run. That is, when you run `sbt test`. Your `build.sbt` file must reference the test framework as follows:
-
-```scala
-testFrameworks += new TestFramework("com.waioeka.sbt.runner.CucumberFramework")
-```
-
-Note, the runner will expect feature files in the `test/resources` directory. If your feature files are stored elsewhere, add that location to the 'unmanagedClasspath', e.g.
-
-```scala
-unmanagedClasspath in Test += baseDirectory.value / "src/test/features"
-```
-
-### Cucumber Runner Example
-
-The project _cucumber-runner-example_ illustrates how to setup and use the _runner_. To integrate BDD testing into your unit test framework.
-As shown below, using the runner and plugin, you can now run `sbt test` in addition to `sbt cucumber`.
-
-
-```
-> cucumber
-[info] @my-test
-[info] Feature: Multiplication
-[info]   In order to avoid making mistakes
-[info]   As a dummy
-[info]   I want to multiply numbers
-[info] 
-[info]   Scenario: Multiply two variables  # Multiplication.feature:7
-[info]     Given a variable x with value 2 # MultiplicationSteps.scala:44
-[info]     And a variable y with value 3   # MultiplicationSteps.scala:48
-[info]     When I multiply x * y           # MultiplicationSteps.scala:52
-[info]     Then I get 6                    # MultiplicationSteps.scala:56
-[info] 
-[info] 1 Scenarios (1 passed)
-[info] 4 Steps (4 passed)
-[info] 0m0.117s
-[info] 
-[success] Total time: 1 s, completed 02-Apr-2017 23:16:51
-> test
-[info] ExampleSpec:
-[info] - An empty Set should have size 0
-@my-test
-Feature: Multiplication
-  In order to avoid making mistakes
-  As a dummy
-  I want to multiply numbers
-
-  Scenario: Multiply two variables  # Multiplication.feature:7
-    Given a variable x with value 2 # MultiplicationSteps.scala:44
-    And a variable y with value 3   # MultiplicationSteps.scala:48
-    When I multiply x * y           # MultiplicationSteps.scala:52
-    Then I get 6                    # MultiplicationSteps.scala:56
-
-1 Scenarios (1 passed)
-4 Steps (4 passed)
-0m0.081s
-
-
-1 Scenarios (1 passed)
-4 Steps (4 passed)
-0m0.081s
-
-[info] CucumberTestSuite .. passed
-[info] ScalaTest
-[info] Run completed in 422 milliseconds.
-[info] Total number of tests run: 1
-[info] Suites: completed 1, aborted 0
-[info] Tests: succeeded 1, failed 0, canceled 0, ignored 0, pending 0
-[info] All tests passed.
-[info] CucumberTest
-[info] Tests: succeeded 1, failed 0
-[info] Passed: Total 2, Failed 0, Errors 0, Passed 2
-[success] Total time: 1 s, completed 02-Apr-2017 23:16:53
->
-```
-
-## Cucumber Arguments
-
-
-### Plugin
+## Cucumber Plugin Arguments
 
 Cucumber arguments may be supplied. For example, `sbt "cucumber --tags ~@my-tag"` will filter tagged feature files.
 
@@ -260,3 +259,5 @@ paeroa:cucumber-plugin-example lewismj$ sbt "cucumber --tags ~@my-tag"
 ** goodbye **
 [success] Total time: 1 s, completed 15-Jun-2016 09:23:41
 ```
+
+[1]:	https://waffle.io/lewismj/cucumber

@@ -19,8 +19,10 @@ libraryDependencies ++= Seq (
 
 val framework = new TestFramework("com.waioeka.sbt.runner.CucumberFramework")
 testFrameworks += framework
-testOptions in Test += Tests.Argument(framework,"--monochrome")
 
-//enablePlugins(CucumberPlugin)
-//CucumberPlugin.monochrome := true
-//CucumberPlugin.glue := "com/waioeka/sbt/"
+// Configure the arguments.
+//testOptions in Test += Tests.Argument(framework,"--monochrome")
+testOptions in Test += Tests.Argument(framework,"--glue","")
+testOptions in Test += Tests.Argument(framework,"--plugin","pretty")
+testOptions in Test += Tests.Argument(framework,"--plugin","html:/tmp/html")
+testOptions in Test += Tests.Argument(framework,"--plugin","json:/tmp/json")
