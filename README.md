@@ -14,6 +14,7 @@ This project contains a Cucumber test framework (runner) for sbt. There is also 
 2. _CucumberPlugin_ A _plugin_  provides a new command `sbt cucumber`. It allows you to run Cucumber tests independently of unit tests. 
 
 Unless you have a specific requirement to run Cucumber tests outside of unit test framework, use the _CucumberRunner_.
+The plugin was created for a specific internal requirement, most people should use the 0.0.8+ version of the runner.
 
 **You don't need to use the _plugin_ if you just want to run Cucumber tests with `sbt test`, use the _runner_ test framework only.**
 
@@ -133,10 +134,11 @@ Feature: Multiplication
 ```
 
 
-## Cucumber Plugin
+## Cucumber Plugin 
 
 The Cucumber plugin provides a new sbt command, allowing you to run just your Cucumber tests using `sbt cucumber`.
 You need to add the following to your `plugins.sbt` file.
+
 
 ```scala
 addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.1.4")
