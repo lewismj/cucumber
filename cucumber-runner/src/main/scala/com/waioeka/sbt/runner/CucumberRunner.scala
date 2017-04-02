@@ -24,12 +24,12 @@
  */
 package com.waioeka.sbt.runner
 
+import java.util.concurrent.atomic.AtomicInteger
+
 import cucumber.runtime.io.{MultiLoader, ResourceLoaderClassFinder}
 import cucumber.runtime.{Runtime, RuntimeOptions}
 import sbt.testing._
 
-import scala.concurrent.duration.Duration
-import scala.concurrent.{Await, Future}
 import scala.util.Try
 
 
@@ -38,6 +38,10 @@ case class CucumberRunner(args: Array[String],
                           remoteArgs: Array[String],
                           testClassLoader: ClassLoader)
   extends Runner {
+
+  val numSuccess = new AtomicInteger(0)
+  val numFailures = new AtomicInteger(0)
+
 
   def runTest(selectors: Seq[String],
               loggers: Seq[Logger],
@@ -62,8 +66,6 @@ case class CucumberRunner(args: Array[String],
       })
     }
 
-    info(s"suite: $name .")
-
     /* default cucumber arguments. */
     val cArgs = List("--glue","") ::: List("--plugin", "pretty") :::
                 List("--plugin", "html:html") :::
@@ -74,12 +76,18 @@ case class CucumberRunner(args: Array[String],
         case t: Throwable => handle(new OptionalThrowable(t), Status.Failure)
       }.get
 
+      val index = name.lastIndexOf(".")
+      val shortName = if (index > 0 && index < name.length-1)
+                          name.substring(index+1)
+                      else name
       result match {
         case 0 =>
-            info(s"test: $name  ... success")
+            info(Console.GREEN + s"$shortName .. passed")
+            numSuccess.incrementAndGet()
             handle(new OptionalThrowable(), Status.Success)
         case 1 =>
-            info(s"test: $name ... failed")
+            info(Console.RED + s"$shortName .. failed")
+            numFailures.incrementAndGet()
             handle(new OptionalThrowable(), Status.Failure)
       }
     }
@@ -98,9 +106,8 @@ case class CucumberRunner(args: Array[String],
   }
 
   /** Output summary details. */
-  override def done(): String = {
-    s"done:"
-  }
+  override def done(): String = Console.CYAN + s"Tests: succeeded ${numSuccess.get()}, failed ${numFailures.get()}"
+
 
   override def tasks(taskDefs: Array[TaskDef]): Array[Task] = taskDefs.map(createTask)
 

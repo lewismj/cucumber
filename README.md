@@ -13,8 +13,6 @@ A _plugin_ that provides a new command `sbt cucumber`. It allows you to run Cucu
 
 The other (_runner_) will run Cucumber tests as part of a unit test run (i.e. `sbt test`).
 
-The two plugins are independent, the _plugin_ isn't required to use the _runner_.
-
 
 ## Issues
 
@@ -29,7 +27,7 @@ libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.3"
 
 _Runner_
 ```scala
-libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.0.6"
+libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.0.7"
 ```
 
 ## Introduction
@@ -41,7 +39,7 @@ There are two core projects, each has an example project illustrating the usage.
 - cucumber-runner
 
 The first provides an sbt plugin. This allow you to write `sbt cucumber` and invoke the Cucumber tests in a standalone JVM.
-The second allows you to run `sbt test` and have the supplied test framework run the Cucumber tests.  Both are effectively wrappers for Cucumber with different launch mechanisms.
+The second allows you to run `sbt test` and have the supplied test framework run the Cucumber tests. 
 
 ## Contact
 
@@ -182,61 +180,62 @@ The project _cucumber-runner-example_ illustrates how to do this, to integrate B
 
 As shown below, using the runner and plugin, you can now run `sbt test` in addition to `sbt cucumber`.
 
-**nb** You only need to include the plugin if you want to run `sbt cucumber` command. It isn't necessary for the _runner_.
-
 
 ```
-    mlewis@LEWISMJ-WINDEV MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
-    $ sbt cucumber
-    [info] Loading project definition from E:\Dev\Plugins\upa-plugins\cucumber-runner-test\project
-    [info] Set current project to cucumber-test2 (in build file:/E:/Dev/Plugins/upa-plugins/cucumber-runner-test/)
-    [info] Compiling 1 Scala source to E:\Dev\Plugins\upa-plugins\cucumber-runner-test\target\scala-2.10\test-classes...
-    [info] Feature: Multiplication
-    [info]   In order to avoid making mistakes
-    [info]   As a dummy
-    [info]   I want to multiply numbers
-    [info]
-    [info]   Scenario: Multiply two variables  # Multiplication.feature:6
-    [info]     Given a variable x with value 2 # MultiplicationSteps.scala:19
-    [info]     And a variable y with value 3   # MultiplicationSteps.scala:23
-    [info]     When I multiply x * y           # MultiplicationSteps.scala:27
-    [info]     Then I get 6                    # MultiplicationSteps.scala:31
-    [info]
-    [info] 1 Scenarios (1 passed)
-    [info] 4 Steps (4 passed)
-    [info] 0m0.152s
-    [info]
-    [success] Total time: 5 s, completed 29-Dec-2015 15:28:51
- 
-    mlewis@LEWISMJ-WINDEV MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
-    $ sbt test
-    [info] Loading project definition from E:\Dev\Plugins\upa-plugins\cucumber-runner-test\project
-    [info] Set current project to cucumber-test2 (in build file:/E:/Dev/Plugins/upa-plugins/cucumber-runner-test/)
-    Feature: Multiplication
-      In order to avoid making mistakes
-      As a dummy
-      I want to multiply numbers
- 
-      Scenario: Multiply two variables  # Multiplication.feature:6
-    Given a variable x with value 2 # MultiplicationSteps.scala:19
-    And a variable y with value 3   # MultiplicationSteps.scala:23
-    When I multiply x * y           # MultiplicationSteps.scala:27
-    Then I get 6                    # MultiplicationSteps.scala:31
- 
-    1 Scenarios (1 passed)
-    4 Steps (4 passed)
-    0m0.170s
- 
-    [info] ScalaTest
-    [info] Run completed in 672 milliseconds.
-    [info] Total number of tests run: 0
-    [info] Suites: completed 0, aborted 0
-    [info] Tests: succeeded 0, failed 0, canceled 0, ignored 0, pending 0
-    [info] No tests were executed.
-    [info] Passed: Total 1, Failed 0, Errors 0, Passed 1
-    [success] Total time: 1 s, completed 29-Dec-2015 15:29:11
- 
-    mlewis@LEWISMJ-WINDEV MINGW64 /e/Dev/Plugins/upa-plugins/cucumber-runner-test (feature/test-runner)
+> cucumber
+[info] @my-test
+[info] Feature: Multiplication
+[info]   In order to avoid making mistakes
+[info]   As a dummy
+[info]   I want to multiply numbers
+[info] 
+[info]   Scenario: Multiply two variables  # Multiplication.feature:7
+[info]     Given a variable x with value 2 # MultiplicationSteps.scala:44
+[info]     And a variable y with value 3   # MultiplicationSteps.scala:48
+[info]     When I multiply x * y           # MultiplicationSteps.scala:52
+[info]     Then I get 6                    # MultiplicationSteps.scala:56
+[info] 
+[info] 1 Scenarios (1 passed)
+[info] 4 Steps (4 passed)
+[info] 0m0.117s
+[info] 
+[success] Total time: 1 s, completed 02-Apr-2017 23:16:51
+> test
+[info] ExampleSpec:
+[info] - An empty Set should have size 0
+@my-test
+Feature: Multiplication
+  In order to avoid making mistakes
+  As a dummy
+  I want to multiply numbers
+
+  Scenario: Multiply two variables  # Multiplication.feature:7
+    Given a variable x with value 2 # MultiplicationSteps.scala:44
+    And a variable y with value 3   # MultiplicationSteps.scala:48
+    When I multiply x * y           # MultiplicationSteps.scala:52
+    Then I get 6                    # MultiplicationSteps.scala:56
+
+1 Scenarios (1 passed)
+4 Steps (4 passed)
+0m0.081s
+
+
+1 Scenarios (1 passed)
+4 Steps (4 passed)
+0m0.081s
+
+[info] CucumberTestSuite .. passed
+[info] ScalaTest
+[info] Run completed in 422 milliseconds.
+[info] Total number of tests run: 1
+[info] Suites: completed 1, aborted 0
+[info] Tests: succeeded 1, failed 0, canceled 0, ignored 0, pending 0
+[info] All tests passed.
+[info] CucumberTest
+[info] Tests: succeeded 1, failed 0
+[info] Passed: Total 2, Failed 0, Errors 0, Passed 2
+[success] Total time: 1 s, completed 02-Apr-2017 23:16:53
+>
 ```
 
 ## Cucumber Arguments

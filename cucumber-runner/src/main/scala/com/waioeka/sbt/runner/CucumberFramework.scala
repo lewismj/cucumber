@@ -30,7 +30,7 @@ import sbt.testing.{Framework, SubclassFingerprint}
 class CucumberFramework extends Framework {
 
   /** framework name. */
-  override def name(): String = classOf[CucumberSpec].getName
+  override def name(): String = "CucumberTest"
 
   /** fingerprint. */
   def fingerprints(): Array[sbt.testing.Fingerprint] = Array(
