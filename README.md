@@ -45,7 +45,7 @@ _Plugin_
 libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.4"
 ```
 
-_Runner_
+**_Runner_**
 ```scala
 libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.0.8"
 ```
