@@ -11,7 +11,7 @@ libraryDependencies ++= Seq (
         "info.cukes" %% "cucumber-scala" % "1.2.5" % "test",
         "info.cukes" % "cucumber-jvm" % "1.2.5" % "test",
         "info.cukes" % "cucumber-junit" % "1.2.5" % "test",
-        "com.waioeka.sbt" %% "cucumber-runner" % "0.0.6",
+        "com.waioeka.sbt" %% "cucumber-runner" % "0.0.7",
         "org.scalatest" %% "scalatest" % "3.0.1" % "test",
         "org.scalacheck" %% "scalacheck" % "1.13.4" % "test")
 

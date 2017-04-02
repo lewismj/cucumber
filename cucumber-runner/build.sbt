@@ -1,22 +1,23 @@
+
 name := "cucumber-runner"
 
 scalaVersion := "2.11.8"
 
 organization := "com.waioeka.sbt"
 
-version := "0.0.6"
+version := "0.0.7"
 
 libraryDependencies ++= Seq (
         "info.cukes" % "cucumber-core" % "1.2.5",
         "info.cukes" %% "cucumber-scala" % "1.2.5",
         "info.cukes" % "cucumber-jvm" % "1.2.5",
         "info.cukes" % "cucumber-junit" % "1.2.5",
-        "org.scala-tools.testing" % "test-interface" % "0.5")
+        "org.scala-sbt" % "test-interface" % "1.0")
 
 pomIncludeRepository := { _ => false }
 
 pomExtra := (
-  <url>https://github.com/lewismj/cucumber</url>
+  <url>https://github.com/lewismj/ctest</url>
   <licenses>
     <license>
       <name>BSD-style</name>
@@ -38,7 +39,6 @@ pomExtra := (
 
 
 publishMavenStyle := true
-
 
 publishTo := {
   val nexus = "https://oss.sonatype.org/"

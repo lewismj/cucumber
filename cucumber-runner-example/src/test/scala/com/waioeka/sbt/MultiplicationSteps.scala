@@ -25,17 +25,18 @@
 
 package com.waioeka.sbt
 
-import com.waioeka.sbt.runner.CucumberRunner
+import com.waioeka.sbt.runner.CucumberSpec
 import cucumber.api.scala.{ScalaDsl, EN}
 import org.scalatest.Matchers
 
-class CucumberTestSuite extends CucumberRunner
+class CucumberTestSuite extends CucumberSpec
+
 
 /**
   * MultiplicationSteps
   *
   */
-class MultiplicationSteps extends ScalaDsl with EN with Matchers {
+class MultiplicationSteps extends ScalaDsl with EN with Matchers  {
   var x : Int = 0
   var y : Int = 0
   var z : Int = 0

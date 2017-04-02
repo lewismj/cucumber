@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, Michael Lewis
+ * Copyright (c) 2017, Michael Lewis
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,34 +22,28 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 package com.waioeka.sbt.runner
 
-import org.scalatools.testing.{ Logger, Fingerprint, Framework}
+import sbt.testing.{Framework, SubclassFingerprint}
 
-/**
-  * CucumberFramework
-  *
-  *   An implementation of the Framework interface for Cucumber feature file
-  *   tests.
-  */
-class CucumberFramework  extends Framework {
-  /** The name of the test framework. */
-  val name = "Cucumber"
+/** Cucumber testing framework. */
+class CucumberFramework extends Framework {
 
-  /** The array of Cucumber fingerprint(s). */
-  val tests = Array[Fingerprint](CucumberFingerprint)
+  /** framework name. */
+  override def name(): String = classOf[CucumberSpec].getName
 
-  /**
-    * Implementation of the testRunner interface.
-    *
-    * @param testClassLoader  the test class loader.
-    * @param loggers          the logger.
-    * @return
-    */
-  def testRunner(testClassLoader: ClassLoader, loggers: Array[Logger]) = {
-    loggers foreach (_.debug("[CucumberFramework.testRunner] Creating Cucumber test runner."))
-    new CucumberFeatureRunner(testClassLoader, loggers)
+  /** fingerprint. */
+  def fingerprints(): Array[sbt.testing.Fingerprint] = Array(
+    new SubclassFingerprint {
+      def superclassName = classOf[CucumberSpec].getName
+      def isModule = false
+      def requireNoArgConstructor = false
+    }
+  )
+
+  /** return the runner. */
+  override def runner(args: Array[String], remoteArgs: Array[String], testClassLoader: ClassLoader): CucumberRunner = {
+    CucumberRunner(args, remoteArgs, testClassLoader)
   }
 
 }
