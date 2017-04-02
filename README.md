@@ -23,7 +23,7 @@ Waffle board [here][1]
 
 ## Notes
 
-*0.0.6+* Test Framework (_runner_)
+*0.0.8+* Test Framework (_runner_)
 
 In this version of the runner you can specify the Cucumber arguments via your `build.sbt` file, as follows:
 
