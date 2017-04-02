@@ -3,6 +3,7 @@
 <p align="left">
 <img src="https://travis-ci.org/lewismj/cucumber.svg?branch=master"/>
 <img src="https://maven-badges.herokuapp.com/maven-central/com.waioeka.sbt/cucumber-plugin/badge.svg"/>
+<img src="https://maven-badges.herokuapp.com/maven-central/com.waioeka.sbt/cucumber-runner_2.11/badge.svg"/>
 </p>
 
 ## Summary
@@ -169,15 +170,13 @@ testFrameworks += new TestFramework("com.waioeka.sbt.runner")
 
 Note, the runner will expect feature files in the `test/resources` directory. If your feature files are stored elsewhere, add that location to the 'unmanagedClasspath', e.g.
 
-
 ```scala
 unmanagedClasspath in Test += baseDirectory.value / "src/test/features"
 ```
 
 ### Cucumber Runner Example
 
-The project _cucumber-runner-example_ illustrates how to do this, to integrate BDD testing into your unit test framework.
-
+The project _cucumber-runner-example_ illustrates how to setup and use the _runner_. To integrate BDD testing into your unit test framework.
 As shown below, using the runner and plugin, you can now run `sbt test` in addition to `sbt cucumber`.
 
 
