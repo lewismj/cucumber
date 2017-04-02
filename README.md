@@ -47,14 +47,14 @@ class MyCucumberTestSuite extends CucumberSpec
 
 ## Dependency Information
 
-_Plugin_
-```scala
-libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.4"
-```
-
 **_Runner_**
 ```scala
 libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.0.8"
+```
+
+_Plugin_
+```scala
+libraryDependencies += "com.waioeka.sbt" % "cucumber-plugin" % "0.1.4"
 ```
 
 ## Background
