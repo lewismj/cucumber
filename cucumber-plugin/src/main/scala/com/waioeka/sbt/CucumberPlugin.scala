@@ -116,6 +116,7 @@ object CucumberPlugin extends AutoPlugin {
     mainClass := "cucumber.api.cli.Main",
     dryRun := false,
     features := List("classpath:"),
+    monochrome := false,
     cucumberTestReports := new File(new File(target.value, "test-reports"), "cucumber"),
     systemProperties := Map(),
     plugin := {
