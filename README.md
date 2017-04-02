@@ -53,7 +53,7 @@ The Cucumber plugin provides a new sbt command, allowing you to run just your Cu
 You need to add the following to your `plugins.sbt` file.
 
 ```scala
-addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.1.3")
+addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.1.4")
 ```
 
 ### Cucumber Plugin Example
