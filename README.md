@@ -2,7 +2,6 @@
 
 <p align="left">
 <img src="https://travis-ci.org/lewismj/cucumber.svg?branch=master"/>
-<img src="https://maven-badges.herokuapp.com/maven-central/com.waioeka.sbt/cucumber-plugin/badge.svg"/>
 <img src="https://maven-badges.herokuapp.com/maven-central/com.waioeka.sbt/cucumber-runner_2.11/badge.svg"/>
 </p>
 
