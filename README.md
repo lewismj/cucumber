@@ -17,15 +17,13 @@ Unless you have a specific requirement to run Cucumber tests outside of unit tes
 
 **You don't need to use the _plugin_ if you just want to run Cucumber tests with `sbt test`, use the _runner_ test framework only.**
 
-## Issues
-
 Waffle board [here][1]
 
 ## Notes
 
 **0.0.8+** Cucumber Test Framework (_runner_)
 
-Use **CucumberSpec** as the base class for your Cucumber test suite.
+**nb** Use **CucumberSpec** as the base class for your Cucumber test suite now. See the cucumber runner example.
 
 In this version of the runner you can specify the Cucumber arguments via your `build.sbt` file, as follows:
 
