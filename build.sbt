@@ -17,7 +17,7 @@ libraryDependencies ++= Seq (
 pomIncludeRepository := { _ => false }
 
 pomExtra := (
-  <url>https://github.com/lewismj/ctest</url>
+  <url>https://github.com/lewismj/cucumber</url>
   <licenses>
     <license>
       <name>BSD-style</name>
@@ -47,3 +47,14 @@ publishTo := {
   else
     Some("releases"  at nexus + "service/local/staging/deploy/maven2")
 }
+
+lazy val cucumber = project.in(file("cucumber"))
+			.settings(
+			libraryDependencies ++= Seq (
+        		"info.cukes" % "cucumber-core" % "1.2.5",
+        		"info.cukes" %% "cucumber-scala" % "1.2.5",
+        		"info.cukes" % "cucumber-jvm" % "1.2.5",
+        		"info.cukes" % "cucumber-junit" % "1.2.5",
+        		"org.scala-sbt" % "test-interface" % "1.0")
+			)	
+
