@@ -30,7 +30,7 @@ Waffle board [here][1]
 
 1. **(n.b. change from previous verions)**  Use **CucumberSpec** as the base class for your Cucumber test suite now. See the cucumber runner example.
 
-2. You can specify the Cucumber arguments via your `build.sbt` file, as follows (also see `Dependency Information`):
+2. You can specify the Cucumber arguments via your `build.sbt` file, as follows:
 
 ```scala
 val framework = new TestFramework("com.waioeka.sbt.runner.CucumberFramework")
