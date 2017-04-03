@@ -22,16 +22,15 @@ ignore Cucumber tests. If you want to use the plugin, there is more information 
 
 _The Cucumber test framework does not depend on the plugin_.
 
+## Issues
 
 Waffle board [here][1]
-
 
 ## Dependency Information
 
 ```scala
 libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.0.8"
 ```
-
 
 ## Notes
 
