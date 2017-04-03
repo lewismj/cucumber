@@ -25,6 +25,14 @@ _The Cucumber test framework does not depend on the plugin_.
 
 Waffle board [here][1]
 
+
+## Dependency Information
+
+```scala
+libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.0.8"
+```
+
+
 ## Notes
 
 **0.0.8+** Cucumber Test Framework (_runner_)
@@ -49,12 +57,6 @@ In your class definition, use:
 
 ```scala
 class MyCucumberTestSuite extends CucumberSpec
-```
-
-## Dependency Information
-
-```scala
-libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.0.8"
 ```
 
 ## Contact
