@@ -30,7 +30,7 @@ Waffle board [here][1]
 
 1. **(n.b. change from previous verions)**  Use **CucumberSpec** as the base class for your Cucumber test suite now. See the cucumber runner example.
 
-2. You can specify the Cucumber arguments via your `build.sbt` file, as follows:
+2. You can specify the Cucumber arguments via your `build.sbt` file, as follows (also see `Dependency Information`):
 
 ```scala
 val framework = new TestFramework("com.waioeka.sbt.runner.CucumberFramework")
@@ -55,19 +55,14 @@ class MyCucumberTestSuite extends CucumberSpec
 libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.0.8"
 ```
 
-
-## Background
-
-Many Scala projects will use FlatSpec for their BDD like testing. Some teams prefer the separation of Feature files from the code. 
-There are two core projects, each has an example project illustrating the usage. 
-
 ## Contact
 
 Michael Lewis: lewismj@waioeka.com
 
-## Cucumber Runner
+## Cucumber Test Framework
 
-The _runner_ is a library that you can add as a dependency, if you want the Cucumber tests to run as part of a normal unit test run. That is, when you run `sbt test`. Your `build.sbt` file must reference the test framework as follows:
+To use the Cucumber test framework, update your `build.sbt` to include the new framework and
+specify the test options. e.g.
 
 ```scala
 val framework = new TestFramework("com.waioeka.sbt.runner.CucumberFramework")
@@ -80,14 +75,14 @@ testOptions in Test += Tests.Argument(framework,"--plugin","html:/tmp/html")
 testOptions in Test += Tests.Argument(framework,"--plugin","json:/tmp/json")
 ```
 
-Note, the runner will expect feature files in the `test/resources` directory. If your feature files are stored elsewhere, add that location to the 'unmanagedClasspath', e.g.
+The framework will expect feature files in the `test/resources` directory. If your feature files are stored elsewhere, add that location to the 'unmanagedClasspath', e.g.
 
 ```scala
 unmanagedClasspath in Test += baseDirectory.value / "src/test/features"
 ```
 
 
-### Cucumber Runner Example
+### Example
 
 The project _example_ illustrates how to setup and use the _runner_. To integrate BDD testing into your unit test framework.
 As shown below, using the runner and plugin, you can now run `sbt test`.
@@ -165,6 +160,5 @@ Feature: Multiplication
 [success] Total time: 1 s, completed 02-Apr-2017 23:16:53
 >
 ```
-
 
 [1]:	https://waffle.io/lewismj/cucumber
