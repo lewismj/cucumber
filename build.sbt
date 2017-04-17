@@ -1,4 +1,4 @@
-crossScalaVersions := Seq("2.11.8","2.12.1")
+//crossScalaVersions := Seq("2.11.8","2.12.1")
 
 lazy val publishSettings = Seq(
  pomIncludeRepository := Function.const(false),
@@ -38,6 +38,7 @@ lazy val cucumber = project.in(file("cucumber"))
 			name := "cucumber-runner",
 			organization := "com.waioeka.sbt",
 			version := "0.0.9",
+			scalaVersion := "2.12.1",
 			resolvers += Resolver.sonatypeRepo("snapshots"), 
 			libraryDependencies ++= Seq (
         			"info.cukes" % "cucumber-core" % "1.2.6-SNAPSHOT",
