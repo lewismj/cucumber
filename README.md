@@ -1,7 +1,7 @@
 # Cucumber Test Framework & Plugin for SBT
 
 <p align="left">
-<img src="https://travis-ci.org/lewismj/cucumber.svg?branch=master"/>
+<!--<img src="https://travis-ci.org/lewismj/cucumber.svg?branch=master"/>-->
 <img src="https://maven-badges.herokuapp.com/maven-central/com.waioeka.sbt/cucumber-runner_2.11/badge.svg"/>
 </p>
 
@@ -33,12 +33,6 @@ libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.0.9"
 ```
 
 ## Notes
-
-**0.0.9** Cucumber Test Framework (_runner_)
-
- This release is based on Cucumber 1.2.6-SNAPSHOT, so that Scala 2.12 can be supported.
-
- Release 0.1.0 will be made as soon as 1.2.6 is live.
 
 
 **0.0.8+** Cucumber Test Framework (_runner_)
