@@ -1,6 +1,11 @@
 # Change Log
 
-## [0.8.0] - 2017-04-02
+## [0.0.9] - 2017-04-17
+### Changed
+- Release a version against 1.2.6-SNAPSHOT so that Scala 2.12 can be supported.
+  Will release an update as soon as 1.2.6 is live.
+
+## [0.0.8] - 2017-04-02
 ### Changed
 - Tests need to use 'CucumberSpec' as the base for Cucumber suites in the
   _runner_.

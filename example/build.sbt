@@ -6,12 +6,16 @@ scalaVersion := "2.11.8"
 
 version := "0.0.6"
 
+
+// Version 0.0.9 - use 1.2.6-SNAPSHOT for Scala 2.12, until 1.2.6 is available.
+resolvers += Resolver.sonatypeRepo("snapshots")
+
 libraryDependencies ++= Seq (
-        "info.cukes" % "cucumber-core" % "1.2.5" % "test",
-        "info.cukes" %% "cucumber-scala" % "1.2.5" % "test",
-        "info.cukes" % "cucumber-jvm" % "1.2.5" % "test",
-        "info.cukes" % "cucumber-junit" % "1.2.5" % "test",
-        "com.waioeka.sbt" %% "cucumber-runner" % "0.0.8",
+        "info.cukes" % "cucumber-core" % "1.2.6-SNAPSHOT" % "test",
+        "info.cukes" %% "cucumber-scala" % "1.2.6-SNAPSHOT" % "test",
+        "info.cukes" % "cucumber-jvm" % "1.2.6-SNAPSHOT" % "test",
+        "info.cukes" % "cucumber-junit" % "1.2.6-SNAPSHOT" % "test",
+        "com.waioeka.sbt" %% "cucumber-runner" % "0.0.9",
         "org.scalatest" %% "scalatest" % "3.0.1" % "test",
         "org.scalacheck" %% "scalacheck" % "1.13.4" % "test")
 

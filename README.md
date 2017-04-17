@@ -34,8 +34,12 @@ libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.0.8"
 
 ## Notes
 
-**0.0.8+** Cucumber Test Framework (_runner_)
+**0.0.9** Cucumber Test Framework (_runner_)
 
+ This release is based on Cucumber 1.2.6-SNAPSHOT, so that Scala 2.12 can be supported.
+ Release 0.1.0 will be made as soon as 1.2.6 is live.
+
+**0.0.8+** Cucumber Test Framework (_runner_)
 
 1. **(n.b. change from previous verions)**  Use **CucumberSpec** as the base class for your Cucumber test suite now. See the cucumber runner example.
 

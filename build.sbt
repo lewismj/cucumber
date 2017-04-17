@@ -1,22 +1,8 @@
+crossScalaVersions := Seq("2.11.8","2.12.1")
 
-name := "cucumber-runner"
-
-scalaVersion := "2.11.8"
-
-organization := "com.waioeka.sbt"
-
-version := "0.0.8"
-
-libraryDependencies ++= Seq (
-        "info.cukes" % "cucumber-core" % "1.2.5",
-        "info.cukes" %% "cucumber-scala" % "1.2.5",
-        "info.cukes" % "cucumber-jvm" % "1.2.5",
-        "info.cukes" % "cucumber-junit" % "1.2.5",
-        "org.scala-sbt" % "test-interface" % "1.0")
-
-pomIncludeRepository := { _ => false }
-
-pomExtra := (
+lazy val publishSettings = Seq(
+ pomIncludeRepository := Function.const(false),
+ pomExtra := (
   <url>https://github.com/lewismj/cucumber</url>
   <licenses>
     <license>
@@ -35,26 +21,29 @@ pomExtra := (
       <name>Michael Lewis</name>
       <url>http://www.waioeka.com</url>
     </developer>
-  </developers>)
-
-
-publishMavenStyle := true
-
-publishTo := {
+  </developers>),
+ publishMavenStyle := true,
+ publishTo := {
   val nexus = "https://oss.sonatype.org/"
   if (isSnapshot.value)
     Some("snapshots" at nexus + "content/repositories/snapshots")
   else
     Some("releases"  at nexus + "service/local/staging/deploy/maven2")
-}
+ }
+)
 
+// Version 0.0.9 - use 1.2.6-SNAPSHOT for Scala 2.12, until 1.2.6 is available.
 lazy val cucumber = project.in(file("cucumber"))
 			.settings(
+			name := "cucumber-runner",
+			organization := "com.waioeka.sbt",
+			version := "0.0.9",
+			resolvers += Resolver.sonatypeRepo("snapshots"), 
 			libraryDependencies ++= Seq (
-        		"info.cukes" % "cucumber-core" % "1.2.5",
-        		"info.cukes" %% "cucumber-scala" % "1.2.5",
-        		"info.cukes" % "cucumber-jvm" % "1.2.5",
-        		"info.cukes" % "cucumber-junit" % "1.2.5",
-        		"org.scala-sbt" % "test-interface" % "1.0")
-			)	
-
+        			"info.cukes" % "cucumber-core" % "1.2.6-SNAPSHOT",
+        			"info.cukes" %% "cucumber-scala" % "1.2.6-SNAPSHOT",
+        			"info.cukes" % "cucumber-jvm" % "1.2.6-SNAPSHOT",
+        			"info.cukes" % "cucumber-junit" % "1.2.6-SNAPSHOT",
+        			"org.scala-sbt" % "test-interface" % "1.0")
+			)
+			.settings(publishSettings:_*)
