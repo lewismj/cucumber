@@ -7,8 +7,7 @@
 
 ## Update Notes
 
-Finally Cucumber builds for 2.12 Scala, latest release is an update for Scala 2.12, 
-Scala 2.12 compatible version is 0.1.0.
+Finally Cucumber builds for 2.12 Scala, latest release is an update for Scala 2.12 (compatible version is 0.1.0).
 
 Published to Nexus 30 July 2017 (1am Singapore time).
 
