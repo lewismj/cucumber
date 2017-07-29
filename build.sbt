@@ -1,6 +1,6 @@
 name := "cucumber-runner"
-organization  := "com.waioeka"
-crossScalaVersions :=  Seq("2.11.8","2.12.1")
+organization  := "com.waioeka.sbt"
+scalaVersion := "2.12.2"
 version := "0.0.9"
 
 publishTo := {
@@ -15,10 +15,10 @@ publishTo := {
 resolvers += Resolver.sonatypeRepo("snapshots")
 
 libraryDependencies ++= Seq (
-   	"info.cukes" % "cucumber-core" % "1.2.6-SNAPSHOT",
-  	"info.cukes" %% "cucumber-scala" % "1.2.6-SNAPSHOT",
-       	"info.cukes" % "cucumber-jvm" % "1.2.6-SNAPSHOT",
-       	"info.cukes" % "cucumber-junit" % "1.2.6-SNAPSHOT",
+   	"io.cucumber" % "cucumber-core" % "2.0.0-SNAPSHOT",
+  	"io.cucumber" %% "cucumber-scala" % "2.0.0-SNAPSHOT",
+       	"io.cucumber" % "cucumber-jvm" % "2.0.0-SNAPSHOT",
+       	"io.cucumber" % "cucumber-junit" % "2.0.0-SNAPSHOT",
        	"org.scala-sbt" % "test-interface" % "1.0")
 
 

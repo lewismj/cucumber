@@ -5,6 +5,10 @@
 <img src="https://maven-badges.herokuapp.com/maven-central/com.waioeka.sbt/cucumber-runner_2.11/badge.svg"/>
 </p>
 
+## Note
+
+Finally Cucumber builds for 2.12 Scala, latest release is an update for Scala 2.12
+
 ## Summary
 
 This project contains a Cucumber test framework for sbt. There is also a plugin that provides a new sbt command.

@@ -2,19 +2,19 @@ name := "cucumber-test2"
 
 organization := "com.waioeka.sbt"
 
-scalaVersion := "2.12.1"
+scalaVersion := "2.12.2"
 
 version := "0.0.6"
 
 
-// Version 0.0.9 - use 1.2.6-SNAPSHOT for Scala 2.12, until 1.2.6 is available.
+// Version 0.0.9 - use 2.0.0-SNAPSHOT for Scala 2.12, until 2.0.0 is available.
 resolvers += Resolver.sonatypeRepo("snapshots")
 
 libraryDependencies ++= Seq (
-        "info.cukes" % "cucumber-core" % "1.2.6-SNAPSHOT" % "test",
-        "info.cukes" %% "cucumber-scala" % "1.2.6-SNAPSHOT" % "test",
-        "info.cukes" % "cucumber-jvm" % "1.2.6-SNAPSHOT" % "test",
-        "info.cukes" % "cucumber-junit" % "1.2.6-SNAPSHOT" % "test",
+        "io.cucumber" % "cucumber-core" % "2.0.0-SNAPSHOT" % "test",
+        "io.cucumber" %% "cucumber-scala" % "2.0.0-SNAPSHOT" % "test",
+        "io.cucumber" % "cucumber-jvm" % "2.0.0-SNAPSHOT" % "test",
+        "io.cucumber" % "cucumber-junit" % "2.0.0-SNAPSHOT" % "test",
         "com.waioeka.sbt" %% "cucumber-runner" % "0.0.9",
         "org.scalatest" %% "scalatest" % "3.0.1" % "test",
         "org.scalacheck" %% "scalacheck" % "1.13.4" % "test")
