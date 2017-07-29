@@ -15,7 +15,7 @@ libraryDependencies ++= Seq (
         "io.cucumber" %% "cucumber-scala" % "2.0.0-SNAPSHOT" % "test",
         "io.cucumber" % "cucumber-jvm" % "2.0.0-SNAPSHOT" % "test",
         "io.cucumber" % "cucumber-junit" % "2.0.0-SNAPSHOT" % "test",
-        "com.waioeka.sbt" %% "cucumber-runner" % "0.0.9",
+        "com.waioeka.sbt" %% "cucumber-runner" % "0.1.0",
         "org.scalatest" %% "scalatest" % "3.0.1" % "test",
         "org.scalacheck" %% "scalacheck" % "1.13.4" % "test")
 

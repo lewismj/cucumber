@@ -5,9 +5,12 @@
 <img src="https://maven-badges.herokuapp.com/maven-central/com.waioeka.sbt/cucumber-runner_2.11/badge.svg"/>
 </p>
 
-## Note
+## Update Notes
 
-Finally Cucumber builds for 2.12 Scala, latest release is an update for Scala 2.12
+Finally Cucumber builds for 2.12 Scala, latest release is an update for Scala 2.12, 
+Scala 2.12 compatible version is 0.1.0.
+
+Published to Nexus 30 July 2017 (1am Singapore time).
 
 ## Summary
 

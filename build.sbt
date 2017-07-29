@@ -1,15 +1,15 @@
 name := "cucumber-runner"
 organization  := "com.waioeka.sbt"
 scalaVersion := "2.12.2"
-version := "0.0.9"
+version := "0.1.0"
+sbtPlugin := true
 
-publishTo := {
-  val nexus = "https://oss.sonatype.org/"
+publishTo := Some(
   if (isSnapshot.value)
-    Some("snapshots" at nexus + "content/repositories/snapshots")
+    Opts.resolver.sonatypeSnapshots
   else
-    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
-}
+    Opts.resolver.sonatypeStaging
+)
 
 // For version 0.0.9, allow Scala 2.12
 resolvers += Resolver.sonatypeRepo("snapshots")
@@ -25,27 +25,19 @@ libraryDependencies ++= Seq (
 pomIncludeRepository := Function.const(false)
 
 publishArtifact in Test := false
+sonatypeProfileName := "com.waioeka.sbt"
 
 publishMavenStyle := true
 
-pomExtra := (
-	<url>https://github.com/lewismj/cucumber</url>
-       	<licenses>
-       	<license>
-       		<name>BSD-style</name>
-       		<url>http://www.opensource.org/licenses/bsd-license.php</url>
-       		<distribution>repo</distribution>
-       	</license>
-       	</licenses>
-       	<scm>
-       		<url>git@github.com:lewismj/cucumber.git</url>
-            	<connection>scm:git:git@github.com:lewismj/cucumber.git</connection>
-       	</scm>
-       	<developers>
-       		<developer>
-       			<id>lewismj</id>
-       			<name>Michael Lewis</name>
-       			<url>http://www.waioeka.com</url>
-       		</developer>
-       	</developers>
-      )
+// License of your choice
+licenses := Seq("BSD-style" -> url("http://www.opensource.org/licenses/bsd-license.php"))
+homepage := Some(url("https://github.com/lewismj/cucumber"))
+scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/lewismj/cucmber"),
+    "scm:git@github.com:lewismj/cucumber.git"
+  )
+)
+developers := List(
+  Developer(id="lewismj", name="Michael Lewis", email="lewismj@waioeka.com", url=url("https://www.waioeka.com"))
+)
