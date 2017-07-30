@@ -4,13 +4,15 @@ organization := "com.waioeka.sbt"
 
 sbtPlugin := true
 
-version := "0.1.4"
+version := "0.1.5"
+
+resolvers += Resolver.sonatypeRepo("snapshots")
 
 libraryDependencies ++= Seq (
-	"info.cukes" % "cucumber-core" % "1.2.5",
-	"info.cukes" %% "cucumber-scala" % "1.2.5",
-	"info.cukes" % "cucumber-jvm" % "1.2.5" artifacts Artifact("cucumber-jvm", `type`="pom", extension="pom"),
-	"info.cukes" % "cucumber-junit" % "1.2.5",
+	"io.cucumber" % "cucumber-core" % "2.0.0-SNAPSHOT",
+	"io.cucumber" %% "cucumber-scala" % "2.0.0-SNAPSHOT",
+	"io.cucumber" % "cucumber-jvm" % "2.0.0-SNAPSHOT" artifacts Artifact("cucumber-jvm", `type`="pom", extension="pom"),
+	"io.cucumber" % "cucumber-junit" % "2.0.0-SNAPSHOT",
 	"org.apache.commons" % "commons-lang3" % "3.5")
 
 
