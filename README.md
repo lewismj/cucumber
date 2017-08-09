@@ -7,7 +7,11 @@
 
 ## Update Notes
 
-Cucumber now builds for 2.12 Scala, latest release is an update for Scala 2.12 (compatible version is 0.1.1).
+Cucumber now builds for 2.12 Scala, latest release is an update for Scala 2.12 (compatible version is 0.1.2).
+
+Note, Until 2.0.0 Cucumber is released, we have to use the SNAPSHOT version for Scala 2.12 compatibility, i.e. use: `resolvers += Resolver.sonatypeRepo("snapshots")`
+
+
 
 ## Summary
 
