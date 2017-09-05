@@ -5,7 +5,7 @@ You need to add the following to your `plugins.sbt` file.
 
 
 ```scala
- addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.1.4")
+ addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.1.6")
 ```
 
 ### Cucumber Plugin Example
@@ -22,10 +22,10 @@ The project _cucumber-plugin-example_ highlights how to use the plugin. You will
     version := "0.1.0"
  
     libraryDependencies ++= Seq (
-    "info.cukes" % "cucumber-core" % "1.2.5" % "test",
-    "info.cukes" %% "cucumber-scala" % "1.2.5" % "test",
-    "info.cukes" % "cucumber-jvm" % "1.2.5" % "test",
-    "info.cukes" % "cucumber-junit" % "1.2.5" % "test",
+    "io.cucumber" % "cucumber-core" % "2.0.0" % "test",
+    "io.cucumber" %% "cucumber-scala" % "2.0.0" % "test",
+    "io.cucumber" % "cucumber-jvm" % "2.0.0" % "test",
+    "io.cucumber" % "cucumber-junit" % "2.0.0" % "test",
     "org.scalatest" %% "scalatest" % "2.2.5" % "test")
  
     enablePlugins(CucumberPlugin)
