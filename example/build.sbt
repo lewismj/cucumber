@@ -4,18 +4,16 @@ organization := "com.waioeka.sbt"
 
 scalaVersion := "2.12.2"
 
-version := "0.0.6"
+version := "0.0.7"
 
 
-// Version 0.0.9 - use 2.0.0-SNAPSHOT for Scala 2.12, until 2.0.0 is available.
-resolvers += Resolver.sonatypeRepo("snapshots")
 
 libraryDependencies ++= Seq (
-        "io.cucumber" % "cucumber-core" % "2.0.0-SNAPSHOT" % "test",
-        "io.cucumber" %% "cucumber-scala" % "2.0.0-SNAPSHOT" % "test",
-        "io.cucumber" % "cucumber-jvm" % "2.0.0-SNAPSHOT" % "test",
-        "io.cucumber" % "cucumber-junit" % "2.0.0-SNAPSHOT" % "test",
-        "com.waioeka.sbt" %% "cucumber-runner" % "0.1.0",
+        "io.cucumber" % "cucumber-core" % "2.0.0" % "test",
+        "io.cucumber" %% "cucumber-scala" % "2.0.0" % "test",
+        "io.cucumber" % "cucumber-jvm" % "2.0.0" % "test",
+        "io.cucumber" % "cucumber-junit" % "2.0.0" % "test",
+        "com.waioeka.sbt" %% "cucumber-runner" % "0.1.3",
         "org.scalatest" %% "scalatest" % "3.0.1" % "test",
         "org.scalacheck" %% "scalacheck" % "1.13.4" % "test")
 

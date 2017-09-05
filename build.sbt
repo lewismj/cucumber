@@ -1,7 +1,7 @@
 name := "cucumber-runner"
 organization  := "com.waioeka.sbt"
 scalaVersion := "2.12.3"
-version := "0.1.2"
+version := "0.1.3"
 
 publishTo := Some(
   if (isSnapshot.value)
@@ -10,14 +10,12 @@ publishTo := Some(
     Opts.resolver.sonatypeStaging
 )
 
-// For version 0.0.9, allow Scala 2.12
-resolvers += Resolver.sonatypeRepo("snapshots")
 
 libraryDependencies ++= Seq (
-   	"io.cucumber" % "cucumber-core" % "2.0.0-SNAPSHOT",
-  	"io.cucumber" %% "cucumber-scala" % "2.0.0-SNAPSHOT",
-       	"io.cucumber" % "cucumber-jvm" % "2.0.0-SNAPSHOT",
-       	"io.cucumber" % "cucumber-junit" % "2.0.0-SNAPSHOT",
+   	"io.cucumber" % "cucumber-core" % "2.0.0",
+  	"io.cucumber" %% "cucumber-scala" % "2.0.0",
+       	"io.cucumber" % "cucumber-jvm" % "2.0.0",
+       	"io.cucumber" % "cucumber-junit" % "2.0.0",
        	"org.scala-sbt" % "test-interface" % "1.0")
 
 

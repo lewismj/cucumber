@@ -35,15 +35,17 @@ class CucumberFramework extends Framework {
   /** fingerprint. */
   def fingerprints(): Array[sbt.testing.Fingerprint] = Array(
     new SubclassFingerprint {
-      def superclassName = classOf[CucumberSpec].getName
+      def superclassName: String = classOf[CucumberSpec].getName
       def isModule = false
       def requireNoArgConstructor = false
     }
   )
 
   /** return the runner. */
-  override def runner(args: Array[String], remoteArgs: Array[String], testClassLoader: ClassLoader): CucumberRunner = {
-    CucumberRunner(args, remoteArgs, testClassLoader)
-  }
+  override def runner(args: Array[String],
+                      remoteArgs: Array[String],
+                      testClassLoader: ClassLoader): CucumberRunner
+    = CucumberRunner(args, remoteArgs, testClassLoader)
+
 
 }

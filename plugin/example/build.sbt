@@ -2,19 +2,16 @@ name := "cucumber-test"
 
 organization := "com.waioeka.sbt"
 
-version := "0.0.3"
+version := "0.0.4"
 
 scalaVersion := "2.12.2"
 
-// need snapshots for 2.0.0 cucumber that supports Scala 2.12
-resolvers += Resolver.sonatypeRepo("snapshots")
-
 
 libraryDependencies ++= Seq (
-        "io.cucumber" % "cucumber-core" % "2.0.0-SNAPSHOT" % "test",
-        "io.cucumber" %% "cucumber-scala" % "2.0.0-SNAPSHOT" % "test",
-        "io.cucumber" % "cucumber-jvm" % "2.0.0-SNAPSHOT" % "test",
-        "io.cucumber" % "cucumber-junit" % "2.0.0-SNAPSHOT" % "test",
+        "io.cucumber" % "cucumber-core" % "2.0.0" % "test",
+        "io.cucumber" %% "cucumber-scala" % "2.0.0" % "test",
+        "io.cucumber" % "cucumber-jvm" % "2.0.0" % "test",
+        "io.cucumber" % "cucumber-junit" % "2.0.0" % "test",
         "org.scalatest" %% "scalatest" % "3.0.1" % "test")
 
 enablePlugins(CucumberPlugin)

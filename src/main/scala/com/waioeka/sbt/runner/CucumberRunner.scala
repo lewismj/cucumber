@@ -46,52 +46,53 @@ case class CucumberRunner(args: Array[String],
   def runTest(selectors: Seq[String],
               loggers: Seq[Logger],
               name: String,
-              eventHandler: EventHandler) = {
+              eventHandler: EventHandler): Unit = {
 
 
     def info(s: String) = loggers foreach (_ info s)
 
     def handle(op: OptionalThrowable, st: Status) = {
       eventHandler.handle(new Event {
-        def fullyQualifiedName() = name
-        def throwable() = op
-        def status() = st
+        def fullyQualifiedName(): String = name
+        def throwable(): OptionalThrowable = op
+        def status(): Status = st
         def selector() = new TestSelector(fullyQualifiedName())
+
         def fingerprint() = new SubclassFingerprint {
-          def superclassName = classOf[CucumberSpec].getName
+          def superclassName: String = classOf[CucumberSpec].getName
           def isModule = false
           def requireNoArgConstructor = false
         }
+
         def duration() = 0
       })
     }
 
     /* default cucumber arguments. */
     val argList = args.toList ::: List("classpath:")
-    val cArgs = if (argList.contains("--glue")) argList
-    else argList ::: List("--glue","")
+    val cArgs = if (argList.contains("--glue")) argList else argList ::: List("--glue", "")
 
 
-      /* at present, run everything serially. */
-      val result = invokeCucumber(cArgs,testClassLoader).recover {
-        case t: Throwable => handle(new OptionalThrowable(t), Status.Failure)
-      }.get
+    /* at present, run everything serially. */
+    val result = invokeCucumber(cArgs, testClassLoader).recover {
+      case t: Throwable => handle(new OptionalThrowable(t), Status.Failure)
+    }.get
 
-      val index = name.lastIndexOf(".")
-      val shortName = if (index > 0 && index < name.length-1)
-                          name.substring(index+1)
-                      else name
-      result match {
-        case 0 =>
-            info(Console.GREEN + s"$shortName .. passed")
-            numSuccess.incrementAndGet()
-            handle(new OptionalThrowable(), Status.Success)
-        case 1 =>
-            info(Console.RED + s"$shortName .. failed")
-            numFailures.incrementAndGet()
-            handle(new OptionalThrowable(), Status.Failure)
-      }
+    val index = name.lastIndexOf(".")
+    val shortName = if (index > 0 && index < name.length - 1)
+      name.substring(index + 1)
+    else name
+    result match {
+      case 0 =>
+        info(Console.GREEN + s"$shortName .. passed")
+        numSuccess.incrementAndGet()
+        handle(new OptionalThrowable(), Status.Success)
+      case 1 =>
+        info(Console.RED + s"$shortName .. failed")
+        numFailures.incrementAndGet()
+        handle(new OptionalThrowable(), Status.Failure)
     }
+  }
 
 
   /** Runs the actual cucumber arguments. */
