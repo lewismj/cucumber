@@ -6,12 +6,16 @@ sbtPlugin := true
 
 version := "0.1.6"
 
+sbtVersion in Global := "1.0.2"
+crossSbtVersions := Seq("1.0.2", "0.13.16")
+scalacOptions += "-target:jvm-1.8"
+
 
 libraryDependencies ++= Seq (
-	"io.cucumber" % "cucumber-core" % "2.0.0",
-	"io.cucumber" %% "cucumber-scala" % "2.0.0",
-	"io.cucumber" % "cucumber-jvm" % "2.0.0" artifacts Artifact("cucumber-jvm", `type`="pom", extension="pom"),
-	"io.cucumber" % "cucumber-junit" % "2.0.0",
+	"io.cucumber" % "cucumber-core" % "2.0.1",
+	"io.cucumber" %% "cucumber-scala" % "2.0.1",
+	"io.cucumber" % "cucumber-jvm" % "2.0.1" artifacts Artifact("cucumber-jvm", `type`="pom", extension="pom"),
+	"io.cucumber" % "cucumber-junit" % "2.0.1",
 	"org.apache.commons" % "commons-lang3" % "3.5")
 
 
