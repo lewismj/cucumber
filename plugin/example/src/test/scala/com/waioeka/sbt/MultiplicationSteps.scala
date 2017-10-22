@@ -40,6 +40,7 @@ class MultiplicationSteps extends ScalaDsl with EN with Matchers {
 
 
   Given("""^a variable x with value (\d+)$""") { (arg0: Int) =>
+    println(System.getenv("K"))
     x = arg0
   }
 

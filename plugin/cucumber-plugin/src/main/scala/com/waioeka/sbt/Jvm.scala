@@ -36,7 +36,7 @@ import sbt._
   * JvmRunner
   *   Provide functions for launching JVM.
   */
-case class Jvm(classPath: List[File], systemProperties : Map[String, String]) {
+case class Jvm(classPath: List[File], envParams : Map[String, String]) {
 
   /** Classpath separator, must be ';' for Windows, otherwise : */
   private val sep = if (SystemUtils.IS_OS_WINDOWS) ";" else ":"
@@ -51,8 +51,6 @@ case class Jvm(classPath: List[File], systemProperties : Map[String, String]) {
   private val jvmArgs : Vector[String]
           = Vector("-classpath", classPath map(_.toPath) mkString sep) ++ runtimeArgs
 
-  private val envVars = systemProperties
-
   /**
     * Invoke the main class.
     *
@@ -66,8 +64,10 @@ case class Jvm(classPath: List[File], systemProperties : Map[String, String]) {
     val logger = outputStrategy.asInstanceOf[LoggedOutput].logger
 
     val args =  jvmArgs :+ mainClass
-    
-    logger.info(s"[jvm] args ${args mkString " "}, env: $envVars, parameters: ${parameters.mkString(",")}")
+
+    logger.info(s"runtime args: $runtimeArgs")
+
+    logger.info(s"[jvm] args ${args mkString " "}, env: $envParams, parameters: ${parameters.mkString(",")}")
 
 
     val opts = ForkOptions(javaHome = None,
@@ -75,8 +75,8 @@ case class Jvm(classPath: List[File], systemProperties : Map[String, String]) {
                 bootJars = Vector.empty,
                 workingDirectory = None,
                 runJVMOptions = args,
-                connectInput = true,
-                envVars = envVars)
+                connectInput = false,
+                envVars = envParams)
 
 
     Fork.java(opts,parameters)

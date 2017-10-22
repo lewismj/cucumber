@@ -50,8 +50,6 @@ object CucumberPlugin extends AutoPlugin {
   /** The path(s) to the features.                                */
   val features = SettingKey[List[String]]("cucumber-features")
 
-  val systemProperties = settingKey[Map[String, String]]("system properties")
-
   /** Whether or not to use monochrome output.                    */
   val monochrome = SettingKey[Boolean]("cucumber-monochrome")
 
@@ -82,19 +80,16 @@ object CucumberPlugin extends AutoPlugin {
     */
   override def projectSettings : Seq[Setting[_]] = Seq (
 
-    testFrameworks +=
-      new TestFramework("com.waioeka.sbt.runner.CucumberFramework"),
-
     cucumber := {
 
       val args: Seq[String] = spaceDelimited("<arg>").parsed
 
       val outputStrategy = LoggedOutput(streams.value.log)
 
-      val p1 = ((fullClasspath in Test)
+      val classPath = ((fullClasspath in Test)
                 map { cp => cp.toList.map(_.data)}).value
 
-      val p = CucumberParameters(
+      val cucumberParams = CucumberParameters(
                                   dryRun.value,
                                   features.value,
                                   monochrome.value,
@@ -102,11 +97,11 @@ object CucumberPlugin extends AutoPlugin {
                                   glue.value,
                                   args.toList)
 
-      val j = JvmParameters(mainClass.value,p1,systemProperties.value)
-
+      import scala.collection.JavaConverters._
+      val envParams = System.getenv.asScala.toMap
 
       beforeAll.value
-      val result = runCucumber(j,p,outputStrategy)
+      val result = run(classPath,envParams,mainClass.value,cucumberParams,outputStrategy)
       afterAll.value
       if (result != 0) {
           throw new IllegalStateException("Cucumber did not succeed and returned error =" + result)
@@ -118,7 +113,6 @@ object CucumberPlugin extends AutoPlugin {
     features := List("classpath:"),
     monochrome := false,
     cucumberTestReports := new File(new File(target.value, "test-reports"), "cucumber"),
-    systemProperties := Map(),
     plugin := {
       import Plugin._
       val cucumberDir = cucumberTestReports.value
@@ -134,14 +128,12 @@ object CucumberPlugin extends AutoPlugin {
   )
 
 
-  /**
-    * Run Cucumber with the given parameters.
-    *
-    * @param jParams the Jvm parameters.
-    * @param cParams the Cucumber parameters
-    */
-  def runCucumber(jParams : JvmParameters, cParams: CucumberParameters, outputStrategy: OutputStrategy) = Try {
-      Cucumber(jParams,cParams).run(outputStrategy)
+  def run(classPath: List[File],
+          env: Map[String, String],
+          mainClass: String,
+          cucumberParams: CucumberParameters,
+          outputStrategy: OutputStrategy) = Try {
+      Jvm(classPath,env).run(mainClass,cucumberParams.toList,outputStrategy)
     }.recover {
       case t: Throwable =>
         println(s"[CucumberPlugin] Caught exception: ${t.getMessage}")
