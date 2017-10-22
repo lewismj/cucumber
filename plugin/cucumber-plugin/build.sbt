@@ -4,10 +4,12 @@ organization := "com.waioeka.sbt"
 
 sbtPlugin := true
 
-version := "0.1.6"
+version := "0.1.7"
 
 sbtVersion in Global := "1.0.2"
-crossSbtVersions := Seq("1.0.2", "0.13.16")
+
+// sbt fork api changed, can't cross compile :(
+// crossSbtVersions := Seq("1.0.2", "0.13.16")
 scalacOptions += "-target:jvm-1.8"
 
 

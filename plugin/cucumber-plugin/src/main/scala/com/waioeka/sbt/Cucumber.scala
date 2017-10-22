@@ -39,7 +39,6 @@ case class Cucumber(jvmParam: JvmParameters, cucumberParam: CucumberParameters) 
 
   /** Run Cucumber, within the JVM. */
   def run(output: OutputStrategy) =
-    Jvm(jvmParam.classPath, jvmParam.systemProperties)
-      .run(jvmParam.mainClass,cucumberParam.toList,output)
+    Jvm(jvmParam.classPath, jvmParam.systemProperties).run(jvmParam.mainClass,cucumberParam.toList,output)
 
 }

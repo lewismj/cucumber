@@ -43,16 +43,15 @@ case class Jvm(classPath: List[File], systemProperties : Map[String, String]) {
 
 
   /** Get the JVM options passed into SBT. */
-  val runtimeMXBean = ManagementFactory.getRuntimeMXBean
-  import scala.collection.JavaConversions._
-  val args = runtimeMXBean.getInputArguments.toList
+  import scala.collection.JavaConverters._
+  private val runtimeArgs = ManagementFactory.getRuntimeMXBean.getInputArguments.asScala.toVector
 
 
   /** The Jvm parameters. */
-  private val jvmArgs : Seq[String]
-          = Seq("-classpath", classPath map(_.toPath) mkString sep) ++
-            systemProperties.toList.map{case (key, value) => s"-D$key=$value"} ++
-            args
+  private val jvmArgs : Vector[String]
+          = Vector("-classpath", classPath map(_.toPath) mkString sep) ++ runtimeArgs
+
+  private val envVars = systemProperties
 
   /**
     * Invoke the main class.
@@ -66,11 +65,21 @@ case class Jvm(classPath: List[File], systemProperties : Map[String, String]) {
 
     val logger = outputStrategy.asInstanceOf[LoggedOutput].logger
 
-    val args  = jvmArgs ++  (mainClass :: parameters)
-    val debug = args mkString " "
+    val args =  jvmArgs :+ mainClass
+    
+    logger.info(s"[jvm] args ${args mkString " "}, env: $envVars, parameters: ${parameters.mkString(",")}")
 
-    logger.debug(s"[Jvm.run] Args $debug")
-    Fork.java(ForkOptions(None,Some(outputStrategy)),args)
+
+    val opts = ForkOptions(javaHome = None,
+                outputStrategy = Some(outputStrategy),
+                bootJars = Vector.empty,
+                workingDirectory = None,
+                runJVMOptions = args,
+                connectInput = true,
+                envVars = envVars)
+
+
+    Fork.java(opts,parameters)
   }
 
 

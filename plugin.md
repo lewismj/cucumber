@@ -5,7 +5,7 @@ You need to add the following to your `plugins.sbt` file.
 
 
 ```scala
- addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.1.6")
+ addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.1.7")
 ```
 
 ### Cucumber Plugin Example

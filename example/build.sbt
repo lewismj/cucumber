@@ -6,8 +6,6 @@ scalaVersion := "2.12.2"
 
 version := "0.0.7"
 
-
-
 libraryDependencies ++= Seq (
         "io.cucumber" % "cucumber-core" % "2.0.0" % "test",
         "io.cucumber" %% "cucumber-scala" % "2.0.0" % "test",
