@@ -3,10 +3,14 @@
 The Cucumber plugin provides a new sbt command, allowing you to run just your Cucumber tests using `sbt cucumber`.
 You need to add the following to your `plugins.sbt` file.
 
+## Dependency Information
 
 ```scala
  addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.1.7")
+ 
 ```
+
+Note, the latest version of the plugin built using SBT 1.0.2.
 
 ### Cucumber Plugin Example
 

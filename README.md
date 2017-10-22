@@ -1,14 +1,16 @@
 # Cucumber Test Framework & Plugin for SBT
 
 <p align="left">
-<!--<img src="https://travis-ci.org/lewismj/cucumber.svg?branch=master"/>-->
 <img src="https://maven-badges.herokuapp.com/maven-central/com.waioeka.sbt/cucumber-runner_2.12/badge.svg"/>
+
 </p>
 
 ## Update Notes
 
 Cucumber now builds for 2.12 Scala, latest release is an update for Scala 2.12 (compatible version is 0.1.3).
 
+The plugin (if you don't use the standalone command rather than test framework) is now built with SBT 1.0.2 
+and supports overriding environment variables. See [plugin](plugin.md) for details.
 
 ## Summary
 
