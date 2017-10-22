@@ -132,3 +132,11 @@ paeroa:cucumber-plugin-example lewismj$ sbt "cucumber --tags ~@my-tag"
 ** goodbye **
 [success] Total time: 1 s, completed 15-Jun-2016 09:23:41
 ```
+
+## Properties
+
+In your `build.sbt` file you can now specify environment variables as follows:
+```scala
+  CucumberPlugin.envProperties := Map("K"->"2049")
+```
+The setting expects a type of `Map[String,String]`.

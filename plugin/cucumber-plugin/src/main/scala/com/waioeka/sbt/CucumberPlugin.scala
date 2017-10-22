@@ -58,6 +58,9 @@ object CucumberPlugin extends AutoPlugin {
 
   val cucumberTestReports = settingKey[File]("The location for test reports")
 
+  /** Any additional properties. */
+  val envProperties = SettingKey[Map[String,String]]("properties")
+
   /**
     * Where glue code (step definitions, hooks and plugins)
     * are loaded from.
@@ -80,6 +83,8 @@ object CucumberPlugin extends AutoPlugin {
     */
   override def projectSettings : Seq[Setting[_]] = Seq (
 
+    envProperties := Map.empty,
+
     cucumber := {
 
       val args: Seq[String] = spaceDelimited("<arg>").parsed
@@ -98,7 +103,7 @@ object CucumberPlugin extends AutoPlugin {
                                   args.toList)
 
       import scala.collection.JavaConverters._
-      val envParams = System.getenv.asScala.toMap
+      val envParams = System.getenv.asScala.toMap ++ envProperties.value
 
       beforeAll.value
       val result = run(classPath,envParams,mainClass.value,cucumberParams,outputStrategy)

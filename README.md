@@ -34,7 +34,7 @@ Waffle board [here][1]
 ## Dependency Information
 
 ```scala
-libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.1.3"
+libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.1.4"
 ```
 
 ## Notes

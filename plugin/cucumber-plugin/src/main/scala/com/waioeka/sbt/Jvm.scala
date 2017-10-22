@@ -32,10 +32,6 @@ import org.apache.commons.lang3.SystemUtils
 import sbt._
 
 
-/**
-  * JvmRunner
-  *   Provide functions for launching JVM.
-  */
 case class Jvm(classPath: List[File], envParams : Map[String, String]) {
 
   /** Classpath separator, must be ';' for Windows, otherwise : */
@@ -45,7 +41,6 @@ case class Jvm(classPath: List[File], envParams : Map[String, String]) {
   /** Get the JVM options passed into SBT. */
   import scala.collection.JavaConverters._
   private val runtimeArgs = ManagementFactory.getRuntimeMXBean.getInputArguments.asScala.toVector
-
 
   /** The Jvm parameters. */
   private val jvmArgs : Vector[String]
@@ -59,16 +54,12 @@ case class Jvm(classPath: List[File], envParams : Map[String, String]) {
     * @param outputStrategy   the SBT output strategy.
     * @return  the return code of the Jvm.
     */
-  def run(mainClass : String, parameters : List[String], outputStrategy: OutputStrategy)  = {
+  def run(mainClass : String, parameters : List[String], outputStrategy: OutputStrategy) : Int = {
 
     val logger = outputStrategy.asInstanceOf[LoggedOutput].logger
-
     val args =  jvmArgs :+ mainClass
 
-    logger.info(s"runtime args: $runtimeArgs")
-
-    logger.info(s"[jvm] args ${args mkString " "}, env: $envParams, parameters: ${parameters.mkString(",")}")
-
+    logger.debug(s"args ${args mkString " "}, env: $envParams, parameters: ${parameters.mkString(",")}")
 
     val opts = ForkOptions(javaHome = None,
                 outputStrategy = Some(outputStrategy),

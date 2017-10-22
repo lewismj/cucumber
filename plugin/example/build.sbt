@@ -15,12 +15,14 @@ libraryDependencies ++= Seq (
 
 enablePlugins(CucumberPlugin)
 
+
+CucumberPlugin.envProperties := Map("K"->"2049")
+
 CucumberPlugin.monochrome := false
 CucumberPlugin.glue := "com/waioeka/sbt/"
 
-def beforeAll() : Unit = { println("** hello **") }
-def afterAll() : Unit = { println("** goodbye **") }
+def before() : Unit = { println("beforeAll") }
+def after() : Unit = { println("afterAll") }
 
-CucumberPlugin.beforeAll := beforeAll
-CucumberPlugin.afterAll := afterAll
-
+CucumberPlugin.beforeAll := before
+CucumberPlugin.afterAll := after
