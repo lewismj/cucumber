@@ -9,8 +9,7 @@ You need to add the following to your `plugins.sbt` file.
  addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.1.7")
  
 ```
-
-Note, the latest version of the plugin built using SBT 1.0.2.
+Note, the latest version of the plugin is built using SBT 1.0.2.
 
 ### Cucumber Plugin Example
 
