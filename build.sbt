@@ -1,7 +1,7 @@
 name := "cucumber-runner"
 organization := "com.waioeka.sbt"
 scalaVersion := "2.12.3"
-version := "0.1.3"
+version := "0.1.4"
 
 publishTo := Some(
   if (isSnapshot.value)
