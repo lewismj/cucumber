@@ -1,8 +1,17 @@
 # Cucumber Test Framework & Plugin for SBT
-
 <p align="left">
+<a href="https://travis-ci.org/lewismj/cucumber">
+<img src="https://travis-ci.org/lewismj/cucumber.svg?branch=master"/>
+</a>
+<a href="https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22cucumber-runner_2.12%22">
 <img src="https://maven-badges.herokuapp.com/maven-central/com.waioeka.sbt/cucumber-runner_2.12/badge.svg"/>
-
+</a>
+<a href="https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22cucumber-plugin%22">
+<img src="https://maven-badges.herokuapp.com/maven-central/com.waioeka.sbt/cucumber-plugin/badge.svg"/>
+</a>
+<a href="https://waffle.io/lewismj/cucumber">
+<img src="https://badge.waffle.io/lewismj/cucumber.svg?columns=In%20Progress,Done&style=flat-square">
+</a>
 </p>
 
 ## Update Notes
@@ -28,10 +37,6 @@ The plugin can be used if you want a separate command to run Cucumber tests and 
 ignore Cucumber tests. If you want to use the plugin, there is more information [here](plugin.md).
 
 _The Cucumber test framework does not depend on the plugin_.
-
-## Issues
-
-Waffle board [here][1]
 
 ## Dependency Information
 
