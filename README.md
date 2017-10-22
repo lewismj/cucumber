@@ -16,10 +16,10 @@
 
 ## Update Notes
 
-Cucumber now builds for 2.12 Scala, latest release is an update for Scala 2.12 (compatible version is __0.1.4__).
+Cucumber now builds for 2.12 Scala, latest release is an update for Scala 2.12 (current version is __0.1.4__).
 
 The plugin (if you use the standalone command rather than test framework) is now built with SBT 1.0.2 
-and supports overriding environment variables. See [plugin](plugin.md) for details (compatible version is __0.1.7__).
+and supports overriding environment variables. See [plugin](plugin.md) for details (current version is __0.1.7__).
 
 ## Summary
 
