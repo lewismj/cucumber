@@ -26,15 +26,18 @@ The project _cucumber-plugin-example_ highlights how to use the plugin. You will
     version := "0.1.0"
  
     libraryDependencies ++= Seq (
-    "io.cucumber" % "cucumber-core" % "2.0.0" % "test",
-    "io.cucumber" %% "cucumber-scala" % "2.0.0" % "test",
-    "io.cucumber" % "cucumber-jvm" % "2.0.0" % "test",
-    "io.cucumber" % "cucumber-junit" % "2.0.0" % "test",
+    "io.cucumber" % "cucumber-core" % "2.0.1" % "test",
+    "io.cucumber" %% "cucumber-scala" % "2.0.1" % "test",
+    "io.cucumber" % "cucumber-jvm" % "2.0.1" % "test",
+    "io.cucumber" % "cucumber-junit" % "2.0.1" % "test",
     "org.scalatest" %% "scalatest" % "2.2.5" % "test")
  
     enablePlugins(CucumberPlugin)
  
     CucumberPlugin.glue := "com/waioeka/sbt/"
+
+    // Any environment properties you want to override/set.
+    CucumberPlugin.envProperties := Map("K"->"2049")
 ```
 
 Remember to set the `CucumberPlugin.glue` parameter to the sub directory in *test* that contains your Scala step definitions.
