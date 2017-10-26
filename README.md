@@ -17,6 +17,7 @@
 ## Update Notes
 
 1. The runner now supports running test suites in parallel.
+
     1.1 The existing method of running everything serially and producing a consolidated report is still supported.
     1.2 A new method of defining suites that can run in parallel is introduced.
     
