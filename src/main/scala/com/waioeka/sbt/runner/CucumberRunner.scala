@@ -42,12 +42,10 @@ case class CucumberRunner(args: Array[String],
   val numSuccess = new AtomicInteger(0)
   val numFailures = new AtomicInteger(0)
 
-
   def runTest(selectors: Seq[String],
               loggers: Seq[Logger],
               name: String,
               eventHandler: EventHandler): Unit = {
-
 
     def info(s: String) = loggers foreach (_ info s)
 
@@ -68,20 +66,33 @@ case class CucumberRunner(args: Array[String],
       })
     }
 
-    /* default cucumber arguments. */
-    val argList = args.toList ::: List("classpath:")
-    val cArgs = if (argList.contains("--glue")) argList else argList ::: List("--glue", "")
+    /* if test inherit from CucumberTestSuite and specify features, we can run just those given. */
+    val maybe = Try {
+      val instance = Class.forName(name).newInstance.asInstanceOf[CucumberTestSuite]
+      val adjArgs = args.map(x=> {
+        /** should be a neater way. */
+        if (x.startsWith("html:") ||
+            x.startsWith("json:")) s"$x/${instance.outputSubDir}"
+        else x
+      })
+      (instance.features,adjArgs)
+    }.toOption
+
+    val arguments = maybe match {
+      case Some((features,adjArgs)) =>
+        val ys = features.map(f => s"classpath:$f")
+        adjArgs.toList ::: ys
+      case _ => args.toList ::: List("classpath:")
+    }
+    val cArgs = if (arguments.contains("--glue")) arguments else arguments ::: List("--glue", "")
 
 
-    /* at present, run everything serially. */
     val result = invokeCucumber(cArgs, testClassLoader).recover {
       case t: Throwable => handle(new OptionalThrowable(t), Status.Failure)
     }.get
 
     val index = name.lastIndexOf(".")
-    val shortName = if (index > 0 && index < name.length - 1)
-      name.substring(index + 1)
-    else name
+    val shortName = if (index > 0 && index < name.length - 1) name.substring(index + 1) else name
     result match {
       case 0 =>
         info(Console.GREEN + s"$shortName .. passed")
@@ -117,7 +128,7 @@ case class CucumberRunner(args: Array[String],
     new Task {
       override def taskDef(): TaskDef = t
       override def execute(eventHandler: EventHandler, loggers: Array[Logger]): Array[Task] = {
-        runTest(Seq.empty,loggers,t.fullyQualifiedName(),eventHandler)
+        runTest(Seq.empty,loggers,t.fullyQualifiedName,eventHandler)
         Array.empty
       }
       override def tags(): Array[String] = Array.empty

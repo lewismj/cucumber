@@ -25,36 +25,35 @@
 
 package com.waioeka.sbt
 
-import com.waioeka.sbt.runner.CucumberSpec
+import com.waioeka.sbt.runner.CucumberTestSuite
 import cucumber.api.scala.{ScalaDsl, EN}
 import org.scalatest.Matchers
-
-class CucumberTestSuite extends CucumberSpec
+import cucumber.api.PendingException
 
 
 /**
-  * MultiplicationSteps
-  *
+  * Note:
+  * Inherit from CucumberTestSuite rather than bringing CucumberSpec into scope,
+  * then the output from plugins will be written to sub directries, in order to
+  * allow parallel running.
   */
-class MultiplicationSteps extends ScalaDsl with EN with Matchers  {
-  var x : Int = 0
-  var y : Int = 0
-  var z : Int = 0
+class MiscSteps extends ScalaDsl with EN with Matchers with CucumberTestSuite  {
 
-  Given("""^a variable x with value (\d+)$""") { (arg0: Int) =>
-    x = arg0
+  override def features = List("Misc.feature")
+  override def outputSubDir: String = "misc"
+
+  Given("""^a foo$"""){ () =>
   }
 
-  Given("""^a variable y with value (\d+)$""") { (arg0: Int) =>
-    y = arg0
+  Given("""^a bar$"""){ () =>
+
   }
 
-  When("""^I multiply x \* y$""") { () =>
-    z = x * y
+  When("""^I foo and bar$"""){ () =>
   }
 
- Then("""^I get (\d+)$""") { (arg0: Int) =>
-   z should be (arg0)
- }
+  Then("""^I get baz$"""){ () =>
+  }
+
 }
 

@@ -25,19 +25,25 @@
 
 package com.waioeka.sbt
 
-import cucumber.api.scala.{ScalaDsl, EN}
+import com.waioeka.sbt.runner.CucumberTestSuite
+import cucumber.api.scala.{EN, ScalaDsl}
 import org.scalatest.Matchers
 
 
+
 /**
-  * AddAndMultiplySteps
-  *
+  * Note:
+  * Inherit from CucumberTestSuite rather than bringing CucumberSpec into scope,
+  * then the output from plugins will be written to sub directries, in order to
+  * allow parallel running.
   */
-class MultiplicationSteps extends ScalaDsl with EN with Matchers {
+class AddAndMultiplySteps extends ScalaDsl with EN with Matchers with CucumberTestSuite {
+  override def features = List("Multiplication.feature","Addition.feature")
+  override def outputSubDir = "addAndMult"
+
   var x : Int = 0
   var y : Int = 0
   var z : Int = 0
-
 
   Given("""^a variable x with value (\d+)$""") { (arg0: Int) =>
     x = arg0
@@ -51,7 +57,12 @@ class MultiplicationSteps extends ScalaDsl with EN with Matchers {
     z = x * y
   }
 
- Then("""^I get (\d+)$""") { (arg0: Int) =>
-   z should be (arg0)
- }
+  When("""^I add x \+ y$"""){ () =>
+    z = x + y
+  }
+
+   Then("""^I get (\d+)$""") { (arg0: Int) =>
+     z should be (arg0)
+   }
 }
+
