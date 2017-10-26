@@ -76,7 +76,7 @@ case class CucumberParameters(
 
 }
 
-sealed trait Plugin {
+trait Plugin {
   def toCucumberPlugin : String
 }
 
