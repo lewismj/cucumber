@@ -37,9 +37,8 @@ import org.scalatest.Matchers
   * then the output from plugins will be written to sub directries, in order to
   * allow parallel running.
   */
-class AddAndMultiplySteps extends ScalaDsl with EN with Matchers with CucumberTestSuite {
-  override def features = List("Multiplication.feature","Addition.feature")
-  override def outputSubDir = "addAndMult"
+class AddAndMultiplySteps extends ScalaDsl with EN with Matchers  {
+
 
   var x : Int = 0
   var y : Int = 0

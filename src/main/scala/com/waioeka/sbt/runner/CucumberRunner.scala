@@ -72,7 +72,7 @@ case class CucumberRunner(args: Array[String],
       val adjArgs = args.map(x=> {
         /** should be a neater way. */
         if (x.startsWith("html:") ||
-            x.startsWith("json:")) s"$x/${instance.outputSubDir}"
+            x.startsWith("json:")) s"$x"
         else x
       })
       (instance.features,adjArgs)

@@ -23,9 +23,9 @@ testFrameworks += framework
 // Configure the arguments.
 //testOptions in Test += Tests.Argument(framework,"--monochrome")
 testOptions in Test += Tests.Argument(framework,"--glue","")
-//testOptions in Test += Tests.Argument(framework,"--plugin","pretty")
+testOptions in Test += Tests.Argument(framework,"--plugin","pretty")
 testOptions in Test += Tests.Argument(framework,"--plugin","html:/tmp/html")
 testOptions in Test += Tests.Argument(framework,"--plugin","json:/tmp/json")
 
 /** can remove pretty printing if running in parallel. */
-parallelExecution in Test := true
+parallelExecution in Test := false

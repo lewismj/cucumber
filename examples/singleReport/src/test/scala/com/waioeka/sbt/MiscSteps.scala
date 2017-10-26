@@ -25,10 +25,11 @@
 
 package com.waioeka.sbt
 
-import com.waioeka.sbt.runner.CucumberTestSuite
-import cucumber.api.scala.{ScalaDsl, EN}
+import com.waioeka.sbt.runner.{CucumberSpec, CucumberTestSuite}
+import cucumber.api.scala.{EN, ScalaDsl}
 import org.scalatest.Matchers
 import cucumber.api.PendingException
+
 
 
 /**
@@ -37,10 +38,8 @@ import cucumber.api.PendingException
   * then the output from plugins will be written to sub directries, in order to
   * allow parallel running.
   */
-class MiscSteps extends ScalaDsl with EN with Matchers with CucumberTestSuite  {
+class MiscSteps extends ScalaDsl with EN with Matchers {
 
-  override def features = List("Misc.feature")
-  override def outputSubDir: String = "misc"
 
   Given("""^a foo$"""){ () =>
   }
