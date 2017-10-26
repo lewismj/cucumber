@@ -30,13 +30,6 @@ import cucumber.api.scala.{EN, ScalaDsl}
 import org.scalatest.Matchers
 
 
-
-/**
-  * Note:
-  * Inherit from CucumberTestSuite rather than bringing CucumberSpec into scope,
-  * then the output from plugins will be written to sub directries, in order to
-  * allow parallel running.
-  */
 class AddAndMultiplySteps extends ScalaDsl with EN with Matchers with CucumberTestSuite  {
   override def features = List("Multiplication.feature","Addition.feature")
   override def path = "addAndMult"

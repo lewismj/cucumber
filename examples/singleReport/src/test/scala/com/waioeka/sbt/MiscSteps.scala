@@ -31,13 +31,6 @@ import org.scalatest.Matchers
 import cucumber.api.PendingException
 
 
-
-/**
-  * Note:
-  * Inherit from CucumberTestSuite rather than bringing CucumberSpec into scope,
-  * then the output from plugins will be written to sub directries, in order to
-  * allow parallel running.
-  */
 class MiscSteps extends ScalaDsl with EN with Matchers {
 
 

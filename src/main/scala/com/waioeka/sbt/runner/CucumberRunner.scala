@@ -45,7 +45,7 @@ case class CucumberRunner(args: Array[String], remoteArgs: Array[String], testCl
 
   def runTest(selectors: Seq[String], loggers: Seq[Logger], name: String, eventHandler: EventHandler): Unit = {
 
-    println(s"thread: ${Thread.currentThread().getId}")
+    println(s"running tests in thread: ${Thread.currentThread().getId}")
 
     def info(s: String) = loggers foreach (_ info s)
 
