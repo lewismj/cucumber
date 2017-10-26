@@ -16,5 +16,5 @@ trait CucumberSpec
   */
 trait CucumberTestSuite extends CucumberSpec {
   def features: List[String] = List.empty
-  def outputSubDir: String = ""
+  def path: String = ""
 }

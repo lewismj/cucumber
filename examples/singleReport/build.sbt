@@ -28,4 +28,4 @@ testOptions in Test += Tests.Argument(framework,"--plugin","html:/tmp/html")
 testOptions in Test += Tests.Argument(framework,"--plugin","json:/tmp/json")
 
 /** can remove pretty printing if running in parallel. */
-parallelExecution in Test := false
+parallelExecution in Test := true

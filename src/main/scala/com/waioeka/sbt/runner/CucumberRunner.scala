@@ -33,26 +33,26 @@ import sbt.testing._
 import scala.util.Try
 
 
-/** Cucumber test runner. */
-case class CucumberRunner(args: Array[String],
-                          remoteArgs: Array[String],
-                          testClassLoader: ClassLoader)
-  extends Runner {
 
+object CucumberRunner {
   val numSuccess = new AtomicInteger(0)
   val numFailures = new AtomicInteger(0)
+}
 
-  def runTest(selectors: Seq[String],
-              loggers: Seq[Logger],
-              name: String,
-              eventHandler: EventHandler): Unit = {
+/** Cucumber test runner. */
+case class CucumberRunner(args: Array[String], remoteArgs: Array[String], testClassLoader: ClassLoader) extends Runner {
+
+
+  def runTest(selectors: Seq[String], loggers: Seq[Logger], name: String, eventHandler: EventHandler): Unit = {
+
+    println(s"thread: ${Thread.currentThread().getId}")
 
     def info(s: String) = loggers foreach (_ info s)
 
-    def handle(op: OptionalThrowable, st: Status) = {
+    def handle(ot: OptionalThrowable, st: Status) = {
       eventHandler.handle(new Event {
         def fullyQualifiedName(): String = name
-        def throwable(): OptionalThrowable = op
+        def throwable(): OptionalThrowable = ot
         def status(): Status = st
         def selector() = new TestSelector(fullyQualifiedName())
 
@@ -61,7 +61,6 @@ case class CucumberRunner(args: Array[String],
           def isModule = false
           def requireNoArgConstructor = false
         }
-
         def duration() = 0
       })
     }
@@ -69,39 +68,37 @@ case class CucumberRunner(args: Array[String],
     /* if test inherit from CucumberTestSuite and specify features, we can run just those given. */
     val maybe = Try {
       val instance = Class.forName(name).newInstance.asInstanceOf[CucumberTestSuite]
-      val adjArgs = args.map(x=> {
-        /** should be a neater way. */
-        if (x.startsWith("html:") ||
-            x.startsWith("json:")) s"$x"
+      val adjArgs = args.map(x=> {/** should be a neater way. */
+        if (x.contains(":")) s"$x/${instance.path}"
         else x
       })
-      (instance.features,adjArgs)
+      (instance.features, adjArgs)
     }.toOption
 
     val arguments = maybe match {
-      case Some((features,adjArgs)) =>
+      case Some((features, adjArgs)) =>
         val ys = features.map(f => s"classpath:$f")
         adjArgs.toList ::: ys
       case _ => args.toList ::: List("classpath:")
     }
     val cArgs = if (arguments.contains("--glue")) arguments else arguments ::: List("--glue", "")
 
-
-    val result = invokeCucumber(cArgs, testClassLoader).recover {
-      case t: Throwable => handle(new OptionalThrowable(t), Status.Failure)
-    }.get
-
-    val index = name.lastIndexOf(".")
-    val shortName = if (index > 0 && index < name.length - 1) name.substring(index + 1) else name
-    result match {
-      case 0 =>
-        info(Console.GREEN + s"$shortName .. passed")
-        numSuccess.incrementAndGet()
-        handle(new OptionalThrowable(), Status.Success)
-      case 1 =>
-        info(Console.RED + s"$shortName .. failed")
-        numFailures.incrementAndGet()
-        handle(new OptionalThrowable(), Status.Failure)
+    invokeCucumber(cArgs, testClassLoader).toEither match {
+      case Left(t) =>
+        println(t.printStackTrace())
+        handle(new OptionalThrowable(t), Status.Failure)
+      case Right(result) =>
+        val shortName = name
+        result match {
+          case 0 =>
+            info(Console.GREEN + s"$shortName .. passed")
+            CucumberRunner.numSuccess.incrementAndGet()
+            handle(new OptionalThrowable(), Status.Success)
+          case 1 =>
+            info(Console.RED + s"$shortName .. failed")
+            CucumberRunner.numFailures.incrementAndGet()
+            handle(new OptionalThrowable(), Status.Success)
+        }
     }
   }
 
@@ -114,11 +111,12 @@ case class CucumberRunner(args: Array[String],
     val cf = new ResourceLoaderClassFinder(rl,cl)
     val runtime = new Runtime(rl, cf, cl, opts)
     runtime.run()
-    runtime.exitStatus()
+    runtime.exitStatus().toInt
   }
 
   /** Output summary details. */
-  override def done(): String = Console.CYAN + s"Tests: succeeded ${numSuccess.get()}, failed ${numFailures.get()}"
+  override def done(): String
+    = Console.CYAN + s"Tests: succeeded ${CucumberRunner.numSuccess.get()}, failed ${CucumberRunner.numFailures.get()}"
 
 
   override def tasks(taskDefs: Array[TaskDef]): Array[Task] = taskDefs.map(createTask)

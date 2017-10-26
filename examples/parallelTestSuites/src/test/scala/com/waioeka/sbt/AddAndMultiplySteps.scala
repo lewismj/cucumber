@@ -39,7 +39,7 @@ import org.scalatest.Matchers
   */
 class AddAndMultiplySteps extends ScalaDsl with EN with Matchers with CucumberTestSuite  {
   override def features = List("Multiplication.feature","Addition.feature")
-  override def outputSubDir = "addAndMult"
+  override def path = "addAndMult"
 
   var x : Int = 0
   var y : Int = 0

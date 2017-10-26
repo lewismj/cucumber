@@ -25,12 +25,10 @@
 
 package com.waioeka.sbt
 
-import com.waioeka.sbt.runner.{CucumberSpec, CucumberTestSuite}
+import com.waioeka.sbt.runner.CucumberTestSuite
 import cucumber.api.scala.{EN, ScalaDsl}
 import org.scalatest.Matchers
 import cucumber.api.PendingException
-
-class Specs extends CucumberSpec
 
 
 /**
@@ -42,7 +40,7 @@ class Specs extends CucumberSpec
 class MiscSteps extends ScalaDsl with EN with Matchers with CucumberTestSuite {
 
   override def features = List("Misc.feature")
-  override def outputSubDir: String = "misc"
+  override def path: String = "misc"
 
   Given("""^a foo$"""){ () =>
   }
