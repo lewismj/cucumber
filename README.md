@@ -12,17 +12,21 @@
 <a href="https://waffle.io/lewismj/cucumber">
 <img src="https://badge.waffle.io/lewismj/cucumber.svg?columns=In%20Progress,Done&style=flat-square">
 </a>
+<a href="https://gitter.im/lewismj/sbt-cucumber?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge">
+<img src="https://badges.gitter.im/Join%20Chat.svg"
+</a>
 </p>
 
-## Update Notes
+## Update Notes 
 
-1. The runner now supports running test suites in parallel.
+
+1. The runner (0.1.5) now supports running test suites in parallel.
 
     * The existing method of running everything serially and producing a consolidated report is still supported.
     
     * A new method of defining suites that can run in parallel is introduced.
     
-    Details below, examples of both approaches are give [here](https://github.com/lewismj/cucumber/tree/master/examples).
+    Described below, project examples of both approaches are [here](https://github.com/lewismj/cucumber/tree/master/examples).
 
 2. The plugin (if you use the standalone command rather than test framework) is now built with SBT 1.0.2 
 and supports overriding environment variables. See [plugin](plugin.md) for details (current version is __0.1.7__).
@@ -59,12 +63,12 @@ Michael Lewis: lewismj@waioeka.com
 
 You can run tests two ways:
 
-    1. Run tests in parallel. Each test suite must mixin `CucumberTestSuite` and 
-       overload two methods, that tell the suite which are the corresponding features to run
-       and which sub-directory of the plugin output to put the results.
+1. Run tests in parallel. Each test suite must mixin `CucumberTestSuite` and 
+   overload two methods, that tell the suite which are the corresponding features to run
+   and which sub-directory of the plugin output to put the results.
 
-    2. Sequentially, this runs all Cucumber tests serially and produces a consolidated output,
-       i.e. a single html or json (choose the plugin(s) in your build.sbt file.)
+2. Sequentially, this runs all Cucumber tests serially and produces a consolidated output,
+   i.e. a single html or json (choose the plugin(s) in your build.sbt file.)
 
 
 ## 1. Running tests in parallel.
