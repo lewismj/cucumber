@@ -78,7 +78,7 @@ Define a suite that supports a number of features, for example,
 ```scala
 class AddAndMultiplySteps extends ScalaDsl with EN with Matchers with CucumberTestSuite  {
   override def features = List("Multiplication.feature","Addition.feature")
-  override def path = "addAndMult"
+  override def path = "addAndMult" // this is the output path, appended to plugin path.
 
   var x : Int = 0
   var y : Int = 0
