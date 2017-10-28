@@ -124,7 +124,7 @@ parallelExecution in Test := true
 At present, the output for each suite will be a sub-directory of the plugin output.
 
 
-## 2. Running all the features serially to produce a consolidated test reports
+## 2. Running all the features serially to produce a consolidated test reports.
 
 
 In your test project define an empty class that inherits from `Cucumber Spec`
@@ -144,7 +144,7 @@ testOptions in Test += Tests.Argument(framework,"--glue","")
 testOptions in Test += Tests.Argument(framework,"--plugin","pretty")
 testOptions in Test += Tests.Argument(framework,"--plugin","html:/tmp/html")
 testOptions in Test += Tests.Argument(framework,"--plugin","json:/tmp/json")
-parallelExecution in Test := true
+parallelExecution in Test := false 
 ```
 
 The framework will expect feature files in the `test/resources` directory. If your feature files are stored elsewhere, add that location to the 'unmanagedClasspath', e.g.
