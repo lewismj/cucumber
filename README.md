@@ -1,4 +1,6 @@
 # Cucumber Test Framework & Plugin for SBT
+
+[![Join the chat at https://gitter.im/lewismj/cucumber](https://badges.gitter.im/lewismj/cucumber.svg)](https://gitter.im/lewismj/cucumber?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <p align="left">
 <a href="https://travis-ci.org/lewismj/cucumber">
 <img src="https://travis-ci.org/lewismj/cucumber.svg?branch=master"/>
@@ -12,13 +14,23 @@
 <a href="https://waffle.io/lewismj/cucumber">
 <img src="https://badge.waffle.io/lewismj/cucumber.svg?columns=In%20Progress,Done&style=flat-square">
 </a>
+<a href="https://gitter.im/sbt-cucumber/Lobby">
+<img src="https://badges.gitter.im/Join%20Chat.svg">
+</a>
 </p>
 
-## Update Notes
+## Update Notes 
 
-Cucumber now builds for 2.12 Scala, latest release is an update for Scala 2.12 (current version is __0.1.4__).
 
-The plugin (if you use the standalone command rather than test framework) is now built with SBT 1.0.2 
+1. The runner (0.1.5) now supports running test suites in parallel.
+
+    * The existing method of running everything serially and producing a consolidated report is still supported.
+    
+    * A new method of defining suites that can run in parallel is introduced.
+    
+    Described below, project examples of both approaches are [here](https://github.com/lewismj/cucumber/tree/master/examples).
+
+2. The plugin (if you use the standalone command rather than test framework) is now built with SBT 1.0.2 
 and supports overriding environment variables. See [plugin](plugin.md) for details (current version is __0.1.7__).
 
 ## Summary
@@ -41,43 +53,89 @@ __The Cucumber test framework does not depend on the plugin__.
 ## Dependency Information
 
 ```scala
-libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.1.4"
-```
-
-## Notes
-
-
-**0.0.8+** Cucumber Test Framework (_runner_)
-
-1. **(n.b. change from previous versions)**  Use **CucumberSpec** as the base class for your Cucumber test suite now. See the cucumber runner example.
-
-2. You can specify the Cucumber arguments via your `build.sbt` file, as follows:
-
-```scala
-val framework = new TestFramework("com.waioeka.sbt.runner.CucumberFramework")
-testFrameworks += framework
-
-testOptions in Test += Tests.Argument(framework,"--monochrome")
-testOptions in Test += Tests.Argument(framework,"--glue","")
-testOptions in Test += Tests.Argument(framework,"--plugin","pretty")
-testOptions in Test += Tests.Argument(framework,"--plugin","html:/tmp/html")
-testOptions in Test += Tests.Argument(framework,"--plugin","json:/tmp/json")
-```
-
-In your class definition, use:
-
-```scala
-class MyCucumberTestSuite extends CucumberSpec
+libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.1.5"
 ```
 
 ## Contact
 
 Michael Lewis: lewismj@waioeka.com
 
+
 ## Cucumber Test Framework
 
-To use the Cucumber test framework, update your `build.sbt` to include the new framework and
-specify the test options. e.g.
+You can run tests two ways:
+
+1. Run tests in parallel. Each test suite must mixin `CucumberTestSuite` and 
+   overload two methods, that tell the suite which are the corresponding features to run
+   and which sub-directory of the plugin output to put the results.
+
+2. Sequentially, this runs all Cucumber tests serially and produces a consolidated output,
+   i.e. a single html or json (choose the plugin(s) in your build.sbt file.)
+
+
+## 1. Running tests in parallel.
+
+Define a suite that supports a number of features, for example,
+
+```scala
+class AddAndMultiplySteps extends ScalaDsl with EN with Matchers with CucumberTestSuite  {
+  override def features = List("Multiplication.feature","Addition.feature")
+  override def path = "addAndMult" // this is the output path, appended to plugin path.
+
+  var x : Int = 0
+  var y : Int = 0
+  var z : Int = 0
+
+  Given("""^a variable x with value (\d+)$""") { (arg0: Int) =>
+    x = arg0
+  }
+
+  Given("""^a variable y with value (\d+)$""") { (arg0: Int) =>
+    y = arg0
+  }
+
+  When("""^I multiply x \* y$""") { () =>
+    z = x * y
+  }
+
+  When("""^I add x \+ y$"""){ () =>
+    z = x + y
+  }
+
+   Then("""^I get (\d+)$""") { (arg0: Int) =>
+     z should be (arg0)
+   }
+}
+```
+
+In your build.sbt switch on the parallel output:
+
+```scala
+val framework = new TestFramework("com.waioeka.sbt.runner.CucumberFramework")
+testFrameworks += framework
+
+// Configure the arguments.
+testOptions in Test += Tests.Argument(framework,"--glue","")
+testOptions in Test += Tests.Argument(framework,"--plugin","html:/tmp/html")
+testOptions in Test += Tests.Argument(framework,"--plugin","json:/tmp/json")
+
+/** can remove pretty printing if running in parallel. */
+parallelExecution in Test := true
+```
+
+At present, the output for each suite will be a sub-directory of the plugin output.
+
+
+## 2. Running all the features serially to produce a consolidated test reports.
+
+
+In your test project define an empty class that inherits from `Cucumber Spec`
+
+```scala
+class Spec extends CucumberSpec
+```
+
+Add the following properties to `build.sbt`:
 
 ```scala
 val framework = new TestFramework("com.waioeka.sbt.runner.CucumberFramework")
@@ -88,6 +146,7 @@ testOptions in Test += Tests.Argument(framework,"--glue","")
 testOptions in Test += Tests.Argument(framework,"--plugin","pretty")
 testOptions in Test += Tests.Argument(framework,"--plugin","html:/tmp/html")
 testOptions in Test += Tests.Argument(framework,"--plugin","json:/tmp/json")
+parallelExecution in Test := false 
 ```
 
 The framework will expect feature files in the `test/resources` directory. If your feature files are stored elsewhere, add that location to the 'unmanagedClasspath', e.g.
@@ -112,7 +171,7 @@ import org.scalatest.Matchers
 class CucumberTestSuite extends CucumberSpec
 
 
-/** MultiplicationSteps */
+/** AddAndMultiplySteps*/
 class MultiplicationSteps extends ScalaDsl with EN with Matchers  {
   var x : Int = 0
   var y : Int = 0
