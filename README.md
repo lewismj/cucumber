@@ -12,7 +12,7 @@
 <a href="https://waffle.io/lewismj/cucumber">
 <img src="https://badge.waffle.io/lewismj/cucumber.svg?columns=In%20Progress,Done&style=flat-square">
 </a>
-<a href="https://gitter.im/sbt-cucumber/Lobby">
+<a href="https://gitter.im/lewismj/cucumber">
 <img src="https://badges.gitter.im/Join%20Chat.svg">
 </a>
 </p>
