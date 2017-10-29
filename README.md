@@ -124,7 +124,7 @@ parallelExecution in Test := true
 At present, the output for each suite will be a sub-directory of the plugin output.
 
 
-## 2. Running all the features serially to produce a consolidated test reports.
+## 2. Running all the features serially to produce a consolidated test report.
 
 
 In your test project define an empty class that inherits from `Cucumber Spec`
