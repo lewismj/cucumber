@@ -1,5 +1,11 @@
 # Cucumber Plugin
 
+## Note
+
+The plugin has moved and is now available within the [sbt github](https://github.com/sbt/sbt-cucumber).
+
+This copy will be removed on next release.
+
 The Cucumber plugin provides a new sbt command, allowing you to run just your Cucumber tests using `sbt cucumber`.
 You need to add the following to your `plugins.sbt` file.
 

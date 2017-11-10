@@ -28,8 +28,7 @@
     
     Described below, project examples of both approaches are [here](https://github.com/lewismj/cucumber/tree/master/examples).
 
-2. The plugin (if you use the standalone command rather than test framework) is now built with SBT 1.0.2 
-and supports overriding environment variables. See [plugin](plugin.md) for details (current version is __0.1.7__).
+2. The plugin has moved and is now available within the [sbt github](https://github.com/sbt/sbt-cucumber).
 
 ## Summary
 
