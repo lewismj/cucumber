@@ -2,16 +2,16 @@ name := "cucumber-test1"
 
 organization := "com.waioeka.sbt"
 
-scalaVersion := "2.12.2"
+scalaVersion := "2.12.8"
 
-version := "0.0.7"
+version := "0.0.8"
 
 libraryDependencies ++= Seq (
-        "io.cucumber" % "cucumber-core" % "2.0.0" % "test",
-        "io.cucumber" %% "cucumber-scala" % "2.0.0" % "test",
-        "io.cucumber" % "cucumber-jvm" % "2.0.0" % "test",
-        "io.cucumber" % "cucumber-junit" % "2.0.0" % "test",
-        "com.waioeka.sbt" %% "cucumber-runner" % "0.1.5",
+        "io.cucumber" % "cucumber-core" % "4.3.0" % "test",
+        "io.cucumber" %% "cucumber-scala" % "4.3.0" % "test",
+        "io.cucumber" % "cucumber-jvm" % "4.3.0" % "test",
+        "io.cucumber" % "cucumber-junit" % "4.3.0" % "test",
+        "com.waioeka.sbt" %% "cucumber-runner" % "0.2.0",
         "org.scalatest" %% "scalatest" % "3.0.1" % "test",
         "org.scalacheck" %% "scalacheck" % "1.13.4" % "test")
 

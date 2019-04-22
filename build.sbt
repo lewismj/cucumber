@@ -1,7 +1,7 @@
 name := "cucumber-runner"
 organization := "com.waioeka.sbt"
-scalaVersion := "2.12.3"
-version := "0.1.5"
+scalaVersion := "2.12.8"
+version := "0.2.0"
 
 publishTo := Some(
   if (isSnapshot.value)
@@ -10,12 +10,11 @@ publishTo := Some(
     Opts.resolver.sonatypeStaging
 )
 
-
 libraryDependencies ++= Seq(
-  "io.cucumber" % "cucumber-core" % "2.0.1",
-  "io.cucumber" %% "cucumber-scala" % "2.0.1",
-  "io.cucumber" % "cucumber-jvm" % "2.0.1",
-  "io.cucumber" % "cucumber-junit" % "2.0.1",
+  "io.cucumber" % "cucumber-core" % "4.3.0",
+  "io.cucumber" %% "cucumber-scala" % "4.3.0",
+  "io.cucumber" % "cucumber-jvm" % "4.3.0",
+  "io.cucumber" % "cucumber-junit" % "4.3.0",
   "org.scala-sbt" % "test-interface" % "1.0")
 
 
@@ -36,5 +35,5 @@ scmInfo := Some(
   )
 )
 developers := List(
-  Developer(id="lewismj", name="Michael Lewis", email="lewismj@waioeka.com", url=url("https://www.waioeka.com"))
+  Developer(id="lewismj", name="Michael Lewis", email="lewismj@mac.com", url=url("https://www.waioeka.com"))
 )

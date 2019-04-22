@@ -55,7 +55,7 @@ libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.1.5"
 
 ## Contact
 
-Michael Lewis: lewismj@waioeka.com
+Michael Lewis: lewismj@mac.com
 
 
 ## Cucumber Test Framework

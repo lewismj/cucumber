@@ -109,7 +109,10 @@ case class CucumberRunner(args: Array[String], remoteArgs: Array[String], testCl
     val opts = new RuntimeOptions(args.asJava)
     val rl = new MultiLoader(cl)
     val cf = new ResourceLoaderClassFinder(rl,cl)
-    val runtime = new Runtime(rl, cf, cl, opts)
+    val runtime =  Runtime.builder.withRuntimeOptions(opts)
+                                  .withClassLoader(cl)
+                                  .withClassFinder(cf)
+                                  .build
     runtime.run()
     runtime.exitStatus().toInt
   }
