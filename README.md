@@ -20,7 +20,7 @@
 ## Update Notes 
 
 
-1. The runner (0.1.5) now supports running test suites in parallel.
+1. The runner (0.2.0) now supports running test suites in parallel.
 
     * The existing method of running everything serially and producing a consolidated report is still supported.
     
@@ -50,7 +50,7 @@ __The Cucumber test framework does not depend on the plugin__.
 ## Dependency Information
 
 ```scala
-libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.1.5"
+libraryDependencies += "com.waioeka.sbt" %% "cucumber-runner" % "0.2.0"
 ```
 
 ## Contact
