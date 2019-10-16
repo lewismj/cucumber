@@ -97,7 +97,7 @@ case class CucumberRunner(args: Array[String], remoteArgs: Array[String], testCl
           case 1 =>
             info(Console.RED + s"$shortName .. failed")
             CucumberRunner.numFailures.incrementAndGet()
-            handle(new OptionalThrowable(), Status.Success)
+            handle(new OptionalThrowable(), Status.Failure)
         }
     }
   }
