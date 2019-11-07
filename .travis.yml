@@ -3,8 +3,8 @@ matrix:
   include:
   - env: SBT_VERSION="0.13.16"
     scala: 2.10.6
-  - env: SBT_VERSION="1.0.2"
-    scala: 2.12.3
+  - env: SBT_VERSION="1.2.8"
+    scala: 2.12.10
 
 script:
   - ./.travis.sh
@@ -15,4 +15,4 @@ notifications:
       - andy@sudostream.io
 
 jdk:
-  - oraclejdk8
+  - openjdk8
