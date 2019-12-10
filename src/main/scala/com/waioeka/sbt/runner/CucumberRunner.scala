@@ -30,7 +30,7 @@ import cucumber.runtime.io.{MultiLoader, ResourceLoaderClassFinder}
 import cucumber.runtime.{Runtime, RuntimeOptions}
 import sbt.testing._
 
-import scala.util.Try
+import scala.util.{Failure, Success, Try}
 
 
 
@@ -83,11 +83,11 @@ case class CucumberRunner(args: Array[String], remoteArgs: Array[String], testCl
     }
     val cArgs = if (arguments.contains("--glue")) arguments else arguments ::: List("--glue", "")
 
-    invokeCucumber(cArgs, testClassLoader).toEither match {
-      case Left(t) =>
+    invokeCucumber(cArgs, testClassLoader) match {
+      case Failure(t) =>
         println(t.printStackTrace())
         handle(new OptionalThrowable(t), Status.Failure)
-      case Right(result) =>
+      case Success(result) =>
         val shortName = name
         result match {
           case 0 =>

@@ -1,7 +1,11 @@
+val Scala11x = "2.11.12"
+val Scala12x = "2.12.10"
+
 name := "cucumber-runner"
 organization := "com.waioeka.sbt"
-scalaVersion := "2.12.8"
-version := "0.2.0"
+scalaVersion := Scala12x
+crossScalaVersions := Seq(Scala11x, Scala12x)
+version := "0.2.2"
 
 publishTo := Some(
   if (isSnapshot.value)
